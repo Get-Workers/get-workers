@@ -68,8 +68,19 @@ class User extends Authenticatable
         self::initiateUuid('uuid');
     }
 
+    /**
+     * @return HasOne
+     */
     public function worker(): HasOne
     {
         return $this->hasOne(Worker::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function contractor(): HasOne
+    {
+        return $this->hasOne(Contractor::class);
     }
 }

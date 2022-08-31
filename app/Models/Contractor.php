@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Worker extends Model
+class Contractor extends Model
 {
     use HasFactory;
 
@@ -17,8 +17,6 @@ class Worker extends Model
      */
     protected $fillable = [
         'user_id',
-        'cpf',
-        'cnpj',
     ];
 
     /**
