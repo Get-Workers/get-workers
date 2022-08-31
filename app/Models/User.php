@@ -68,6 +68,9 @@ class User extends Authenticatable
         self::initiateUuid('uuid');
     }
 
+    /**
+     * @return HasOne
+     */
     public function worker(): HasOne
     {
         return $this->hasOne(Worker::class);
