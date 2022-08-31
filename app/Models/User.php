@@ -75,4 +75,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Worker::class);
     }
+
+    /**
+     * @return HasOne
+     */
+    public function contractor(): HasOne
+    {
+        return $this->hasOne(Contractor::class);
+    }
 }
