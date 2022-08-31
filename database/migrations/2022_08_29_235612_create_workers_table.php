@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('user_id');
-            $table->string('cpf', 11)->nullable()->unique();
             $table->string('cnpj', 14)->nullable()->unique();
             $table->timestamps();
         });
