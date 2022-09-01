@@ -29,7 +29,7 @@ class WorkerFactory extends Factory
     {
         $cnpj = '';
         for ($i = 0; $i < 14; $i++) {
-            $cnpj .= $this->faker->rand(0, 9);
+            $cnpj .= random_int(0, 9);
         }
         return $cnpj;
     }
