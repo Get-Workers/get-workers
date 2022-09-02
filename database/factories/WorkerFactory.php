@@ -22,6 +22,22 @@ class WorkerFactory extends Factory
         ];
     }
 
+
+    /**
+     * Create a new user for each worker profile
+     *
+     * @return static
+     */
+    public function withUser(): static
+    {
+        return $this->state(function (array $attributes) {
+            $user = User::factory()->create();
+            return [
+                'user_id' => $user->id,
+            ];
+        });
+    }
+
     /**
      * @return string
      */

@@ -16,10 +16,6 @@ class WorkerSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::factory(10)->create();
-        $users->each(function (User $user) {
-            $workerData = Worker::factory()->makeOne()->toArray();
-            $user->worker()->create($workerData);
-        });
+        Worker::factory(10)->withUser()->create();
     }
 }
