@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             WorkerSeeder::class,
             ContractorSeeder::class,
+            WorkSeeder::class,
         ]);
     }
 }
