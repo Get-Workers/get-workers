@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('description', 1024)->nullable();
             $table->char('certified_uuid', 100)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
