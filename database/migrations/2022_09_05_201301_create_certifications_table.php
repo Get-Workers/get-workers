@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Unity;
 use App\Models\Worker;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,15 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('works', function (Blueprint $table) {
+        Schema::create('certifications', function (Blueprint $table) {
             $table->id('id');
             $table->uuid('uuid');
             $table->foreignIdFor(Worker::class)->constrained();
-            $table->foreignIdFor(Unity::class)->nullable()->constrained()->nullOnDelete();
             $table->string('name');
-            $table->string('slug');
-            $table->time('time')->nullable();
-            $table->unsignedInteger('price')->nullable();
+            $table->string('description', 1024)->nullable();
+            $table->char('certified_uuid', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('works');
+        Schema::dropIfExists('certifications');
     }
 };

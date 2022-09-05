@@ -37,4 +37,12 @@ class Worker extends Model
     {
         return $this->hasMany(Work::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function certifications(): HasMany
+    {
+        return $this->hasMany(Certification::class);
+    }
 }
