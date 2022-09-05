@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Contractor;
+use App\Models\Work;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +18,8 @@ return new class extends Migration
         Schema::create('contracted_works', function (Blueprint $table) {
             $table->id('id');
             $table->uuid('uuid');
-            $table->foreignId('work_id');
-            $table->foreignId('contractor_id');
+            $table->foreignIdFor(Work::class)->constrained();
+            $table->foreignIdFor(Contractor::class)->constrained();
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('value_paid')->nullable();
             $table->timestamp('initiated_at')->nullable();

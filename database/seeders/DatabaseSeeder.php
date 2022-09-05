@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ContractorSeeder::class,
             WorkSeeder::class,
             ContractedWorkSeeder::class,
+            CertificationSeeder::class,
         ]);
     }
 }

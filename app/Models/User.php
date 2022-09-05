@@ -62,6 +62,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    /**
+     *
+     * Register any events for your application.
+     *
+     * @return void
+     */
     public static function boot()
     {
         parent::boot();
