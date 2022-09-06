@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('workers', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('cnpj', 14)->nullable()->unique();
             $table->timestamps();
