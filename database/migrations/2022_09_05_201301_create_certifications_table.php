@@ -15,8 +15,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('certifications', function (Blueprint $table) {
-            $table->id('id');
-            $table->uuid('uuid');
+            $table->id();
+            $table->uuid();
             $table->foreignIdFor(Worker::class)->constrained();
             $table->string('name');
             $table->string('description', 1024)->nullable();

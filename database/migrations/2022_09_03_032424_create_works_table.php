@@ -16,8 +16,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('works', function (Blueprint $table) {
-            $table->id('id');
-            $table->uuid('uuid');
+            $table->id();
+            $table->uuid();
             $table->foreignIdFor(Worker::class)->constrained();
             $table->foreignIdFor(Unity::class)->nullable()->constrained()->nullOnDelete();
             $table->string('name');
