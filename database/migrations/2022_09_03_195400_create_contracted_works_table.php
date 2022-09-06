@@ -16,8 +16,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('contracted_works', function (Blueprint $table) {
-            $table->id('id');
-            $table->uuid('uuid');
+            $table->id();
+            $table->uuid();
             $table->foreignIdFor(Work::class)->constrained();
             $table->foreignIdFor(Contractor::class)->constrained();
             $table->unsignedInteger('price')->nullable();
