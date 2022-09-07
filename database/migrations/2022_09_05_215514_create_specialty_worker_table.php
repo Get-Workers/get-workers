@@ -15,10 +15,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('worker_specialties', function (Blueprint $table) {
-            $table->foreignIdFor(Worker::class)->constrained();
+        Schema::create('specialty_worker', function (Blueprint $table) {
             $table->foreignIdFor(Specialty::class)->constrained();
-            $table->unique(['worker_id', 'specialty_id'], 'worker_specialty_unique');
+            $table->foreignIdFor(Worker::class)->constrained();
+
+            $table->unique(['specialty_id', 'worker_id'], 'specialty_worker_foreigns_unique');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worker_specialties');
+        Schema::dropIfExists('specialty_worker');
     }
 };
