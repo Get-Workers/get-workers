@@ -29,4 +29,12 @@ class Specialty extends Model
     {
         return $this->belongsToMany(Worker::class)->using(SpecialtyWorker::class);
     }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function works(): BelongsToMany
+    {
+        return $this->belongsToMany(Work::class)->using(SpecialtyWorker::class);
+    }
 }
