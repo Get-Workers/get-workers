@@ -6,6 +6,7 @@ use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -64,5 +65,13 @@ class Work extends Model
     public function contractedWork(): HasOne
     {
         return $this->hasOne(ContractedWork::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function specialties(): BelongsToMany
+    {
+        return $this->belongsToMany(Specialty::class)->using(SpecialtyWorker::class);
     }
 }
