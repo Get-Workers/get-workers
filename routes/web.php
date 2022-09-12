@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\UserRegisterController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,6 +29,11 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Landingpage');
 })->name('landingpage');
+
+Route::prefix('/register')->name('register')->middleware('guest')->group(function () {
+    Route::get('', RegisterController::class);
+    Route::post('', UserRegisterController::class);
+});
 
 Route::middleware([
     'auth:sanctum',
