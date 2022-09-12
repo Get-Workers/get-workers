@@ -1,11 +1,11 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import Button from '@/Components/Button.vue';
-import Input from '@/Components/Input.vue';
-import InputError from '@/Components/InputError.vue';
-import Checkbox from '@/Components/Checkbox.vue';
-import Label from '@/Components/Label.vue';
+import AuthenticationCard from '../../Components/AuthenticationCard.vue';
+import Button from '../../Components/Button.vue';
+import Input from '../../Components/Input.vue';
+import InputError from '../../Components/InputError.vue';
+import Checkbox from '../../Components/Checkbox.vue';
+import Label from '../../Components/Label.vue';
 import GuestLayout from '../../Layouts/GuestLayout.vue';
 import Link from '../../Components/Links/Link.vue';
 
@@ -28,7 +28,7 @@ const submit = () => {
     <GuestLayout title="Register">
         <template #main>
             <!-- Register -->
-            <AuthenticationCard>
+            <AuthenticationCard class="mt-2">
                 <div>
                     <span class="text-2xl font-semibold">Register</span>
                     <div>
@@ -37,7 +37,7 @@ const submit = () => {
                     </div>
                 </div>
 
-                <div class="mt-2">
+                <div>
                     <form @submit.prevent="submit">
                         <div class="space-y-3">
                             <div>
