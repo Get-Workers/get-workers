@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from '@vue/reactivity';
+import { Inertia } from '@inertiajs/inertia';
 import { Link } from '@inertiajs/inertia-vue3';
 import Header from './Header.vue';
 import Dropdown from '../../Components/Dropdown.vue';
@@ -8,6 +9,10 @@ import MenuHeaderX from '../Menus/MenuHeaderX.vue';
 import ItemX from '../Menus/Items/ItemX.vue';
 
 const isDashboardRoute = computed(() => (route().current() === 'dashboard'));
+
+const logout = () => {
+    Inertia.post(route('logout'));
+};
 </script>
 
 <template>
@@ -15,7 +20,7 @@ const isDashboardRoute = computed(() => (route().current() === 'dashboard'));
         <template #links>
             <MenuHeaderX class="h-full">
                 <ItemX class="h-full hover:bg-white" :class="{ 'bg-white': isDashboardRoute }">
-                    <Link class="flex h-full px-3 items-center">Dashboard</Link>
+                    <Link :href="route('dashboard')" class="flex h-full px-3 items-center">Dashboard</Link>
                 </ItemX>
             </MenuHeaderX>
         </template>
