@@ -30,6 +30,7 @@ const submit = () => {
 <template>
     <GuestLayout title="Reset Password">
         <template #main>
+            <!-- Reset Password -->
             <AuthenticationCard>
                 <form @submit.prevent="submit">
                     <div class="space-y-2">

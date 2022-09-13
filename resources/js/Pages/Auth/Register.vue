@@ -37,7 +37,7 @@ const submit = () => {
                     </div>
                 </div>
 
-                <div>
+                <div class="mt-5">
                     <form @submit.prevent="submit">
                         <div class="space-y-3">
                             <div>
