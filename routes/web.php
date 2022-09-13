@@ -26,13 +26,15 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
-    return Inertia::render('Landingpage');
-})->name('landingpage');
+Route::middleware('guest')->group(function () {
+    Route::name('landingpage')->get('/', function () {
+        return Inertia::render('Landingpage');
+    });
 
-Route::prefix('/register')->name('register')->middleware('guest')->group(function () {
-    Route::get('', RegisterController::class);
-    Route::post('', UserRegisterController::class);
+    Route::prefix('/register')->name('register')->group(function () {
+        Route::get('', RegisterController::class);
+        Route::post('', UserRegisterController::class);
+    });
 });
 
 Route::middleware([
