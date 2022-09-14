@@ -27,9 +27,7 @@ class UserProfileController extends Controller
         $twoFactorAuthStatus = Features::optionEnabled(Features::twoFactorAuthentication(), 'confirm');
         $sessions = $this->sessions($request)->all();
 
-        // dd($sessions);
-
-        return inertia('Profile/Show', [
+        return inertia('User/Profile/UserSettings/Show', [
             'confirmsTwoFactorAuthentication' => $twoFactorAuthStatus,
             'sessions' => $sessions,
         ]);
