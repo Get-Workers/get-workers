@@ -22,10 +22,10 @@ defineProps({
         <template #main>
             <div class="flex">
                 <!-- Sidebard Menu -->
-                <SidebarMenu class="w-20 md:w-80 lg:w-96"/>
+                <SidebarMenu class="flex flex-col h-fit w-64 md:w-96"/>
 
                 <!-- Page Content -->
-                <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 ml-5">
+                <div class="flex flex-col w-full ml-5">
                     <div v-if="$page.props.jetstream.canUpdateProfileInformation">
                         <UpdateProfileInformationForm :user="$page.props.user" />
 
