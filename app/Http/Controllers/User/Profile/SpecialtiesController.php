@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
-class ShowCertificationController extends Controller
+class SpecialtiesController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,7 +16,7 @@ class ShowCertificationController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $certifications = auth()->user()->worker->certifications ?? [];
-        return inertia('User/Profile/Certification/Show', compact('certifications'));
+        $specialties = auth()->user()->worker->specialties ?? [];
+        return inertia('User/Profile/Specialties/Show', compact('specialties'));
     }
 }
