@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 require 'web/auth.php';
 require 'web/guest.php';
+require 'web/user.php';
 
 Route::middleware([
     'auth:sanctum',
@@ -25,6 +26,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return inertia('Dashboard');
     })->name('dashboard');
-
-    Route::get('/user/profile/certifications', ShowCertificationController::class);
 });
