@@ -22,7 +22,7 @@ class ShowSpecialtiesController extends Controller
         $specialties = Specialty::whereKeyNot($userSpecialtiesIds)->get();
 
         $storeStatus = session()->get('store', false);
-        $deleteStatus = session()->get('delete', false);
+        $deleteStatus = session()->get('destroy', false);
         return inertia('User/Profile/Worker/Specialties/Show', compact('specialties', 'userSpecialties', 'storeStatus', 'deleteStatus'));
     }
 }
