@@ -2,7 +2,10 @@
 import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 import Button from '../../../../../Components/Button.vue';
+import InputError from '../../../../../Components/InputError.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
+
 
 defineProps({
     specialties: {
@@ -36,6 +39,7 @@ const deleteForm = useForm({
 function submitAdd() {
     addForm.post(route('user.profile.worker.specialties.store'), {
         preserveScroll: true,
+        onFinish: () => addForm.specialty = '',
     });
 }
 
@@ -43,10 +47,11 @@ function submitDelete(specialty) {
     deleteForm.specialty = specialty;
     deleteForm.post(route('user.profile.worker.specialties.destroy'), {
         preserveScroll: true,
+        onFinish: () => deleteForm.specialty = '',
     });
 }
 
-
+const isProcessingForms = computed(() => (deleteForm.processing || addForm.processing));
 </script>
 
 <template>
@@ -54,7 +59,7 @@ function submitDelete(specialty) {
         <template #main>
             <div class="flex">
                 <!-- Sidebard Menu -->
-                <SidebarMenu class="flex flex-col h-fit w-64 md:w-96"/>
+                <SidebarMenu class="flex flex-col min-h-fit w-64 md:w-96"/>
 
                 <!-- Page Content -->
                 <div class="ml-5 w-full px-5">
@@ -63,21 +68,28 @@ function submitDelete(specialty) {
                         <form @submit.prevent="submitAdd">
                             <div class="flex">
                                 <select name="" id="" class="w-full h-10 rounded" v-model="addForm.specialty">
-                                    <option value="" selected>Select.</option>
+                                    <option value="" selected>specialties</option>
                                     <option v-for="(specialty) in specialties" :value="specialty.id" >{{ specialty.name }}</option>
                                 </select>
 
-                                <Button class="ml-5">Add</Button>
+                                <Button class="ml-5" :disabled="isProcessingForms">Add</Button>
+                            </div>
+                            <InputError :message="addForm.errors.specialty" class="mt-2" />
+                            <div v-if="storeStatus" class="mt-2 font-medium text-sm text-green-600">
+                                Specialty added successfully
                             </div>
                         </form>
 
-
                         <!-- List -->
                         <div class="mt-10">
+                            <InputError :message="addForm.errors.specialty" class="mt-2" />
+                            <div v-if="deleteStatus" class="mb-2 font-medium text-sm text-green-600">
+                                Specialty removed successfully
+                            </div>
                             <div v-for="(specialty, index) in userSpecialties" class="px-5 pb-2 mt-2 border-b">
                                 <div class="flex justify-between items-center">
                                     <span>{{ specialty.name }}</span>
-                                    <Button @click="submitDelete(specialty.id)">Delete</Button>
+                                    <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">Remove</Button>
                                 </div>
                             </div>
                         </div>
