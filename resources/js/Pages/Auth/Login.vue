@@ -33,7 +33,7 @@ const submit = () => {
 <template>
     <GuestLayout title="Login">
         <template #main>
-            <!-- Register -->
+            <!-- Login -->
             <AuthenticationCard class="mt-2">
                 <div>
                     <span class="text-2xl font-semibold">Login</span>
@@ -43,11 +43,11 @@ const submit = () => {
                     </div>
                 </div>
 
-                <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-                    {{ status }}
-                </div>
+                <div class="mt-5">
+                    <div v-if="status" class="mt-5 font-medium text-sm text-green-600">
+                        {{ status }}
+                    </div>
 
-                <div class="mt-2">
                     <form @submit.prevent="submit">
                         <div class="space-y-3">
                             <div>
