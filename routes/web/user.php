@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Profile\Worker\Specialties\ShowSpecialtiesController;
+use App\Http\Controllers\User\Profile\Worker\Specialties\{ ShowSpecialtiesController, StoreSpecialtiesController };
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -13,6 +13,7 @@ Route::middleware([
             Route::prefix('/worker')->name('.worker')->group(function () {
                 Route::prefix('/specialties')->name('.specialties')->group(function () {
                     Route::get('', ShowSpecialtiesController::class)->name('.show');
+                    Route::post('', StoreSpecialtiesController::class)->name('.store');
                 });
             });
         });
