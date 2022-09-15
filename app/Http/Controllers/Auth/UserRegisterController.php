@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Actions\Auth\CreateNewUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
-use Inertia\Response;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Http\RedirectResponse;
 
 class UserRegisterController extends Controller
 {
@@ -22,13 +23,13 @@ class UserRegisterController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  UserRegisterRequest  $request
-     * @return Response
+     * @param  \App\Http\Requests\UserRegisterRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke(UserRegisterRequest $request): Response
+    public function __invoke(UserRegisterRequest $request): RedirectResponse
     {
         $user = $this->createNewUserAction->create($request->validated());
         auth()->login($user);
-        return inertia('Dashboard');
+        return redirect(RouteServiceProvider::HOME);
     }
 }
