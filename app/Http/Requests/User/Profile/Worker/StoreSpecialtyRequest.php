@@ -24,7 +24,7 @@ class StoreSpecialtyRequest extends FormRequest
     public function rules()
     {
         return [
-            'specialtyId' => 'numeric|exists:specialties,id'
+            'specialtyId' => 'numeric|exists:specialties,id|unique:specialty_worker,specialty_id'
         ];
     }
 }
