@@ -29,17 +29,23 @@ defineProps({
 })
 
 const addForm = useForm({
-    specialty: '',
+    specialty: {
+        type: String,
+        default: '',
+    },
 });
 
 const deleteForm = useForm({
-    specialty: '',
+    specialty: {
+        type: String,
+        default: '',
+    },
 });
 
 function submitAdd() {
     addForm.post(route('user.profile.worker.specialties.store'), {
         preserveScroll: true,
-        onFinish: () => addForm.specialty = '',
+        onFinish: () => clearForms(),
     });
 }
 
@@ -47,8 +53,19 @@ function submitDelete(specialty) {
     deleteForm.specialty = specialty;
     deleteForm.delete(route('user.profile.worker.specialties.destroy'), {
         preserveScroll: true,
-        onFinish: () => deleteForm.specialty = '',
+        onFinish: () => clearForms(),
     });
+}
+
+function clearForms() {
+    clearErrors();
+    addForm.reset();
+    deleteForm.reset();
+}
+
+function clearErrors() {
+    addForm.clearErrors();
+    deleteForm.clearErrors();
 }
 
 const isProcessingForms = computed(() => (deleteForm.processing || addForm.processing));
