@@ -64,7 +64,9 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
                 <!-- Page Content -->
                 <div class="ml-5 w-full px-5">
                     <div class="font-bold text-lg">My specialities</div>
-                    <div class="mt-5 border rounded px-5 py-3 space-y-2">
+
+                    <!-- Specialties Add Form -->
+                    <div class="mt-5 border rounded px-5 py-3">
                         <form @submit.prevent="submitAdd">
                             <div class="flex">
                                 <select name="" id="" class="w-full h-10 rounded" v-model="addForm.specialty">
@@ -74,23 +76,27 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
 
                                 <Button class="ml-5" :disabled="isProcessingForms">Add</Button>
                             </div>
+
+                            <!-- Specialties Add Form Messages -->
                             <InputError :message="addForm.errors.specialty" class="mt-2" />
                             <div v-if="storeStatus" class="mt-2 font-medium text-sm text-green-600">
                                 Specialty added successfully
                             </div>
-                        </form>
 
-                        <!-- List -->
-                        <div class="mt-10">
-                            <InputError :message="addForm.errors.specialty" class="mt-2" />
-                            <div v-if="deleteStatus" class="mb-2 font-medium text-sm text-green-600">
+                            <!-- Specialties Remove Form Messages -->
+                            <InputError :message="deleteForm.errors.specialty" class="mt-2" />
+                            <div v-if="deleteStatus" class="mt-2 font-medium text-sm text-green-600">
                                 Specialty removed successfully
                             </div>
-                            <div v-for="(specialty, index) in userSpecialties" class="px-5 pb-2 mt-2 border-b">
-                                <div class="flex justify-between items-center">
-                                    <span>{{ specialty.name }}</span>
-                                    <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">Remove</Button>
-                                </div>
+                        </form>
+                    </div>
+
+                    <!-- Specialties List && Remove Form -->
+                    <div class="mt-5 border rounded" v-if="userSpecialties.length">
+                        <div v-for="(specialty, index) in userSpecialties" class="px-5 py-3 hover:bg-gray-300" :class="{ 'border-b': ((index + 1) !== userSpecialties.length)}">
+                            <div class="flex justify-between items-center">
+                                <span>{{ specialty.name }}</span>
+                                <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">Remove</Button>
                             </div>
                         </div>
                     </div>
