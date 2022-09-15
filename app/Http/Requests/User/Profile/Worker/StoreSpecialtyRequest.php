@@ -24,11 +24,12 @@ class StoreSpecialtyRequest extends FormRequest
      */
     public function rules()
     {
+        $workerId = auth()->user()->worker->id;
         return [
             'specialty' => [
-                'numeric',
                 'exists:specialties,id',
-                Rule::unique('specialty_worker', 'specialty_id')->ignore(auth()->user()->worker->id, 'worker_id'),
+                Rule::unique('specialty_worker', 'specialty_id')
+                    ->where(fn ($query) => $query->where('worker_id', $workerId)),
             ]
         ];
     }
