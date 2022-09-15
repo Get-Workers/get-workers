@@ -14,7 +14,7 @@ Route::middleware([
                 Route::prefix('/specialties')->name('.specialties')->group(function () {
                     Route::get('', ShowSpecialtiesController::class)->name('.show');
                     Route::post('', StoreSpecialtiesController::class)->name('.store');
-                    Route::post('/destroy', DestroySpecialtiesController::class)->name('.destroy');
+                    Route::delete('', DestroySpecialtiesController::class)->name('.destroy');
                 });
             });
         });

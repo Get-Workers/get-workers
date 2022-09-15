@@ -45,7 +45,7 @@ function submitAdd() {
 
 function submitDelete(specialty) {
     deleteForm.specialty = specialty;
-    deleteForm.post(route('user.profile.worker.specialties.destroy'), {
+    deleteForm.delete(route('user.profile.worker.specialties.destroy'), {
         preserveScroll: true,
         onFinish: () => deleteForm.specialty = '',
     });
