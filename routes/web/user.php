@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Profile\Worker\Specialties\{ ShowSpecialtiesController, StoreSpecialtiesController };
+use App\Http\Controllers\User\Profile\Worker\Specialties\{ DestroySpecialtiesController, ShowSpecialtiesController, StoreSpecialtiesController };
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -14,6 +14,7 @@ Route::middleware([
                 Route::prefix('/specialties')->name('.specialties')->group(function () {
                     Route::get('', ShowSpecialtiesController::class)->name('.show');
                     Route::post('', StoreSpecialtiesController::class)->name('.store');
+                    Route::post('/destroy', DestroySpecialtiesController::class)->name('.destroy');
                 });
             });
         });
