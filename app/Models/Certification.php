@@ -24,6 +24,7 @@ class Certification extends Model
         'name',
         'description',
         'certified_uuid',
+        'certified_link',
     ];
 
     /**
