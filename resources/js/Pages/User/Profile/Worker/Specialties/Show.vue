@@ -26,20 +26,24 @@ defineProps({
 })
 
 const addForm = useForm({
-    specialtyId: '',
+    specialty: '',
 });
 
 const deleteForm = useForm({
-    specialtyId: '',
+    specialty: '',
 });
 
 function submitAdd() {
-    addForm.post(route('user.profile.worker.specialties.store'));
+    addForm.post(route('user.profile.worker.specialties.store'), {
+        preserveScroll: true,
+    });
 }
 
-function submitDelete(specialtyId) {
-    deleteForm.specialtyId = specialtyId;
-    deleteForm.post(route('user.profile.worker.specialties.destroy'));
+function submitDelete(specialty) {
+    deleteForm.specialty = specialty;
+    deleteForm.post(route('user.profile.worker.specialties.destroy'), {
+        preserveScroll: true,
+    });
 }
 
 
@@ -58,7 +62,7 @@ function submitDelete(specialtyId) {
                     <div class="mt-5 border rounded px-5 py-3 space-y-2">
                         <form @submit.prevent="submitAdd">
                             <div class="flex">
-                                <select name="" id="" class="w-full h-10 rounded" v-model="addForm.specialtyId">
+                                <select name="" id="" class="w-full h-10 rounded" v-model="addForm.specialty">
                                     <option value="" selected>Select.</option>
                                     <option v-for="(specialty) in specialties" :value="specialty.id" >{{ specialty.name }}</option>
                                 </select>

@@ -17,7 +17,7 @@ class StoreSpecialtiesController extends Controller
      */
     public function __invoke(StoreSpecialtyRequest $request): RedirectResponse
     {
-        $specialty = Specialty::findOrFail($request->validated('specialtyId'));
+        $specialty = Specialty::findOrFail($request->validated('specialty'));
         auth()->user()->worker->specialties()->save($specialty);
 
         return redirect()->route('user.profile.worker.specialties.show')->with('store', true);

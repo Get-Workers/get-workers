@@ -19,7 +19,7 @@ class DestroySpecialtiesController extends Controller
         $worker = auth()->user()->worker;
 
         $worker->specialties()
-            ->whereKey($request->validated('specialtyId'))
+            ->whereKey($request->validated('specialty'))
             ->firstOrFail()
             ->pivot
             ->delete();

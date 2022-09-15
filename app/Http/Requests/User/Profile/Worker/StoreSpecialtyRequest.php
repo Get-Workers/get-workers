@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\Profile\Worker;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSpecialtyRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class StoreSpecialtyRequest extends FormRequest
     public function rules()
     {
         return [
-            'specialtyId' => 'numeric|exists:specialties,id|unique:specialty_worker,specialty_id'
+            'specialty' => [
+                'numeric',
+                'exists:specialties,id',
+                Rule::unique('specialty_worker', 'specialty_id')->ignore(auth()->user()->worker->id, 'worker_id'),
+            ]
         ];
     }
 }

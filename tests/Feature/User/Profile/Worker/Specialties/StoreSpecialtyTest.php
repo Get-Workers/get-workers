@@ -19,7 +19,7 @@ class StoreSpecialtyTest extends TestCase
     public function test_unauthenticated_user_cannot_store_a_specialty_in_worker_profile(): void
     {
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialtyId' => $specialty->id]);
+        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
         $response->assertRedirect('login');
     }
 
@@ -32,7 +32,7 @@ class StoreSpecialtyTest extends TestCase
         $this->actingAs($user);
 
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialtyId' => $specialty->id]);
+        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -49,8 +49,8 @@ class StoreSpecialtyTest extends TestCase
         $worker->specialties()->save($specialty);
 
 
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialtyId' => $specialty->id]);
-        $response->assertSessionHasErrors(['specialtyId']);
+        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+        $response->assertSessionHasErrors(['specialty']);
     }
 
     /**
@@ -63,7 +63,7 @@ class StoreSpecialtyTest extends TestCase
 
         $specialties = Specialty::all();
         $specialties->each(function (Specialty $specialty) {
-            $response = $this->post(route('user.profile.worker.specialties.store'), ['specialtyId' => $specialty->id]);
+            $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
 
             $response->assertRedirect(route('user.profile.worker.specialties.show'))
                 ->assertSessionDoesntHaveErrors()

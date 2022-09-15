@@ -24,7 +24,7 @@ class DestroySpecialtyRequest extends FormRequest
     public function rules()
     {
         return [
-            'specialtyId' => 'numeric|exists:specialty_worker,specialty_id'
+            'specialty' => 'numeric|exists:specialty_worker,specialty_id'
         ];
     }
 }

@@ -20,7 +20,7 @@ class DestroySpecialtyTest extends TestCase
     public function test_unauthenticated_user_cannot_delete_a_specialty_from_profile(): void
     {
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialtyId' => $specialty->id]);
+        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
         $response->assertRedirect('login');
     }
 
@@ -33,7 +33,7 @@ class DestroySpecialtyTest extends TestCase
         $this->actingAs($user);
 
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialtyId' => $specialty->id]);
+        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
@@ -48,8 +48,8 @@ class DestroySpecialtyTest extends TestCase
 
         $specialty = Specialty::first();
 
-        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialtyId' => $specialty->id]);
-        $response->assertSessionHasErrors(['specialtyId']);
+        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response->assertSessionHasErrors(['specialty']);
     }
 
     /**
@@ -62,7 +62,7 @@ class DestroySpecialtyTest extends TestCase
 
         $this->actingAs($worker->user);
         $worker->specialties->each(function (Specialty $specialty) {
-            $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialtyId' => $specialty->id]);
+            $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
 
 
             $response->assertRedirect(route('user.profile.worker.specialties.show'))
