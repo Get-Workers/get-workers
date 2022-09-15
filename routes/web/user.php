@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Profile\SpecialtiesController;
+use App\Http\Controllers\User\Profile\Worker\Specialties\ShowSpecialtiesController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -9,7 +9,12 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::prefix('/user')->name('user')->group(function () {
-        Route::get('/profile/worker/specialties', SpecialtiesController::class)
-            ->name('.profile.worker.specialties.show');
+        Route::prefix('/profile')->name('.profile')->group(function () {
+            Route::prefix('/worker')->name('.worker')->group(function () {
+                Route::prefix('/specialties')->name('.specialties')->group(function () {
+                    Route::get('', ShowSpecialtiesController::class)->name('.show');
+                });
+            });
+        });
     });
 });
