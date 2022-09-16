@@ -37,7 +37,7 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
     </div>
 
     <!-- Worker Settings -->
-    <div class="space-y-1" >
+    <div v-if="showWorkerSettings">
         <Item
             class="font-semibold"
             :class="{ 'hover:bg-blue-200': !isWorkerSettingsOpen, 'bg-gray-300 text-gray-700': isWorkerSettingsOpen }"
