@@ -16,6 +16,10 @@ Route::middleware([
                     Route::post('', StoreSpecialtiesController::class)->name('.store');
                     Route::delete('', DestroySpecialtiesController::class)->name('.destroy');
                 });
+
+                Route::prefix('/certifications')->name('.certifications')->group(function () {
+                    Route::post('', StoreCertificationsController::class)->name('.store');
+                });
             });
         });
     });
