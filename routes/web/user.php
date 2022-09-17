@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Profile\Worker\Certifications\{ DestroyCertificationsController, StoreCertificationsController };
+use App\Http\Controllers\User\Profile\Worker\Certifications\{ DestroyCertificationsController, ShowCertificationsController, StoreCertificationsController };
 use App\Http\Controllers\User\Profile\Worker\Specialties\{ DestroySpecialtiesController, ShowSpecialtiesController, StoreSpecialtiesController };
 use Illuminate\Support\Facades\Route;
 
