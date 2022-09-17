@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User\Profile\Worker;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DestroySpecialtyRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class DestroySpecialtyRequest extends FormRequest
     public function rules()
     {
         return [
-            'specialty' => 'numeric|exists:specialty_worker,specialty_id'
+            'specialty' => [
+                'numeric',
+                Rule::exists('specialty_worker', 'specialty_id')
+                    ->where('worker_id', auth()->user()->worker->id)
+            ]
         ];
     }
 }
