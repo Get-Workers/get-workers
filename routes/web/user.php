@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Profile\Worker\Certifications\{ DestroyCertificationsController, ShowCertificationsController, StoreCertificationsController };
 use App\Http\Controllers\User\Profile\Worker\Specialties\{ DestroySpecialtiesController, ShowSpecialtiesController, StoreSpecialtiesController };
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,13 @@ Route::middleware([
                 Route::prefix('/specialties')->name('.specialties')->group(function () {
                     Route::get('', ShowSpecialtiesController::class)->name('.show');
                     Route::post('', StoreSpecialtiesController::class)->name('.store');
-                    Route::post('/destroy', DestroySpecialtiesController::class)->name('.destroy');
+                    Route::delete('', DestroySpecialtiesController::class)->name('.destroy');
+                });
+
+                Route::prefix('/certifications')->name('.certifications')->group(function () {
+                    Route::get('', ShowCertificationsController::class)->name('.show');
+                    Route::post('', StoreCertificationsController::class)->name('.store');
+                    Route::delete('', DestroyCertificationsController::class)->name('.destroy');
                 });
             });
         });

@@ -2,6 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Contractor;
+use App\Models\User;
+use App\Models\Worker;
+use App\Services\Caches\ContractorCacheService;
+use App\Services\Caches\WorkerCacheService;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -36,8 +41,35 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = auth()->user();
+
         return array_merge(parent::share($request), [
-            //
+            'contractor' => $this->getContractorProfile($user),
+            'worker' => $this->getWorkerProfile($user),
         ]);
+    }
+
+    /**
+     * @param  User|null  $user
+     * @return Contractor|null
+     */
+    private function getContractorProfile(?User $user): Contractor|null
+    {
+        if (is_null($user)) {
+            return null;
+        }
+        return ContractorCacheService::ContractorProfile($user);
+    }
+
+    /**
+     * @param  User|null  $user
+     * @return Worker|null
+     */
+    private function getWorkerProfile(?User $user): Worker|null
+    {
+        if (is_null($user)) {
+            return null;
+        }
+        return WorkerCacheService::WorkerProfile($user);
     }
 }
