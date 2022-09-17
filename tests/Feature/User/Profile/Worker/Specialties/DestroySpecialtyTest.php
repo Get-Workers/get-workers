@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Worker;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class DestroySpecialtyTest extends TestCase
@@ -20,7 +19,7 @@ class DestroySpecialtyTest extends TestCase
     public function test_unauthenticated_user_cannot_delete_a_specialty_from_profile(): void
     {
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
         $response->assertRedirect('login');
     }
 
@@ -33,9 +32,9 @@ class DestroySpecialtyTest extends TestCase
         $this->actingAs($user);
 
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
 
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
+        $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
     /**
@@ -48,8 +47,27 @@ class DestroySpecialtyTest extends TestCase
 
         $specialty = Specialty::first();
 
-        $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
         $response->assertSessionHasErrors(['specialty']);
+    }
+
+    /**
+     * @return void
+     */
+    public function test_worker_can_not_delete_specialties_from_another_worker_from_profile(): void
+    {
+        // $this->withoutExceptionHandling();
+        $worker = Worker::factory()->withUser()->create();
+        $this->seedSpecialtyToWorker($worker);
+
+        $secondWorker = Worker::factory()->withUser()->create();
+        $this->actingAs($secondWorker->user);
+
+        $specialty = $worker->specialties()->first();
+
+        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response->assertSessionHasErrors('specialty');
+
     }
 
     /**
@@ -59,16 +77,14 @@ class DestroySpecialtyTest extends TestCase
     {
         $worker = Worker::factory()->withUser()->create();
         $this->seedSpecialtyToWorker($worker);
-
         $this->actingAs($worker->user);
-        $worker->specialties->each(function (Specialty $specialty) {
-            $response = $this->post(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
 
+        $specialty = $worker->specialties()->first();
 
-            $response->assertRedirect(route('user.profile.worker.specialties.show'))
-                ->assertSessionDoesntHaveErrors()
-                ->assertSessionHas('destroy', true);
-        });
+        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response->assertRedirect(route('user.profile.worker.specialties.show'))
+            ->assertSessionDoesntHaveErrors()
+            ->assertSessionHas('destroy', true);
     }
 
     /**
