@@ -3,9 +3,8 @@
 namespace App\Http\Requests\User\Profile\Worker;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class DestroySpecialtyRequest extends FormRequest
+class StoreCertificationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,10 @@ class DestroySpecialtyRequest extends FormRequest
     public function rules()
     {
         return [
-            'specialty' => [
-                'numeric',
-                Rule::exists('specialty_worker', 'specialty_id')
-                    ->where('worker_id', auth()->user()->worker->id)
-            ]
+            'name' => 'required|min:1|max:255',
+            'description' => 'nullable|max:1024',
+            'certified_uuid' => 'nullable|max:100|unique:certifications,certified_uuid',
+            'certified_link' => 'nullable|url|max:255|unique:certifications,certified_link',
         ];
     }
 }

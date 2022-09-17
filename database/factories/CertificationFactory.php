@@ -59,4 +59,13 @@ class CertificationFactory extends Factory
             ];
         });
     }
+
+    public function withCertifiedLink(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'certified_link' => $this->faker->url(),
+            ];
+        });
+    }
 }

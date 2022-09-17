@@ -5,8 +5,8 @@ namespace Tests\Feature\User\Profile\Worker\Specialties;
 use App\Models\Specialty;
 use App\Models\User;
 use App\Models\Worker;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class StoreSpecialtyTest extends TestCase
@@ -34,7 +34,7 @@ class StoreSpecialtyTest extends TestCase
         $specialty = Specialty::first();
         $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
 
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
+        $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
     /**
@@ -61,13 +61,12 @@ class StoreSpecialtyTest extends TestCase
         $worker = Worker::factory()->withUser()->create();
         $this->actingAs($worker->user);
 
-        $specialties = Specialty::all();
-        $specialties->each(function (Specialty $specialty) {
-            $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+        $specialty = Specialty::first();
 
-            $response->assertRedirect(route('user.profile.worker.specialties.show'))
-                ->assertSessionDoesntHaveErrors()
-                ->assertSessionHas('store', true);
-        });
+        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+
+        $response->assertRedirect(route('user.profile.worker.specialties.show'))
+            ->assertSessionDoesntHaveErrors()
+            ->assertSessionHas('store', true);
     }
 }
