@@ -19,6 +19,7 @@ Route::middleware([
                 });
 
                 Route::prefix('/certifications')->name('.certifications')->group(function () {
+                    Route::get('', ShowCertificationsController::class)->name('.show');
                     Route::post('', StoreCertificationsController::class)->name('.store');
                     Route::delete('', DestroyCertificationsController::class)->name('.destroy');
                 });
