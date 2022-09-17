@@ -27,7 +27,7 @@ class StoreCertificationRequest extends FormRequest
             'name' => 'required|min:1|max:255',
             'description' => 'nullable|max:1024',
             'certified_uuid' => 'nullable|max:100|unique:certifications,certified_uuid',
-            'certified_link' => 'nullable|max:255|unique:certifications,certified_link',
+            'certified_link' => 'nullable|url|max:255|unique:certifications,certified_link',
         ];
     }
 }
