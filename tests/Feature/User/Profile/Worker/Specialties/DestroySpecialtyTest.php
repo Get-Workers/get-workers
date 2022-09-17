@@ -56,7 +56,6 @@ class DestroySpecialtyTest extends TestCase
      */
     public function test_worker_can_not_delete_specialties_from_another_worker_from_profile(): void
     {
-        // $this->withoutExceptionHandling();
         $worker = Worker::factory()->withUser()->create();
         $this->seedSpecialtyToWorker($worker);
 
