@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { computed } from '@vue/reactivity';
+import { usePage } from '@inertiajs/inertia-vue3';
 import Sidebar from '../../../../Components/Menus/Sidebar.vue';
 import Link from '../../../../Components/Links/Link.vue';
 import Item from '../../../../Components/Menus/Items/Item.vue';
@@ -8,11 +9,14 @@ import SubItem from '../../../../Components/Menus/Items/SubItem.vue';
 
 const isUserSettingsRoute = computed(() => (route().current() === 'profile.show'));
 
+const showWorkerSettings = computed(() => (usePage().props.value.worker !== null))
 const isWorkerSettingsOpen = computed(() =>  (
     menu.value.workerSettings.open ||
-    (route().current() === 'user.profile.worker.specialties.show')
+    (route().current() === 'user.profile.worker.specialties.show') ||
+    (route().current() === 'user.profile.worker.certifications.show')
 ));
 const isWorkerSettingsSpecialtiesRoute = computed(() => (route().current() === 'user.profile.worker.specialties.show'));
+const isWorkerSettingsCertificationsRoute = computed(() => (route().current() === 'user.profile.worker.certifications.show'));
 
 
 const menu = ref({
@@ -50,7 +54,7 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
             </template>
         </Item>
 
-        <div v-if="isWorkerSettingsOpen">
+        <div class="space-y-1 mt-1" v-if="isWorkerSettingsOpen">
             <!-- <div> -->
                 <!-- <SubItem v-if="true"> -->
                     <!-- <Link><div>Profile</div></Link> -->
@@ -63,24 +67,30 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
             <!-- </div> -->
 
             <div>
-                <Link :href="route('user.profile.worker.specialties.show')">
-                    <SubItem :class="{ 'hover:bg-blue-200': !isWorkerSettingsSpecialtiesRoute, 'bg-gray-300 text-gray-700': isWorkerSettingsSpecialtiesRoute }">
+                <Link :href="route('user.profile.worker.specialties.show')" v-if="!isWorkerSettingsSpecialtiesRoute">
+                    <SubItem class="hover:bg-blue-200">
                             <div>Specialties</div>
                         <template #icon>-</template>
                     </SubItem>
                 </Link>
+                <SubItem class="bg-gray-300 text-gray-700" v-else>
+                        <div>Specialties</div>
+                    <template #icon>-</template>
+                </SubItem>
             </div>
 
-            <!-- <div> -->
-                <!-- <SubItem v-if="true"> -->
-                    <!-- <Link><div>Certifications</div></Link> -->
-                    <!-- <template #icon>-</template> -->
-                <!-- </SubItem> -->
-                <!-- <SubItem v-else> -->
-                    <!-- Certifications -->
-                    <!-- <template #icon>-</template> -->
-                <!-- </SubItem> -->
-            <!-- </div> -->
+            <div>
+                <Link :href="route('user.profile.worker.certifications.show')" v-if="!isWorkerSettingsCertificationsRoute">
+                    <SubItem class="hover:bg-blue-200">
+                            <div>Certifications</div>
+                        <template #icon>-</template>
+                    </SubItem>
+                </Link>
+                <SubItem class="bg-gray-300 text-gray-700" v-else>
+                        <div>Certifications</div>
+                    <template #icon>-</template>
+                </SubItem>
+            </div>
 
             <!-- <div> -->
                 <!-- <SubItem v-if="true"> -->
