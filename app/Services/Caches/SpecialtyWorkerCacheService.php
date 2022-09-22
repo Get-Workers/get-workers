@@ -6,7 +6,7 @@ use App\Models\Worker;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
-class SpecialtyCacheService
+class SpecialtyWorkerCacheService
 {
     /**
      * @param  Worker  $worker
