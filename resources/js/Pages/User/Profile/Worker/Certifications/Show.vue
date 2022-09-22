@@ -99,17 +99,17 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                                     </div>
                                     <div>
                                         <Label value="Description" for="certified_description"/>
-                                        <Input id="certified_description" type="text" class="mt-1 block w-full" required autofocus placeholder="Description" max-length="1024" v-model="newCertificationForm.description"/>
+                                        <Input id="certified_description" type="text" class="mt-1 block w-full" placeholder="Description" max-length="1024" v-model="newCertificationForm.description"/>
                                         <InputError class="mt-2" :message="newCertificationForm.errors.description" />
                                     </div>
                                     <div>
                                         <Label value="Certified credential" for="certified_credential"/>
-                                        <Input id="certified_credential" type="text" class="mt-1 block w-full" required autofocus placeholder="Certified credential" max-length="100" v-model="newCertificationForm.certified_uuid"/>
+                                        <Input id="certified_credential" type="text" class="mt-1 block w-full" placeholder="Certified credential" max-length="100" v-model="newCertificationForm.certified_uuid"/>
                                         <InputError class="mt-2" :message="newCertificationForm.errors.certified_uuid" />
                                     </div>
                                     <div>
                                         <Label value="Certified link" for="certified_link"/>
-                                        <Input id="certified_link" type="text" class="mt-1 block w-full" required autofocus placeholder="Certified link" max-length="255" v-model="newCertificationForm.certified_link"/>
+                                        <Input id="certified_link" type="text" class="mt-1 block w-full" placeholder="Certified link" max-length="255" v-model="newCertificationForm.certified_link"/>
                                         <InputError class="mt-2" :message="newCertificationForm.errors.certified_link" />
                                     </div>
 

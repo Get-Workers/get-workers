@@ -88,7 +88,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
                             <div class="flex">
                                 <select name="" id="" class="w-full h-10 rounded" v-model="addForm.specialty">
                                     <option value="" selected>specialties</option>
-                                    <option v-for="(specialty) in specialties" :value="specialty.id" >{{ specialty.name }}</option>
+                                    <option v-for="specialty in specialties" :value="specialty.id" >{{ specialty.name }}</option>
                                 </select>
 
                                 <Button class="ml-5" :disabled="isProcessingForms">Add</Button>
