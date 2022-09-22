@@ -87,7 +87,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                         <div class="flex justify-between items-center">
                             <div>New certificate</div>
                             <Button type="button" @click="toggleNewCertificateForm" v-if="!newCertificateform">New</Button>
-                            <Button type="button" @click="toggleNewCertificateForm" v-if="newCertificateform">Close</Button>
+                            <Button type="button" @click="toggleNewCertificateForm" v-else>Close</Button>
                         </div>
                         <div class="mt-2 border rounded p-5" v-if="newCertificateform">
                             <form @submit.prevent="submitAdd">
