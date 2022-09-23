@@ -146,7 +146,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                                     <ExternalLink :href="certification.certified_link" :title="certification.certified_uuid" class="ml-5 max-w-40" target="_blank" v-if="certification.certified_link">
                                         {{ certification.certified_uuid ? certification.certified_uuid : certification.certified_link }}
                                     </ExternalLink>
-                                    <span v-else>{{ certification.certified_uuid }}</span>
+                                    <span class="ml-5 max-w-40" v-else>{{ certification.certified_uuid }}</span>
                                 </div>
                                 <Button class="w-24" @click="submitDelete(certification.uuid)" :disabled="isProcessingForms">Remove</Button>
                             </div>
