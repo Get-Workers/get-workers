@@ -3,6 +3,7 @@ import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 import Button from '../../../../../Components/Button.vue';
 import InputError from '../../../../../Components/InputError.vue';
+import Label from '../../../../../Components/Label.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 
@@ -31,14 +32,14 @@ defineProps({
 const addForm = useForm({
     specialty: {
         type: String,
-        default: '',
+        default: null,
     },
 });
 
 const deleteForm = useForm({
     specialty: {
         type: String,
-        default: '',
+        default: null,
     },
 });
 
@@ -85,9 +86,10 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
                     <!-- Specialties Add Form -->
                     <div class="mt-5 border rounded px-5 py-3">
                         <form @submit.prevent="submitAdd">
-                            <div class="flex">
-                                <select name="" id="" class="w-full h-10 rounded" v-model="addForm.specialty">
-                                    <option value="" selected>specialties</option>
+                            <Label value="Specialties" for="specialtiesSelect" />
+                            <div class="flex mt-2">
+                                <select id="specialtiesSelect" class="w-full h-10 rounded" v-model="addForm.specialty">
+                                    <option value="" class="text-gray-400" selected disabled default>Select...</option>
                                     <option v-for="specialty in specialties" :value="specialty.id" >{{ specialty.name }}</option>
                                 </select>
 
