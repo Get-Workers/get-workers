@@ -50,9 +50,9 @@ const newWorkForm = useForm({
     specialtiesList: []
 });
 
-// const deleteForm = useForm({
-//     work: '',
-// });
+const deleteForm = useForm({
+    work: '',
+});
 
 function submitAdd() {
     console.log('TODO');
