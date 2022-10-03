@@ -60,12 +60,12 @@ function resetCertificationDeleteForm() {
 function resetCertificationForm() {
     newCertificationForm.reset();
     deleteForm.clearErrors()
-    newCertificateform.value = false;
+    newCertificateFormShow.value = false;
 }
 
-let newCertificateform = ref(false);
+let newCertificateFormShow = ref(false);
 function toggleNewCertificateForm() {
-    newCertificateform.value = !newCertificateform.value;
+    newCertificateFormShow.value = !newCertificateFormShow.value;
 }
 
 const isProcessingForms = computed(() => (deleteForm.processing || newCertificationForm.processing));
@@ -86,10 +86,10 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                     <div class="mt-5 border rounded px-5 py-3">
                         <div class="flex justify-between items-center">
                             <div>New certificate</div>
-                            <Button type="button" @click="toggleNewCertificateForm" v-if="!newCertificateform">New</Button>
+                            <Button type="button" @click="toggleNewCertificateForm" v-if="!newCertificateFormShow">New</Button>
                             <Button type="button" @click="toggleNewCertificateForm" v-else>Close</Button>
                         </div>
-                        <div class="mt-2 border rounded p-5" v-if="newCertificateform">
+                        <div class="mt-2 border rounded p-5" v-if="newCertificateFormShow">
                             <form @submit.prevent="submitAdd">
                                 <div class="space-y-5">
                                     <div>
