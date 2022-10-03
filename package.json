@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "mdue": "^0.1.4"
+        "mdue": "^0.1.4",
+        "vue-currency-input": "^3.0.0"
     }
 }
