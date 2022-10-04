@@ -183,7 +183,14 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     </div>
                                     <div>
                                         <Label value="Price" for="workPrice" :optional="true" />
-                                        <InputCurrency id="workPrice" class="mt-1 block w-full" v-model="newWorkForm.price" :options="{ currency: 'BRL' }" />
+                                        <InputCurrency id="workPrice" class="mt-1 block w-full" v-model="newWorkForm.price"
+                                            :options="{
+                                                currency: 'BRL',
+                                                valueRange: {
+                                                    min: 0,
+                                                    max: 100000.00
+                                                }
+                                            }" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.price" />
                                     </div>
                                     <div class="flex align-items-end">
