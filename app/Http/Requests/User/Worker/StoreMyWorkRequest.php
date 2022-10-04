@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User\Worker;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreMyWorkRequest extends FormRequest
 {
@@ -31,7 +30,7 @@ class StoreMyWorkRequest extends FormRequest
             'price' => 'nullable|numeric',
             'has_unity' => 'nullable|boolean',
             'unity_id' => 'nullable|integer|required_if:has_unity,true|exists:unities,id',
-            'specialties' => 'nullable|array|exists:unities,id',
+            'specialties' => 'nullable|array|exists:specialties,id',
         ];
     }
 }
