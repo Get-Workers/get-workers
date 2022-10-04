@@ -24,7 +24,7 @@ class WorkCacheService
         }
 
         return Cache::rememberForever($key, function () use (&$worker) {
-            return $worker->certifications;
+            return $worker->works;
         });
     }
 }
