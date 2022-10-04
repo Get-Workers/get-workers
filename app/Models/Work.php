@@ -72,6 +72,6 @@ class Work extends Model
      */
     public function specialties(): BelongsToMany
     {
-        return $this->belongsToMany(Specialty::class)->using(SpecialtyWorker::class);
+        return $this->belongsToMany(Specialty::class)->using(SpecialtyWork::class);
     }
 }
