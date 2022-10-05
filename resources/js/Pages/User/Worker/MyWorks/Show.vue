@@ -208,21 +208,42 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                     </div>
 
                     <!-- Works List && Remove Form -->
-                    <div class="mt-5 border rounded" v-if="works.length">
-                        <div class="px-5 py-3 border-b">
-                            <div class="flex justify-between items-center">
-                                <div class="flex">
-                                    <span class="w-40" title="Certification name">Work name</span>
-                                    <span class="ml-5" title="Certification identificator/URL"></span>
-                                </div>
-                                <span class="w-24">Action</span>
+                    <div class="mt-5 border rounded w-full overflow-x-auto">
+                        <div class="min-w-lg"  v-if="works.length">
+                            <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
+                                <span class="col-span-2 font-bold" title="Work Name">Name</span>
+                                <span class="col-span-2 font-bold" title="Work Slug">Slug</span>
+                                <span class="col-span-3 font-bold" title="Work Specialties">Specialties</span>
+                                <span class="col-span-1 font-bold" title="Work Unity">Unity</span>
+                                <span class="col-span-1 font-bold" title="Work Time">Time</span>
+                                <span class="col-span-2 font-bold" title="Work Price">Price</span>
+                                <span class="col-span-1 font-bold">Action</span>
                             </div>
-                        </div>
-                        <div v-for="(work, index) in works" class="px-5 py-3 hover:bg-gray-300"
-                            :class="{ 'border-b': ((index + 1) !== works.length)}">
-                            <div class="flex justify-between items-center">
-                                <div class="flex">
-                                    <span class="w-40 truncate" :title="work.name">{{ work.name }}</span>
+                            <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
+                                v-for="(work) in works"
+                            >
+                                <div class="col-span-2 flex items-center overflow-y-auto">
+                                    <span class="min-w-fit break-words text-ellipsis" :title="work.name">{{ work.name }}</span>
+                                </div>
+                                <div class="col-span-2 flex items-center overflow-y-auto">
+                                    <span class="min-w-fit break-words text-ellipsis" :title="work.slug">{{ work.slug }}</span>
+                                </div>
+                                <div class="col-span-3 overflow-y-auto">
+                                    <BadgeGroup :badges="work.specialties" />
+                                </div>
+                                <div class="col-span-1 flex items-center">
+                                    <span :title="work.unity ? work.unity.name : ''">{{ work.unity ? work.unity.type : '' }}</span>
+                                </div>
+                                <div class="col-span-1 flex items-center">
+                                    <span :title="work.time">{{ work.time }}</span>
+                                </div>
+                                <div class="col-span-2 flex items-center">
+                                    <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
+                                </div>
+                                <div class="col-span-1 flex items-center overflow-y-auto">
+                                    <!-- <Button title="Delete" @click="submitDelete(work.id)" :disabled="isProcessingForms"> -->
+                                        <!-- Delete -->
+                                    <!-- </Button> -->
                                 </div>
                             </div>
                         </div>
