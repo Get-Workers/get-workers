@@ -1,8 +1,17 @@
 <?php
 
-use App\Http\Controllers\User\Profile\Worker\Certifications\{ DestroyCertificationsController, ShowCertificationsController, StoreCertificationsController };
-use App\Http\Controllers\User\Profile\Worker\Specialties\{ DestroySpecialtiesController, ShowSpecialtiesController, StoreSpecialtiesController };
+use App\Http\Controllers\User\Profile\Worker\Certifications\{
+    DestroyCertificationsController,
+    ShowCertificationsController,
+    StoreCertificationsController
+};
+use App\Http\Controllers\User\Profile\Worker\Specialties\{
+    DestroySpecialtiesController,
+    ShowSpecialtiesController,
+    StoreSpecialtiesController
+};
 use App\Http\Controllers\User\Worker\{
+    DestroyMyWorksController,
     ShowMyWorksController,
     StoreMyWorksController
 };
@@ -34,6 +43,7 @@ Route::middleware([
             Route::prefix('/my-works')->name('.my-works')->group(function () {
                 Route::get('', ShowMyWorksController::class);
                 Route::post('', StoreMyWorksController::class)->name('.store');
+                Route::delete('', DestroyMyWorksController::class)->name('.destroy');
             });
         });
     });
