@@ -57,15 +57,15 @@ function remove(index) {
     <div class="flex flex-wrap" v-if="badges.length">
         <div class="flex py-1 px-3 mr-2 mb-2 font-semibold rounded-full border"
             :class="{
-                'text-red-800 bg-red-200': isColor(index, 'red'),
-                'text-blue-800 bg-blue-200': isColor(index, 'blue'),
-                'text-green-800 bg-green-200': isColor(index, 'green'),
-                'text-yellow-800 bg-yellow-200': isColor(index, 'yellow'),
-                'text-orange-800 bg-orange-200': isColor(index, 'orange'),
-                'text-purple-800 bg-purple-200': isColor(index, 'purple'),
-                'text-lime-800 bg-lime-200': isColor(index, 'lime'),
-                'text-teal-800 bg-teal-200': isColor(index, 'teal'),
-                'text-cyan-800 bg-cyan-200': isColor(index, 'cyan'),
+                'text-red-800 bg-red-200 border-red-200': isColor(index, 'red'),
+                'text-blue-800 bg-blue-200 border-blue-200': isColor(index, 'blue'),
+                'text-green-800 bg-green-200 border-green-200': isColor(index, 'green'),
+                'text-yellow-800 bg-yellow-200 border-yellow-200': isColor(index, 'yellow'),
+                'text-orange-800 bg-orange-200 border-orange-200': isColor(index, 'orange'),
+                'text-purple-800 bg-purple-200 border-purple-200': isColor(index, 'purple'),
+                'text-lime-800 bg-lime-200 border-lime-200': isColor(index, 'lime'),
+                'text-teal-800 bg-teal-200 border-teal-200': isColor(index, 'teal'),
+                'text-cyan-800 bg-cyan-200 border-cyan-200': isColor(index, 'cyan'),
             }"
             v-for="(badge, index) in badges">
             <div class="flex justify-center items-center mr-1 hover:cursor-pointer" v-if="removable" @click="remove(index)">
