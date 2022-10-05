@@ -41,7 +41,6 @@ const nonSelectedSpecialties = computed(() => (props.specialties.filter((special
 
 const newWorkForm = useForm({
     name: '',
-    slug: '',
     time: null,
     price: null,
     unity_id: null,
@@ -55,16 +54,15 @@ const deleteForm = useForm({
 });
 
 function submitAdd() {
-    console.log('TODO');
-    // newWorkForm.post(route('user.profile.worker.works.store'), {
-    //     preserveScroll: true,
-    //     onSuccess: () => resetCertificationForm()
-    // });
+    newWorkForm.post(route('user.worker.my-works.store'), {
+        preserveScroll: true,
+        onSuccess: () => resetCertificationForm()
+    });
 }
 
 // function submitDelete(work) {
 //     deleteForm.work = work;
-//     deleteForm.delete(route('user.profile.worker.works.destroy'), {
+//     deleteForm.delete(route('user.worker.my-works.destroy'), {
 //         preserveScroll: true,
 //         onFinish: () => resetCertificationDeleteForm()
 //     });
@@ -75,23 +73,15 @@ function submitAdd() {
 //     newWorkForm.clearErrors();
 // }
 
-// function resetCertificationForm() {
-//     newWorkForm.reset();
-//     deleteForm.clearErrors()
-//     newWorkFormShow.value = false;
-// }
+function resetCertificationForm() {
+    newWorkForm.reset();
+    deleteForm.clearErrors()
+    newWorkFormShow.value = false;
+}
 
 let newWorkFormShow = ref(false);
 function toggleNewCertificateForm() {
     newWorkFormShow.value = !newWorkFormShow.value;
-}
-
-function generateWorkSlug() {
-    let name = newWorkForm.name;
-    name = name && name.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g);
-    name = name && name.map(s => s.toLowerCase());
-    name = name && name.join('-');
-    newWorkForm.slug = name;
 }
 
 let specialtiesSelect = ref(null);
@@ -135,13 +125,8 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     <div>
                                         <Label value="Name" for="workName" :required="true" />
                                         <Input id="workName" type="text" class="mt-1 block w-full" required autofocus
-                                            placeholder="Name" max-length="255" v-model="newWorkForm.name" @update:model-value="generateWorkSlug" />
+                                            placeholder="Name" max-length="255" v-model="newWorkForm.name" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.name" />
-                                    </div>
-                                    <div>
-                                        <Label value="Slug" for="workSlug" :required="true" />
-                                        <Input id="workSlug" type="text" class="mt-1 block w-full" required autofocus
-                                            placeholder="Slug" max-length="255" v-model="newWorkForm.slug" :disabled="true" />
                                     </div>
                                     <div>
                                         <label for="hasUnity" class="flex w-fit">
@@ -174,7 +159,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                             </option>
                                         </select>
                                         <InputError class="mt-1" :message="newWorkForm.errors.specialties" />
-                                        <BadgeGroup class="mt-2" :removable="true" :badges="newWorkForm.specialtiesList" @remove="removeSelectedSpecialty($event.badgeId)"/>
+                                        <BadgeGroup class="mt-2 max-h-32 overflow-y-auto" :removable="true" :badges="newWorkForm.specialtiesList" @remove="removeSelectedSpecialty($event.badgeId)"/>
                                     </div>
                                     <div>
                                         <Label value="Time" for="workTime" :optional="true" />
@@ -183,14 +168,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     </div>
                                     <div>
                                         <Label value="Price" for="workPrice" :optional="true" />
-                                        <InputCurrency id="workPrice" class="mt-1 block w-full" v-model="newWorkForm.price"
-                                            :options="{
-                                                currency: 'BRL',
-                                                valueRange: {
-                                                    min: 0,
-                                                    max: 100000.00
-                                                }
-                                            }" />
+                                        <InputCurrency id="workPrice" class="mt-1 block w-full" v-model="newWorkForm.price" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.price" />
                                     </div>
                                     <div class="flex align-items-end">
