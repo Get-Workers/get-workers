@@ -26,8 +26,8 @@ class StoreMyWorkRequest extends FormRequest
         return [
             'name' => 'required|string|min:5|max:255',
             'slug' => 'required|string|min:5|max:255',
-            'time' => 'nullable|time',
-            'price' => 'nullable|numeric',
+            'time' => 'nullable|string|date_format:H:i',
+            'price' => 'nullable|numeric|min:1|max:10000000',
             'has_unity' => 'nullable|boolean',
             'unity_id' => 'nullable|integer|required_if:has_unity,true|exists:unities,id',
             'specialties' => 'nullable|array|exists:specialties,id',
