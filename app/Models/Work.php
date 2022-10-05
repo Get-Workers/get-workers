@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Work extends Model
@@ -69,11 +69,11 @@ class Work extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function contractedWork(): HasOne
+    public function contractedWorks(): HasMany
     {
-        return $this->hasOne(ContractedWork::class);
+        return $this->hasMany(ContractedWork::class);
     }
 
     /**
