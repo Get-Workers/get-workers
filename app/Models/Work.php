@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Uuid;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,7 +29,15 @@ class Work extends Model
         'slug',
         'regular_time',
         'regular_price',
-        'unity_price',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'time' => 'datetime:H:i',
     ];
 
     /**
@@ -73,5 +82,20 @@ class Work extends Model
     public function specialties(): BelongsToMany
     {
         return $this->belongsToMany(Specialty::class)->using(SpecialtyWork::class);
+    }
+
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?int $value) => (float) ($value / 100),
+            set: fn (?float $value) => (int) ($value * 100),
+        );
+    }
+
+    protected function slug(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => str($value)->slug()
+        );
     }
 }
