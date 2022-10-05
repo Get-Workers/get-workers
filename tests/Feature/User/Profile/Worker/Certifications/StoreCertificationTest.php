@@ -3,7 +3,6 @@
 namespace Tests\Feature\User\Profile\Worker\Certifications;
 
 use App\Models\Certification;
-use App\Models\Specialty;
 use App\Models\User;
 use App\Models\Worker;
 use App\Providers\RouteServiceProvider;
@@ -14,13 +13,15 @@ class StoreCertificationTest extends TestCase
 {
     use RefreshDatabase;
 
+    private const ROUTE = 'user.profile.worker.certifications.store';
+
     /**
      * @return void
      */
     public function test_unauthenticated_user_cannot_store_a_certification_in_worker_profile(): void
     {
         $certification = Certification::factory()->make()->toArray();
-        $response = $this->post(route('user.profile.worker.certifications.store'), $certification);
+        $response = $this->post(route(self::ROUTE), $certification);
         $response->assertRedirect('login');
     }
 
@@ -33,7 +34,7 @@ class StoreCertificationTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        $response = $this->post(route('user.profile.worker.certifications.store'), $certification);
+        $response = $this->post(route(self::ROUTE), $certification);
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
@@ -47,10 +48,10 @@ class StoreCertificationTest extends TestCase
 
         $certification = Certification::factory()->make(['name' => ''])->toArray();
 
-        $response = $this->post(route('user.profile.worker.certifications.store'))
+        $response = $this->post(route(self::ROUTE))
             ->assertSessionHasErrors(array_keys($certification));
 
-        $response = $this->post(route('user.profile.worker.certifications.store'), $certification);
+        $response = $this->post(route(self::ROUTE), $certification);
         $response->assertSessionHasErrors(array_keys($certification));
     }
 
@@ -67,7 +68,7 @@ class StoreCertificationTest extends TestCase
 
         $worker->certifications()->save($certificationModel);
 
-        $response = $this->post(route('user.profile.worker.certifications.store'), $certification);
+        $response = $this->post(route(self::ROUTE), $certification);
         $response->assertSessionHasErrors(['certified_uuid']);
     }
 
@@ -85,7 +86,7 @@ class StoreCertificationTest extends TestCase
             ->make()
             ->toArray();
 
-        $response = $this->post(route('user.profile.worker.certifications.store'), $certification);
+        $response = $this->post(route(self::ROUTE), $certification);
 
         $response->assertRedirect(route('user.profile.worker.certifications.show'))
             ->assertSessionDoesntHaveErrors()

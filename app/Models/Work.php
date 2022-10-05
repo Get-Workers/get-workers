@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\Traits\Uuid;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Work extends Model
@@ -26,9 +27,17 @@ class Work extends Model
         'unity_id',
         'name',
         'slug',
-        'regular_time',
-        'regular_price',
-        'unity_price',
+        'time',
+        'price',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'time' => 'datetime:H:i',
     ];
 
     /**
@@ -60,11 +69,11 @@ class Work extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function contractedWork(): HasOne
+    public function contractedWorks(): HasMany
     {
-        return $this->hasOne(ContractedWork::class);
+        return $this->hasMany(ContractedWork::class);
     }
 
     /**
@@ -72,6 +81,21 @@ class Work extends Model
      */
     public function specialties(): BelongsToMany
     {
-        return $this->belongsToMany(Specialty::class)->using(SpecialtyWorker::class);
+        return $this->belongsToMany(Specialty::class)->using(SpecialtyWork::class);
+    }
+
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?int $value) => (float) ($value / 100),
+            set: fn (?float $value) => (int) ($value * 100),
+        );
+    }
+
+    protected function slug(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => str($value)->slug()
+        );
     }
 }

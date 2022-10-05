@@ -10,11 +10,20 @@ class ContractorCacheService
 {
     /**
      * @param  User  $user
+     * @param  bool  $clear
+     *
      * @return Contractor|null
      */
-    public static function ContractorProfile(User $user): Contractor|null
+    public static function ContractorProfile(User $user, bool $clear = false): Contractor|null
     {
-        return Cache::rememberForever("user:{$user->id}_contractor_profile", function () use ($user) {
+        $key = "user:{$user->id}_contractor_profile";
+
+        if ($clear) {
+            Cache::forget($key);
+            return null;
+        }
+
+        return Cache::rememberForever($key, function () use (&$user) {
             return $user->contractor;
         });
     }

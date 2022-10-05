@@ -13,13 +13,15 @@ class StoreSpecialtyTest extends TestCase
 {
     use RefreshDatabase;
 
+    private const ROUTE = 'user.profile.worker.specialties.store';
+
     /**
      * @return void
      */
     public function test_unauthenticated_user_cannot_store_a_specialty_in_worker_profile(): void
     {
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+        $response = $this->post(route(self::ROUTE), ['specialty' => $specialty->id]);
         $response->assertRedirect('login');
     }
 
@@ -32,7 +34,7 @@ class StoreSpecialtyTest extends TestCase
         $this->actingAs($user);
 
         $specialty = Specialty::first();
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+        $response = $this->post(route(self::ROUTE), ['specialty' => $specialty->id]);
 
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
@@ -49,7 +51,7 @@ class StoreSpecialtyTest extends TestCase
         $worker->specialties()->save($specialty);
 
 
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+        $response = $this->post(route(self::ROUTE), ['specialty' => $specialty->id]);
         $response->assertSessionHasErrors(['specialty']);
     }
 
@@ -63,7 +65,7 @@ class StoreSpecialtyTest extends TestCase
 
         $specialty = Specialty::first();
 
-        $response = $this->post(route('user.profile.worker.specialties.store'), ['specialty' => $specialty->id]);
+        $response = $this->post(route(self::ROUTE), ['specialty' => $specialty->id]);
 
         $response->assertRedirect(route('user.profile.worker.specialties.show'))
             ->assertSessionDoesntHaveErrors()

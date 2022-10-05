@@ -14,13 +14,15 @@ class DestroyCertificationTest extends TestCase
 {
     use RefreshDatabase;
 
+    private const ROUTE = 'user.profile.worker.certifications.destroy';
+
     /**
      * @return void
      */
     public function test_unauthenticated_user_cannot_delete_a_certification_from_profile(): void
     {
         $certification = str()->uuid();
-        $response = $this->delete(route('user.profile.worker.certifications.destroy'), compact('certification'));
+        $response = $this->delete(route(self::ROUTE), compact('certification'));
         $response->assertRedirect('login');
     }
 
@@ -35,7 +37,7 @@ class DestroyCertificationTest extends TestCase
         $certification = str()->uuid();
 
         $specialty = Specialty::first();
-        $response = $this->delete(route('user.profile.worker.certifications.destroy'), compact('certification'));
+        $response = $this->delete(route(self::ROUTE), compact('certification'));
 
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
@@ -50,7 +52,7 @@ class DestroyCertificationTest extends TestCase
 
         $certification = str()->uuid();
 
-        $response = $this->delete(route('user.profile.worker.certifications.destroy'), compact('certification'));
+        $response = $this->delete(route(self::ROUTE), compact('certification'));
         $response->assertSessionHasErrors(['certification']);
     }
 
@@ -66,7 +68,7 @@ class DestroyCertificationTest extends TestCase
         $secondWorker = Worker::factory()->withUser()->create();
         $this->actingAs($secondWorker->user);
 
-        $response = $this->delete(route('user.profile.worker.certifications.destroy'), ['certification' => $certification->uuid]);
+        $response = $this->delete(route(self::ROUTE), ['certification' => $certification->uuid]);
         $response->assertSessionHasErrors('certification');
 
     }
@@ -82,7 +84,7 @@ class DestroyCertificationTest extends TestCase
         $certification = Certification::factory()->make();
         $worker->certifications()->save($certification);
 
-        $response = $this->delete(route('user.profile.worker.certifications.destroy'), ['certification' => $certification->uuid])
+        $response = $this->delete(route(self::ROUTE), ['certification' => $certification->uuid])
             ->assertRedirect(route('user.profile.worker.certifications.show'))
             ->assertSessionDoesntHaveErrors()
             ->assertSessionHas('destroy', true);

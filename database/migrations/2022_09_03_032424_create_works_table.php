@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->time('time')->nullable();
-            $table->unsignedInteger('price')->nullable();
+            $table->unsignedInteger('price')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

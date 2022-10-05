@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Profile\Worker\Specialties;
 
 use App\Http\Controllers\Controller;
 use App\Models\Specialty;
+use App\Services\Caches\SpecialtyWorkerCacheService;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
@@ -17,7 +18,8 @@ class ShowSpecialtiesController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $userSpecialties = auth()->user()->worker->specialties ?? [];
+        $userSpecialties = SpecialtyWorkerCacheService::FromWorker(auth()->user()->worker);
+
         $userSpecialtiesIds = $userSpecialties->pluck('id');
         $specialties = Specialty::whereKeyNot($userSpecialtiesIds)->get();
 
