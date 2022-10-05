@@ -15,7 +15,7 @@ class StoreMyWorksController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\Worker\StoreMyWorkRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(StoreMyWorkRequest $request): RedirectResponse
