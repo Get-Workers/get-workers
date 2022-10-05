@@ -60,12 +60,12 @@ function resetCertificationDeleteForm() {
 function resetCertificationForm() {
     newCertificationForm.reset();
     deleteForm.clearErrors()
-    newCertificateform.value = false;
+    newCertificateFormShow.value = false;
 }
 
-let newCertificateform = ref(false);
+let newCertificateFormShow = ref(false);
 function toggleNewCertificateForm() {
-    newCertificateform.value = !newCertificateform.value;
+    newCertificateFormShow.value = !newCertificateFormShow.value;
 }
 
 const isProcessingForms = computed(() => (deleteForm.processing || newCertificationForm.processing));
@@ -86,10 +86,10 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                     <div class="mt-5 border rounded px-5 py-3">
                         <div class="flex justify-between items-center">
                             <div>New certificate</div>
-                            <Button type="button" @click="toggleNewCertificateForm" v-if="!newCertificateform">New</Button>
-                            <Button type="button" @click="toggleNewCertificateForm" v-if="newCertificateform">Close</Button>
+                            <Button type="button" @click="toggleNewCertificateForm" v-if="!newCertificateFormShow">New</Button>
+                            <Button type="button" @click="toggleNewCertificateForm" v-else>Close</Button>
                         </div>
-                        <div class="mt-2 border rounded p-5" v-if="newCertificateform">
+                        <div class="mt-2 border rounded p-5" v-if="newCertificateFormShow">
                             <form @submit.prevent="submitAdd">
                                 <div class="space-y-5">
                                     <div>
@@ -99,17 +99,17 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                                     </div>
                                     <div>
                                         <Label value="Description" for="certified_description"/>
-                                        <Input id="certified_description" type="text" class="mt-1 block w-full" required autofocus placeholder="Description" max-length="1024" v-model="newCertificationForm.description"/>
+                                        <Input id="certified_description" type="text" class="mt-1 block w-full" placeholder="Description" max-length="1024" v-model="newCertificationForm.description"/>
                                         <InputError class="mt-2" :message="newCertificationForm.errors.description" />
                                     </div>
                                     <div>
                                         <Label value="Certified credential" for="certified_credential"/>
-                                        <Input id="certified_credential" type="text" class="mt-1 block w-full" required autofocus placeholder="Certified credential" max-length="100" v-model="newCertificationForm.certified_uuid"/>
+                                        <Input id="certified_credential" type="text" class="mt-1 block w-full" placeholder="Certified credential" max-length="100" v-model="newCertificationForm.certified_uuid"/>
                                         <InputError class="mt-2" :message="newCertificationForm.errors.certified_uuid" />
                                     </div>
                                     <div>
                                         <Label value="Certified link" for="certified_link"/>
-                                        <Input id="certified_link" type="text" class="mt-1 block w-full" required autofocus placeholder="Certified link" max-length="255" v-model="newCertificationForm.certified_link"/>
+                                        <Input id="certified_link" type="text" class="mt-1 block w-full" placeholder="Certified link" max-length="255" v-model="newCertificationForm.certified_link"/>
                                         <InputError class="mt-2" :message="newCertificationForm.errors.certified_link" />
                                     </div>
 
@@ -146,7 +146,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                                     <ExternalLink :href="certification.certified_link" :title="certification.certified_uuid" class="ml-5 max-w-40" target="_blank" v-if="certification.certified_link">
                                         {{ certification.certified_uuid ? certification.certified_uuid : certification.certified_link }}
                                     </ExternalLink>
-                                    <span v-else>{{ certification.certified_uuid }}</span>
+                                    <span class="ml-5 max-w-40" v-else>{{ certification.certified_uuid }}</span>
                                 </div>
                                 <Button class="w-24" @click="submitDelete(certification.uuid)" :disabled="isProcessingForms">Remove</Button>
                             </div>

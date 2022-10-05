@@ -10,11 +10,20 @@ class WorkerCacheService
 {
     /**
      * @param  User  $user
+     * @param  bool  $clear
+     *
      * @return Worker|null
      */
-    public static function WorkerProfile(User $user): Worker|null
+    public static function WorkerProfile(User $user, bool $clear = false): ?Worker
     {
-        return Cache::rememberForever("user:{$user->id}_worker_profile", function () use ($user) {
+        $key = "user:{$user->id}_worker_profile";
+
+        if ($clear) {
+            Cache::forget($key);
+            return null;
+        }
+
+        return Cache::rememberForever($key, function () use (&$user) {
             return $user->worker;
         });
     }

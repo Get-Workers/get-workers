@@ -1,14 +1,21 @@
 <script setup>
 import { computed } from '@vue/reactivity';
 import { Inertia } from '@inertiajs/inertia';
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link, usePage } from '@inertiajs/inertia-vue3';
+import { AccountCircle, MenuDown } from 'mdue';
 import Header from './Header.vue';
 import Dropdown from '../../Components/Dropdown.vue';
 import DropdownLink from '../../Components/DropdownLink.vue';
 import MenuHeaderX from '../Menus/MenuHeaderX.vue';
 import ItemX from '../Menus/Items/ItemX.vue';
 
-const isDashboardRoute = computed(() => (route().current() === 'dashboard'));
+const dashboardRoute = 'dashboard';
+const myWorksRoute = 'user.worker.my-works';
+
+const isDashboardRoute = computed(() => (route().current() === dashboardRoute));
+const isMyWorksRoute = computed(() => (route().current() === myWorksRoute));
+
+const showMyWorksMenu = computed(() => (usePage().props.value.worker !== null))
 
 const logout = () => {
     Inertia.post(route('logout'));
@@ -20,7 +27,21 @@ const logout = () => {
         <template #links>
             <MenuHeaderX class="h-full">
                 <ItemX class="h-full hover:bg-white" :class="{ 'bg-white': isDashboardRoute }">
-                    <Link :href="route('dashboard')" class="flex h-full px-3 items-center">Dashboard</Link>
+                    <template v-if="! isDashboardRoute">
+                        <Link :href="route(dashboardRoute)" class="flex h-full px-3 items-center">Dashboard</Link>
+                    </template>
+                    <template v-else>
+                        <span class="flex h-full px-3 items-center">Dashboard</span>
+                    </template>
+                </ItemX>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isMyWorksRoute }" v-if="showMyWorksMenu">
+                    <template v-if="! isMyWorksRoute">
+                        <Link :href="route(myWorksRoute)" class="flex h-full px-3 items-center">My Works</Link>
+                    </template>
+                    <template v-else>
+                        <span class="flex h-full px-3 items-center">My Works</span>
+                    </template>
+
                 </ItemX>
             </MenuHeaderX>
         </template>
@@ -35,16 +56,9 @@ const logout = () => {
 
                         <span v-else class="inline-flex rounded-md">
                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                <AccountCircle class="text-3xl mr-2"/>
                                 {{ $page.props.user.name }}
-
-                                <svg
-                                    class="ml-2 -mr-0.5 h-4 w-4"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
+                                <MenuDown class="ml-2 -mr-0.5 h-4 w-4"/>
                             </button>
                         </span>
                     </template>

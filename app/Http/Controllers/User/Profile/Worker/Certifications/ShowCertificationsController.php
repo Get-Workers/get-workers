@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Profile\Worker\Certifications;
 
 use App\Http\Controllers\Controller;
+use App\Services\Caches\CertificationCacheService;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
@@ -16,7 +17,7 @@ class ShowCertificationsController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $certifications = auth()->user()->worker->certifications ?? [];
+        $certifications = CertificationCacheService::FromWorker(auth()->user()->worker) ?? [];
 
         $storeStatus = session()->get('store', false);
         $deleteStatus = session()->get('destroy', false);
