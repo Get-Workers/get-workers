@@ -13,13 +13,15 @@ class DestroySpecialtyTest extends TestCase
 {
     use RefreshDatabase;
 
+    private const ROUTE = 'user.profile.worker.specialties.destroy';
+
     /**
      * @return void
      */
     public function test_unauthenticated_user_cannot_delete_a_specialty_from_profile(): void
     {
         $specialty = Specialty::first();
-        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route(self::ROUTE), ['specialty' => $specialty->id]);
         $response->assertRedirect('login');
     }
 
@@ -32,7 +34,7 @@ class DestroySpecialtyTest extends TestCase
         $this->actingAs($user);
 
         $specialty = Specialty::first();
-        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route(self::ROUTE), ['specialty' => $specialty->id]);
 
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
@@ -47,7 +49,7 @@ class DestroySpecialtyTest extends TestCase
 
         $specialty = Specialty::first();
 
-        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route(self::ROUTE), ['specialty' => $specialty->id]);
         $response->assertSessionHasErrors(['specialty']);
     }
 
@@ -64,7 +66,7 @@ class DestroySpecialtyTest extends TestCase
 
         $specialty = $worker->specialties()->first();
 
-        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route(self::ROUTE), ['specialty' => $specialty->id]);
         $response->assertSessionHasErrors('specialty');
 
     }
@@ -80,7 +82,7 @@ class DestroySpecialtyTest extends TestCase
 
         $specialty = $worker->specialties()->first();
 
-        $response = $this->delete(route('user.profile.worker.specialties.destroy'), ['specialty' => $specialty->id]);
+        $response = $this->delete(route(self::ROUTE), ['specialty' => $specialty->id]);
         $response->assertRedirect(route('user.profile.worker.specialties.show'))
             ->assertSessionDoesntHaveErrors()
             ->assertSessionHas('destroy', true);
