@@ -60,18 +60,18 @@ function submitAdd() {
     });
 }
 
-// function submitDelete(work) {
-//     deleteForm.work = work;
-//     deleteForm.delete(route('user.worker.my-works.destroy'), {
-//         preserveScroll: true,
-//         onFinish: () => resetCertificationDeleteForm()
-//     });
-// }
+function submitDelete(work) {
+    deleteForm.work = work;
+    deleteForm.delete(route('user.worker.my-works.destroy'), {
+        preserveScroll: true,
+        onFinish: () => resetCertificationDeleteForm()
+    });
+}
 
-// function resetCertificationDeleteForm() {
-//     deleteForm.reset();
-//     newWorkForm.clearErrors();
-// }
+function resetCertificationDeleteForm() {
+    deleteForm.reset();
+    newWorkForm.clearErrors();
+}
 
 function resetCertificationForm() {
     newWorkForm.reset();
@@ -186,8 +186,8 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                     </div>
 
                     <!-- Works List && Remove Form -->
-                    <div class="mt-5 border rounded w-full overflow-x-auto">
-                        <div class="min-w-lg"  v-if="works.length">
+                    <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
+                        <div class="min-w-xl">
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
                                 <span class="col-span-2 font-bold" title="Work Name">Name</span>
                                 <span class="col-span-2 font-bold" title="Work Slug">Slug</span>
@@ -219,9 +219,9 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <!-- <Button title="Delete" @click="submitDelete(work.id)" :disabled="isProcessingForms"> -->
-                                        <!-- Delete -->
-                                    <!-- </Button> -->
+                                    <Button title="Delete" @click="submitDelete(work.uuid)" :disabled="isProcessingForms">
+                                        Delete
+                                    </Button>
                                 </div>
                             </div>
                         </div>
