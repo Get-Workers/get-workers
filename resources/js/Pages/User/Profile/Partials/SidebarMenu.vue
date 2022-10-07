@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { computed } from '@vue/reactivity';
 import { usePage } from '@inertiajs/inertia-vue3';
+import { ChevronRight, ChevronDown } from 'mdue';
 import Sidebar from '../../../../Components/Menus/Sidebar.vue';
 import Link from '../../../../Components/Links/Link.vue';
 import Item from '../../../../Components/Menus/Items/Item.vue';
@@ -49,8 +50,10 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
         >
             Worker Settings
             <template #icon>
-                <template v-if="isWorkerSettingsOpen">\/</template>
-                <template v-else>></template>
+                <div class="flex items-center font-black">
+                    <ChevronDown v-if="isWorkerSettingsOpen" />
+                    <ChevronRight v-else />
+                </div>
             </template>
         </Item>
 
