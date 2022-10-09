@@ -111,7 +111,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                 <div class="w-full px-5">
                     <div class="font-bold text-lg">My works</div>
 
-                    <!-- Certifications Add Form -->
+                    <!-- Work Add Form -->
                     <div class="mt-5 border rounded px-5 py-3">
                         <div class="flex justify-between items-center">
                             <div>New work</div>
