@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Contractor\ShowWorksController;
+use App\Http\Controllers\User\Contractor\Work\ListWorksController;
 use App\Http\Controllers\User\Profile\Worker\Certifications\{
     DestroyCertificationsController,
     ShowCertificationsController,
@@ -50,6 +50,6 @@ Route::middleware([
     });
 
     Route::prefix('/works')->name('works')->middleware('contractor-profile')->group(function () {
-        Route::get('', ShowWorksController::class)->name('.show');
+        Route::get('', ListWorksController::class)->name('.list');
     });
 });

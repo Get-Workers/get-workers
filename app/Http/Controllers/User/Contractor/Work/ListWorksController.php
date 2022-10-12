@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\User\Contractor;
+namespace App\Http\Controllers\User\Contractor\Work;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
-class ShowWorksController extends Controller
+class ListWorksController extends Controller
 {
     /**
      * Handle the incoming request.
