@@ -42,7 +42,7 @@ Route::middleware([
 
         Route::prefix('/worker')->name('.worker')->middleware('worker-profile')->group(function () {
             Route::prefix('/my-works')->name('.my-works')->group(function () {
-                Route::get('', ShowMyWorksController::class);
+                Route::get('', ShowMyWorksController::class)->name('.show');
                 Route::post('', StoreMyWorksController::class)->name('.store');
                 Route::delete('', DestroyMyWorksController::class)->name('.destroy');
             });
@@ -50,6 +50,6 @@ Route::middleware([
     });
 
     Route::prefix('/works')->name('works')->middleware('contractor-profile')->group(function () {
-        Route::get('', ShowWorksController::class);
+        Route::get('', ShowWorksController::class)->name('.show');
     });
 });
