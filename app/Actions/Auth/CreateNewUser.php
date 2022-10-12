@@ -39,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             ]);
 
             $this->createWorkerFromUser($user);
+            $this->createContractorFromUser($user);
         });
 
         if (is_null($user)) {
@@ -55,5 +56,14 @@ class CreateNewUser implements CreatesNewUsers
     private function createWorkerFromUser(User $user): Worker
     {
         return $user->worker()->create();
+    }
+
+    /**
+     * @param  User  $user
+     * @return Worker
+     */
+    private function createContractorFromUser(User $user): Worker
+    {
+        return $user->contractor()->create();
     }
 }
