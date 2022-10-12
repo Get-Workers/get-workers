@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\User\Contractor\Work\ListWorksController;
+use App\Http\Controllers\User\Contractor\Work\{
+    ListWorksController,
+    ShowWorksController
+};
 use App\Http\Controllers\User\Profile\Worker\Certifications\{
     DestroyCertificationsController,
     ShowCertificationsController,
@@ -51,5 +54,6 @@ Route::middleware([
 
     Route::prefix('/works')->name('works')->middleware('contractor-profile')->group(function () {
         Route::get('', ListWorksController::class)->name('.list');
+        Route::get('{workUuid}', ShowWorksController::class)->name('.show');
     });
 });
