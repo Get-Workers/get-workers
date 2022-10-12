@@ -10,8 +10,8 @@ import MenuHeaderX from '../Menus/MenuHeaderX.vue';
 import ItemX from '../Menus/Items/ItemX.vue';
 
 const dashboardRoute = 'dashboard';
-const myWorksRoute = 'user.worker.my-works';
-const worksRoute = 'works';
+const myWorksRoute = 'user.worker.my-works.show';
+const worksRoute = 'works.show';
 
 const isDashboardRoute = computed(() => (route().current() === dashboardRoute));
 const isMyWorksRoute = computed(() => (route().current() === myWorksRoute));
