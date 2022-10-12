@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Contractor;
+namespace App\Http\Controllers\User\Contractor\Work;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
@@ -15,16 +15,17 @@ class ShowWorksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(string $workUuid, Request $request): Response
     {
-        $works = Work::with([
+        $work = Work::with([
                 'specialties',
                 'unity',
-                'worker',
+                'worker.user',
                 'specialties',
         ])
-            ->get();
+            ->where('uuid', $workUuid)
+            ->firstOrFail();
 
-        return inertia('User/Contractor/Works/Show', compact('works'));
+        return inertia('User/Contractor/Works/Show', compact('work'));
     }
 }
