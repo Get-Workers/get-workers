@@ -1,0 +1,60 @@
+<script setup>
+import AuthLayout from '../../../../Layouts/AuthLayout.vue';
+import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
+
+defineProps({
+    works: {
+        type: Array,
+        default: [],
+    },
+});
+</script>
+
+<template>
+    <AuthLayout title="Works">
+        <template #main>
+            <div class="flex">
+                <!-- Page Content -->
+                <div class="w-full px-5">
+                    <div class="font-bold text-lg">Works</div>
+
+                    <!-- Works List -->
+                    <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
+                        <div class="min-w-xl">
+                            <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
+                                <span class="col-span-3 font-bold" title="Work Name">Name</span>
+                                <span class="col-span-2 font-bold" title="Work Slug">Slug</span>
+                                <span class="col-span-3 font-bold" title="Work Specialties">Specialties</span>
+                                <span class="col-span-1 font-bold" title="Work Unity">Unity</span>
+                                <span class="col-span-1 font-bold" title="Work Time">Time</span>
+                                <span class="col-span-2 font-bold" title="Work Price">Price</span>
+                            </div>
+                            <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
+                                v-for="(work) in works"
+                            >
+                                <div class="col-span-3 flex items-center overflow-y-auto">
+                                    <span class="min-w-fit break-words text-ellipsis" :title="work.name">{{ work.name }}</span>
+                                </div>
+                                <div class="col-span-2 flex items-center overflow-y-auto">
+                                    <span class="min-w-fit break-words text-ellipsis" :title="work.slug">{{ work.slug }}</span>
+                                </div>
+                                <div class="col-span-3 overflow-y-auto">
+                                    <BadgeGroup :badges="work.specialties" />
+                                </div>
+                                <div class="col-span-1 flex items-center">
+                                    <span :title="work.unity ? work.unity.name : ''">{{ work.unity ? work.unity.type : '' }}</span>
+                                </div>
+                                <div class="col-span-1 flex items-center">
+                                    <span :title="work.time">{{ work.time }}</span>
+                                </div>
+                                <div class="col-span-2 flex items-center">
+                                    <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </AuthLayout>
+</template>
