@@ -49,7 +49,7 @@ Route::middleware([
         });
     });
 
-    Route::prefix('/works')->name('works')->group(function () {
+    Route::prefix('/works')->name('works')->middleware('contractor-profile')->group(function () {
         Route::get('', ShowWorksController::class);
     });
 });
