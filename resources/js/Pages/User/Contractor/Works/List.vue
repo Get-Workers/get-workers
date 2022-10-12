@@ -1,6 +1,7 @@
 <script setup>
 import AuthLayout from '../../../../Layouts/AuthLayout.vue';
 import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
+import Link from '../../../../Components/Links/Link.vue';
 
 defineProps({
     works: {
@@ -33,7 +34,10 @@ defineProps({
                                 v-for="(work) in works"
                             >
                                 <div class="col-span-3 flex items-center overflow-y-auto">
-                                    <span class="min-w-fit break-words text-ellipsis" :title="work.name">{{ work.name }}</span>
+                                    <Link class="min-w-fit break-words text-ellipsis"
+                                        :href="route('works.show', { workUuid: work.uuid })"
+                                        :title="work.name"
+                                    >{{ work.name }}</Link>
                                 </div>
                                 <div class="col-span-2 flex items-center overflow-y-auto">
                                     <span class="min-w-fit break-words text-ellipsis" :title="work.slug">{{ work.slug }}</span>
