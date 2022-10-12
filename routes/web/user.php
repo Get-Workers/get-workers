@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\Contractor\ShowWorksController;
 use App\Http\Controllers\User\Profile\Worker\Certifications\{
     DestroyCertificationsController,
     ShowCertificationsController,
@@ -46,5 +47,9 @@ Route::middleware([
                 Route::delete('', DestroyMyWorksController::class)->name('.destroy');
             });
         });
+    });
+
+    Route::prefix('/works')->name('works')->group(function () {
+        Route::get('', ShowWorksController::class);
     });
 });
