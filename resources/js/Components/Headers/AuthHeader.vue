@@ -11,11 +11,14 @@ import ItemX from '../Menus/Items/ItemX.vue';
 
 const dashboardRoute = 'dashboard';
 const myWorksRoute = 'user.worker.my-works';
+const worksRoute = 'works';
 
 const isDashboardRoute = computed(() => (route().current() === dashboardRoute));
 const isMyWorksRoute = computed(() => (route().current() === myWorksRoute));
+const isWorksRoute = computed(() => (route().current() === worksRoute));
 
-const showMyWorksMenu = computed(() => (usePage().props.value.worker !== null))
+const showMyWorksMenu = computed(() => (usePage().props.value.worker !== null));
+const showWorksMenu = computed(() => (usePage().props.value.contractor !== null));
 
 const logout = () => {
     Inertia.post(route('logout'));
@@ -41,7 +44,14 @@ const logout = () => {
                     <template v-else>
                         <span class="flex h-full px-3 items-center">My Works</span>
                     </template>
-
+                </ItemX>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isWorksRoute }" v-if="showWorksMenu">
+                    <template v-if="! isWorksRoute">
+                        <Link :href="route(worksRoute)" class="flex h-full px-3 items-center">Works</Link>
+                    </template>
+                    <template v-else>
+                        <span class="flex h-full px-3 items-center">Works</span>
+                    </template>
                 </ItemX>
             </MenuHeaderX>
         </template>
