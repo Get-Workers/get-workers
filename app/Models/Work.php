@@ -27,6 +27,7 @@ class Work extends Model
         'unity_id',
         'name',
         'slug',
+        'description',
         'time',
         'price',
     ];
