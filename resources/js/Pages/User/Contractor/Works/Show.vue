@@ -36,7 +36,7 @@ const contractWorkForm = useForm({
 });
 
 function contractWork() {
-    contractWorkForm.post(route('contracted-works.store'), {
+    contractWorkForm.post(route('hired-works.store'), {
         onBefore: function() {
             formError.value = false;
         },

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Work\ContractedWork;
+namespace App\Http\Requests\Work\HiredWork;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreContractedWorkRequest extends FormRequest
+class StoreHiredWorkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ContractedWork;
+use App\Models\HiredWork;
 use App\Models\Contractor;
 use App\Models\Work;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
-class ContractedWorkSeeder extends Seeder
+class HiredWorkSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -38,15 +38,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addSimple(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 
@@ -57,15 +57,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addWithPrice(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->withPrice()->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->withPrice()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 
@@ -76,15 +76,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addInitialized(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->initiated()->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->initiated()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 
@@ -95,15 +95,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addInitializedWithPrice(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->withPrice()->initiated()->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->withPrice()->initiated()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 
@@ -114,15 +114,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addInitializedAndDone(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->initiated()->done()->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->initiated()->done()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 
@@ -133,15 +133,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addInitializedAndDoneWithPrice(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->withPrice()->initiated()->done()->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->withPrice()->initiated()->done()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 
@@ -152,15 +152,15 @@ class ContractedWorkSeeder extends Seeder
      */
     private function addInitializedAndDoneWithPriceAndisPaid(Collection &$works, Collection &$contractors): void
     {
-        ContractedWork::factory(20)->withPrice()->initiated()->done()->isPaid()->make()
-            ->each(function (ContractedWork $contractedWork) use (&$works, &$contractors) {
+        HiredWork::factory(20)->withPrice()->initiated()->done()->isPaid()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
-                $contractedWork->work()->associate($work);
+                $hiredWork->work()->associate($work);
 
                 $contractor = $this->getRandomModel($contractors);
-                $contractedWork->contractor()->associate($contractor);
+                $hiredWork->contractor()->associate($contractor);
 
-                $contractedWork->save();
+                $hiredWork->save();
             });
     }
 

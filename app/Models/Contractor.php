@@ -31,8 +31,8 @@ class Contractor extends Model
     /**
      * @return HasMany
      */
-    public function contractedWorks(): HasMany
+    public function hiredWorks(): HasMany
     {
-        return $this->hasMany(ContractedWork::class);
+        return $this->hasMany(HiredWork::class);
     }
 }
