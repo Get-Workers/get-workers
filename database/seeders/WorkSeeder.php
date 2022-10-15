@@ -25,10 +25,9 @@ class WorkSeeder extends Seeder
             $hasUnity = (bool) random_int(0, 1);
             $hasTime = (bool) random_int(0, 1);
             $hasPrice = (bool) random_int(0, 1);
+            $hasDescription = (bool) random_int(0, 1);
             $isTrashed = (bool) random_int(0, 1);
-            $worksQuantity = random_int(1, 10);
-
-
+            $worksQuantity = random_int(1, 20);
 
             $worksFactory = Work::factory($worksQuantity);
             if ($hasUnity) {
@@ -41,6 +40,10 @@ class WorkSeeder extends Seeder
 
             if ($hasPrice) {
                 $worksFactory = $worksFactory->withPrice();
+            }
+
+            if ($hasDescription) {
+                $worksFactory = $worksFactory->withDescription();
             }
 
             if ($isTrashed) {

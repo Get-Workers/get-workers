@@ -3,6 +3,7 @@
 namespace App\Actions\Auth;
 
 use App\Exceptions\CreateUserException;
+use App\Models\Contractor;
 use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Support\Facades\DB;
@@ -60,9 +61,9 @@ class CreateNewUser implements CreatesNewUsers
 
     /**
      * @param  User  $user
-     * @return Worker
+     * @return Contractor
      */
-    private function createContractorFromUser(User $user): Worker
+    private function createContractorFromUser(User $user): Contractor
     {
         return $user->contractor()->create();
     }
