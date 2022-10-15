@@ -19,6 +19,7 @@ use App\Http\Controllers\User\Worker\{
     ShowMyWorksController,
     StoreMyWorksController
 };
+use App\Http\Controllers\Work\ContractedWork\StoreContractedWorkController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -55,5 +56,9 @@ Route::middleware([
     Route::prefix('/works')->name('works')->middleware('contractor-profile')->group(function () {
         Route::get('', ListWorksController::class)->name('.list');
         Route::get('{workUuid}', ShowWorksController::class)->name('.show');
+    });
+
+    Route::prefix('/contracted-works')->name('contracted-works')->middleware('contractor-profile')->group(function () {
+        Route::post('', StoreContractedWorkController::class)->name('.store');
     });
 });
