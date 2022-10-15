@@ -7,9 +7,9 @@ use App\Models\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ContractedWork>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HiredWork>
  */
-class ContractedWorkFactory extends Factory
+class HiredWorkFactory extends Factory
 {
     /**
      * Define the model's default state.

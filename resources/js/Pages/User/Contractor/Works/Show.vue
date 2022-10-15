@@ -1,11 +1,50 @@
 <script setup>
+import { useForm } from '@inertiajs/inertia-vue3';
+import { ref } from 'vue';
 import { ImageOff } from 'mdue';
 import AuthLayout from '../../../../Layouts/AuthLayout.vue';
 import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
+import Button from '../../../../Components/Button.vue';
+import InputError from '../../../../Components/InputError.vue';
 
-defineProps({
-    work: Object,
+const props = defineProps({
+    work: {
+        type: Object,
+        default: {
+            name: null,
+            slug: null,
+            worker: {
+                user: {
+                    name: null,
+                },
+            },
+            specialties: [],
+            unity: {
+                name: null,
+                type: null,
+            },
+            time: null,
+            price: null,
+        }
+    },
 });
+
+let formError = ref(false);
+
+const contractWorkForm = useForm({
+    work: props.work.uuid
+});
+
+function contractWork() {
+    contractWorkForm.post(route('hired-works.store'), {
+        onBefore: function() {
+            formError.value = false;
+        },
+        onError: function() {
+            formError.value = true;
+        }
+    });
+}
 </script>
 
 <template>
@@ -22,20 +61,20 @@ defineProps({
                     </div>
 
                     <!-- Works List -->
-                    <div class="mt-5 p-5 border rounded w-full overflow-x-auto">
+                    <div class="mt-5 p-5 space-y-3 border rounded w-full overflow-x-auto">
                         <!-- Future image carousel -->
                         <div class="flex items-center justify-center w-full rounded h-40 md:h-60 lg:h-72 xl:h-80 bg-gray-400" title="No image">
                             <ImageOff class="text-lg"/>
                         </div>
 
-                        <div class="mt-3">
+                        <div>
                             <span class="font-bold text-sm">Worker</span>
                             <div class="mt-1">
                                 {{ work.worker.user.name }}
                             </div>
                         </div>
 
-                        <div class="mt-3" v-if="work.specialties.length">
+                        <div v-if="work.specialties.length">
                             <span class="font-bold text-sm">Work specialties</span>
                             <div class="rounded border p-3 mt-1 h-32 max-w-lg overflow-y-auto">
                                 <BadgeGroup :badges="work.specialties"/>
@@ -78,6 +117,11 @@ defineProps({
                                     <span>{{ `R$ ${work.price}`.replace('.', ',') }}</span>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="flex">
+                            <InputError class="mb-1" message="An error ocurred while contracting the work." v-if="formError"/>
+                            <Button class="w-full md:py-4 lg:py-5" :disabled="contractWorkForm.processing" @click.prevent="contractWork">Hire</Button>
                         </div>
                     </div>
                 </div>

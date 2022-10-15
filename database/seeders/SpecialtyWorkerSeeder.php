@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Specialty;
-use App\Models\SpecialtyWorker;
 use App\Models\Worker;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SpecialtyWorkerSeeder extends Seeder
