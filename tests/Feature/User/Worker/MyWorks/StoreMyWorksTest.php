@@ -69,7 +69,7 @@ class StoreMyWorksTest extends TestCase
 
         $response = $this->post(route(self::ROUTE), $work);
 
-        $response->assertRedirect(route('user.worker.my-works'))
+        $response->assertRedirect(route('user.worker.my-works.show'))
             ->assertSessionDoesntHaveErrors()
             ->assertSessionHas('store', true);
     }
