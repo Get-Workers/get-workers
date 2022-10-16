@@ -60,7 +60,7 @@ function contractWork() {
                         </div>
                     </div>
 
-                    <!-- Works List -->
+                    <!-- Work Infos -->
                     <div class="mt-5 p-5 space-y-3 border rounded w-full overflow-x-auto">
                         <!-- Future image carousel -->
                         <div class="flex items-center justify-center w-full rounded h-40 md:h-60 lg:h-72 xl:h-80 bg-gray-400" title="No image">
@@ -71,6 +71,13 @@ function contractWork() {
                             <span class="font-bold text-sm">Worker</span>
                             <div class="mt-1">
                                 {{ work.worker.user.name }}
+                            </div>
+                        </div>
+
+                        <div v-if="work.description">
+                            <span class="font-bold text-sm">Description</span>
+                            <div class="mt-1 border rounded p-3">
+                                <span>{{ work.description }}</span>
                             </div>
                         </div>
 
