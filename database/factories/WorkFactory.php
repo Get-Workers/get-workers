@@ -73,7 +73,7 @@ class WorkFactory extends Factory
     {
         return $this->state(function () {
             return [
-                'price' => random_int(0, 999999),
+                'price' => (float) (random_int(0, 99999999) / 100),
             ];
         });
     }
