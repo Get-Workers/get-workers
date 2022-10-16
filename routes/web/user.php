@@ -19,7 +19,7 @@ use App\Http\Controllers\User\Worker\{
     ShowMyWorksController,
     StoreMyWorksController
 };
-use App\Http\Controllers\Work\HiredWork\StoreHiredWorkController;
+use App\Http\Controllers\Work\HiredWork\StoreHiredWorksController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -59,6 +59,6 @@ Route::middleware([
     });
 
     Route::prefix('/hired-works')->name('hired-works')->middleware('contractor-profile')->group(function () {
-        Route::post('', StoreHiredWorkController::class)->name('.store');
+        Route::post('', StoreHiredWorksController::class)->name('.store');
     });
 });
