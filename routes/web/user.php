@@ -20,6 +20,7 @@ use App\Http\Controllers\User\Worker\{
     StoreMyWorksController
 };
 use App\Http\Controllers\Work\HiredWork\{
+    DestroyHiredWorksController,
     ListHiredWorksController,
     StoreHiredWorksController
 };
@@ -64,5 +65,6 @@ Route::middleware([
     Route::prefix('/hired-works')->name('hired-works')->middleware('contractor-profile')->group(function () {
         Route::get('', ListHiredWorksController::class)->name('.list');
         Route::post('', StoreHiredWorksController::class)->name('.store');
+        Route::delete('', DestroyHiredWorksController::class)->name('.destroy');
     });
 });
