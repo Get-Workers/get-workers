@@ -8,7 +8,7 @@ use App\Http\Requests\Work\HiredWork\StoreHiredWorkRequest;
 use App\Models\Work;
 use Illuminate\Http\RedirectResponse;
 
-class StoreHiredWorkController extends Controller
+class StoreHiredWorksController extends Controller
 {
     private StoreHiredWork $action;
 
@@ -16,6 +16,7 @@ class StoreHiredWorkController extends Controller
     {
         $this->action = $action;
     }
+
     /**
      * Handle the incoming request.
      *

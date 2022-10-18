@@ -12,13 +12,15 @@ import ItemX from '../Menus/Items/ItemX.vue';
 const dashboardRoute = 'dashboard';
 const myWorksRoute = 'user.worker.my-works.show';
 const worksRoute = 'works.list';
+const hiredWorksRoute = 'hired-works.list';
 
 const isDashboardRoute = computed(() => (route().current() === dashboardRoute));
 const isMyWorksRoute = computed(() => (route().current() === myWorksRoute));
 const isWorksRoute = computed(() => (route().current() === worksRoute));
+const isHiredWorksRoute = computed(() => (route().current() === hiredWorksRoute));
 
-const showMyWorksMenu = computed(() => (usePage().props.value.worker !== null));
-const showWorksMenu = computed(() => (usePage().props.value.contractor !== null));
+const showWorkerMenu = computed(() => (usePage().props.value.worker !== null));
+const showContractorMenu = computed(() => (usePage().props.value.contractor !== null));
 
 const logout = () => {
     Inertia.post(route('logout'));
@@ -37,7 +39,7 @@ const logout = () => {
                         <span class="flex h-full px-3 items-center">Dashboard</span>
                     </template>
                 </ItemX>
-                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isMyWorksRoute }" v-if="showMyWorksMenu">
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isMyWorksRoute }" v-if="showWorkerMenu">
                     <template v-if="! isMyWorksRoute">
                         <Link :href="route(myWorksRoute)" class="flex h-full px-3 items-center">My Works</Link>
                     </template>
@@ -45,12 +47,20 @@ const logout = () => {
                         <span class="flex h-full px-3 items-center">My Works</span>
                     </template>
                 </ItemX>
-                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isWorksRoute }" v-if="showWorksMenu">
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isWorksRoute }" v-if="showContractorMenu">
                     <template v-if="! isWorksRoute">
                         <Link :href="route(worksRoute)" class="flex h-full px-3 items-center">Works</Link>
                     </template>
                     <template v-else>
                         <span class="flex h-full px-3 items-center">Works</span>
+                    </template>
+                </ItemX>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isHiredWorksRoute }" v-if="showContractorMenu">
+                    <template v-if="! isHiredWorksRoute">
+                        <Link :href="route(hiredWorksRoute)" class="flex h-full px-3 items-center">Hired Works</Link>
+                    </template>
+                    <template v-else>
+                        <span class="flex h-full px-3 items-center">Hired Works</span>
                     </template>
                 </ItemX>
             </MenuHeaderX>
