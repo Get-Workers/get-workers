@@ -137,6 +137,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'hired_work_is_initiated' => 'The :attribute has already been initiated.',
 
     /*
     |--------------------------------------------------------------------------
