@@ -85,6 +85,9 @@ class Work extends Model
         return $this->belongsToMany(Specialty::class)->using(SpecialtyWork::class);
     }
 
+    /**
+     * @return Attribute
+     */
     protected function price(): Attribute
     {
         return Attribute::make(
@@ -93,6 +96,9 @@ class Work extends Model
         );
     }
 
+    /**
+     * @return Attribute
+     */
     protected function slug(): Attribute
     {
         return Attribute::make(

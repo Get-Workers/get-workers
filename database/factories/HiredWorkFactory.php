@@ -55,7 +55,7 @@ class HiredWorkFactory extends Factory
         return $this->state(function (array $attributes) {
             $hasPrice = (bool) random_int(0, 1);
             return [
-                'price' => ($hasPrice) ? random_int(100, 999999) : null,
+                'price' => ($hasPrice) ? random_int(100, 999999) : 0,
             ];
         });
     }
