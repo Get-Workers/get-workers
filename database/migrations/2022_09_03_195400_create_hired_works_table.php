@@ -20,7 +20,7 @@ return new class extends Migration
             $table->uuid();
             $table->foreignIdFor(Work::class)->constrained();
             $table->foreignIdFor(Contractor::class)->constrained();
-            $table->unsignedInteger('price')->nullable();
+            $table->unsignedInteger('price')->default(0);
             $table->unsignedInteger('value_paid')->nullable();
             $table->timestamp('initiated_at')->nullable();
             $table->timestamp('done_at')->nullable();
