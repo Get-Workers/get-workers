@@ -80,16 +80,12 @@ class HiredWorkFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             $timestamp = now();
-
-            $hasInitiated = (bool) random_int(0, 1);
-            if ($hasInitiated) {
-                $timestamp->subHours(random_int(0, 12));
-                $timestamp->subMinutes(random_int(0, 60));
-                $timestamp->subSeconds(random_int(0, 60));
-            }
+            $timestamp->subHours(random_int(0, 12));
+            $timestamp->subMinutes(random_int(0, 60));
+            $timestamp->subSeconds(random_int(0, 60));
 
             return [
-                'initiated_at' => ($hasInitiated) ? $timestamp : null,
+                'initiated_at' => $timestamp,
             ];
         });
     }
