@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Work\HiredWork;
+namespace Tests\Feature\Work\Contractor\HiredWork;
 
 use App\Models\Contractor;
 use App\Models\User;
@@ -18,7 +18,7 @@ class StoreHiredWorkTest extends TestCase
     /**
      * @return void
      */
-    public function test_unauthenticated_user_cannot_store_an_hired_work(): void
+    public function test_unauthenticated_user_cannot_store_a_hired_work(): void
     {
         $work = Work::factory()->withWorker()->create();
         $response = $this->post(route(self::ROUTE), ['work' => $work->uuid]);
@@ -28,7 +28,7 @@ class StoreHiredWorkTest extends TestCase
     /**
      * @return void
      */
-    public function test_user_non_contractor_cannot_store_an_hired_work(): void
+    public function test_user_non_contractor_cannot_store_a_hired_work(): void
     {
         $work = Work::factory()->withWorker()->create();
         $user = User::factory()->create();
@@ -41,7 +41,7 @@ class StoreHiredWorkTest extends TestCase
     /**
      * @return void
      */
-    public function test_contractor_cannot_store_an_hired_work_with_empty_data(): void
+    public function test_contractor_cannot_store_a_hired_work_with_empty_data(): void
     {
         $contractor = Contractor::factory()->withUser()->create();
         $this->actingAs($contractor->user);
@@ -56,7 +56,7 @@ class StoreHiredWorkTest extends TestCase
     /**
      * @return void
      */
-    public function test_contractor_can_store_an_hired_work(): void
+    public function test_contractor_can_store_a_hired_work(): void
     {
         $contractor = Contractor::factory()->withUser()->create();
         $this->actingAs($contractor->user);
