@@ -31,7 +31,7 @@ const routes = {
     // Contractor
     contractor: {
         hiredWorks: {
-            list: 'hired-works.list',
+            list: 'user.contractor.hired-works.list',
         },
     },
 
@@ -80,20 +80,20 @@ const logout = () => {
                         <span class="flex h-full px-3 items-center">Dashboard</span>
                     </template>
                 </ItemX>
-                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.worker.myWorks }" v-if="canSee.worker">
-                    <template v-if="! isRoute.worker.myWorks">
-                        <Link :href="route(routes.worker.myWorks)" class="flex h-full px-3 items-center">My Works</Link>
-                    </template>
-                    <template v-else>
-                        <span class="flex h-full px-3 items-center">My Works</span>
-                    </template>
-                </ItemX>
                 <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.works.list }">
                     <template v-if="! isRoute.works.list">
                         <Link :href="route(routes.works.list)" class="flex h-full px-3 items-center">Works</Link>
                     </template>
                     <template v-else>
                         <span class="flex h-full px-3 items-center">Works</span>
+                    </template>
+                </ItemX>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.worker.myWorks }" v-if="canSee.worker">
+                    <template v-if="! isRoute.worker.myWorks">
+                        <Link :href="route(routes.worker.myWorks)" class="flex h-full px-3 items-center">My Works</Link>
+                    </template>
+                    <template v-else>
+                        <span class="flex h-full px-3 items-center">My Works</span>
                     </template>
                 </ItemX>
                 <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
