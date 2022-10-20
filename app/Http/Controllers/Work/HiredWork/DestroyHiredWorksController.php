@@ -24,6 +24,6 @@ class DestroyHiredWorksController extends Controller
             ->first()
             ->delete();
 
-        return redirect()->route('hired-works.list')->with('destroy', true);
+        return redirect()->route('user.contractor.hired-works.list')->with('destroy', true);
     }
 }

@@ -13,7 +13,7 @@ class DestroyHiredWorkTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const ROUTE = 'hired-works.destroy';
+    private const ROUTE = 'user.contractor.hired-works.destroy';
 
     /**
      * @return void
@@ -101,7 +101,7 @@ class DestroyHiredWorkTest extends TestCase
             ->create();
 
         $response = $this->delete(route(self::ROUTE), ['hiredWork' => $hiredWork->uuid]);
-        $response->assertRedirect(route('hired-works.list'));
+        $response->assertRedirect(route('user.contractor.hired-works.list'));
         $response->assertSessionDoesntHaveErrors();
         $response->assertSessionHas('destroy', true);
 

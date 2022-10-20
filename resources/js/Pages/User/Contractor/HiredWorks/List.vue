@@ -19,7 +19,7 @@ const deleteForm = useForm({
 
 function submitDelete(uuid) {
     deleteForm.hiredWork = uuid;
-    deleteForm.delete(route('hired-works.destroy'), {
+    deleteForm.delete(route('user.contractor.hired-works.destroy'), {
         onBefore: function() {
             deleteForm.clearErrors();
         },
