@@ -1,7 +1,7 @@
 <script setup>
 import Main from '../Components/Mains/Main.vue';
 import BaseLayout from './BaseLayout.vue';
-import HeaderGuest from '../Components/Headers/HeaderGuest.vue';
+import GuestHeader from '../Components/Headers/GuestHeader.vue';
 
 defineProps({
     title: String,
@@ -11,7 +11,7 @@ defineProps({
 <template>
     <BaseLayout :title="title">
         <template #header>
-            <HeaderGuest />
+            <GuestHeader />
         </template>
 
         <template #main>
