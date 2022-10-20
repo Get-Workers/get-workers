@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\User\Contractor\Work;
+namespace App\Http\Controllers\Work;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
-class ShowWorksController extends Controller
+class ListWorksController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,17 +15,16 @@ class ShowWorksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function __invoke(string $workUuid, Request $request): Response
+    public function __invoke(Request $request): Response
     {
-        $work = Work::with([
+        $works = Work::with([
                 'specialties',
                 'unity',
-                'worker.user',
+                'worker',
                 'specialties',
         ])
-            ->where('uuid', $workUuid)
-            ->firstOrFail();
+            ->get();
 
-        return inertia('User/Contractor/Works/Show', compact('work'));
+        return inertia('User/Works/List', compact('works'));
     }
 }

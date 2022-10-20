@@ -19,7 +19,7 @@ const deleteForm = useForm({
 
 function submitDelete(uuid) {
     deleteForm.hiredWork = uuid;
-    deleteForm.delete(route('user.contractor.hired-works.destroy'), {
+    deleteForm.delete(route('user.worker.hired-works.destroy'), {
         onBefore: function() {
             deleteForm.clearErrors();
         },
@@ -77,8 +77,8 @@ function submitDelete(uuid) {
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${hiredWork.price}`.replace('.', ',')">{{ `R$ ${hiredWork.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button title="Delete" @click="submitDelete(hiredWork.uuid)" :disabled="deleteForm.processing">
-                                        Delete
+                                    <Button title="Cancel" @click="submitDelete(hiredWork.uuid)" :disabled="deleteForm.processing">
+                                        Cancel
                                     </Button>
                                 </div>
                             </div>

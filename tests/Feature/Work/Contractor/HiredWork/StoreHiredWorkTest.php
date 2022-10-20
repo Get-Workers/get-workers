@@ -13,7 +13,7 @@ class StoreHiredWorkTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const ROUTE = 'hired-works.store';
+    private const ROUTE = 'user.contractor.hired-works.store';
 
     /**
      * @return void
