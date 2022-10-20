@@ -14,10 +14,7 @@ use App\Http\Controllers\User\Profile\Worker\Specialties\{
     ShowSpecialtiesController,
     StoreSpecialtiesController
 };
-use App\Http\Controllers\User\Worker\{
-    DestroyMyWorksController,
-    ShowMyWorksController,
-    StoreMyWorksController
+use App\Http\Controllers\User\Worker\HiredWork\ListHiredWorksController as WorkerListHiredWorksController;
 };
 use App\Http\Controllers\User\Contractor\HiredWork\{
     DestroyHiredWorksController,
