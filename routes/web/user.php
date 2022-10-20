@@ -55,16 +55,18 @@ Route::middleware([
                 Route::delete('', DestroyMyWorksController::class)->name('.destroy');
             });
         });
+
+        Route::prefix('/contractor')->name('.contractor')->middleware('contractor-profile')->group(function () {
+            Route::prefix('/hired-works')->name('.hired-works')->group(function () {
+                Route::get('', ListHiredWorksController::class)->name('.list');
+                Route::post('', StoreHiredWorksController::class)->name('.store');
+                Route::delete('', DestroyHiredWorksController::class)->name('.destroy');
+            });
+        });
     });
 
     Route::prefix('/works')->name('works')->group(function () {
         Route::get('', ListWorksController::class)->name('.list');
         Route::get('{workUuid}', ShowWorksController::class)->name('.show');
-    });
-
-    Route::prefix('/hired-works')->name('hired-works')->middleware('contractor-profile')->group(function () {
-        Route::get('', ListHiredWorksController::class)->name('.list');
-        Route::post('', StoreHiredWorksController::class)->name('.store');
-        Route::delete('', DestroyHiredWorksController::class)->name('.destroy');
     });
 });
