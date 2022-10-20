@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\Contractor\Work\{
+use App\Http\Controllers\Work\{
     ListWorksController,
     ShowWorksController
 };
@@ -19,7 +19,7 @@ use App\Http\Controllers\User\Worker\{
     ShowMyWorksController,
     StoreMyWorksController
 };
-use App\Http\Controllers\Work\HiredWork\{
+use App\Http\Controllers\User\Contractor\HiredWork\{
     DestroyHiredWorksController,
     ListHiredWorksController,
     StoreHiredWorksController

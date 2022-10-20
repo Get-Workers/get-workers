@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Work\HiredWork;
+namespace App\Http\Controllers\User\Contractor\HiredWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Work\HiredWork\DestroyHiredWorkRequest;
