@@ -26,6 +26,9 @@ const routes = {
     // Worker
     worker: {
         myWorks: 'user.worker.my-works.show',
+        hiredWorks: {
+            list: 'user.worker.hired-works.list',
+        },
     },
 
     // Contractor
@@ -48,6 +51,9 @@ const isRoute = computed(() => ({
     // Worker
     worker: {
         myWorks: (currentRoute.value === routes.worker.myWorks),
+        hiredWorks: {
+            list: (currentRoute.value === routes.worker.hiredWorks.list),
+        },
     },
 
     // Contractor
@@ -96,12 +102,37 @@ const logout = () => {
                         <span class="flex h-full px-3 items-center">My Works</span>
                     </template>
                 </ItemX>
-                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
-                    <template v-if="! isRoute.contractor.hiredWorks.list">
-                        <Link :href="route(routes.contractor.hiredWorks.list)" class="flex h-full px-3 items-center">Hired Works</Link>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.worker.hiredWorks.list }" v-if="canSee.worker">
+                    <template v-if="! isRoute.worker.hiredWorks.list">
+                        <Link :href="route(routes.worker.hiredWorks.list)" class="flex h-full px-3">
+                            <div class="flex flex-col justify-center items-center">
+                                <span>Hired Works</span>
+                                <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isContractor">worker</em>
+                            </div>
+                        </Link>
                     </template>
                     <template v-else>
-                        <span class="flex h-full px-3 items-center">Hired Works</span>
+                        <div class="flex flex-col h-full px-3 justify-center items-center">
+                            <span>Hired Works</span>
+                            <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isContractor">worker</em>
+                        </div>
+                    </template>
+                </ItemX>
+
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
+                    <template v-if="! isRoute.contractor.hiredWorks.list">
+                        <Link :href="route(routes.contractor.hiredWorks.list)" class="flex h-full px-3">
+                            <div class="flex flex-col justify-center items-center">
+                                <span>Hired Works</span>
+                                <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isWorker">contractor</em>
+                            </div>
+                        </Link>
+                    </template>
+                    <template v-else>
+                        <div class="flex flex-col h-full px-3 justify-center items-center">
+                            <span>Hired Works</span>
+                            <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isWorker">contractor</em>
+                        </div>
                     </template>
                 </ItemX>
             </MenuHeaderX>
