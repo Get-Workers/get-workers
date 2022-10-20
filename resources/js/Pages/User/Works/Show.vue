@@ -1,11 +1,14 @@
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm, usePage } from '@inertiajs/inertia-vue3';
 import { ref } from 'vue';
 import { ImageOff } from 'mdue';
-import AuthLayout from '../../../../Layouts/AuthLayout.vue';
-import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
-import Button from '../../../../Components/Button.vue';
-import InputError from '../../../../Components/InputError.vue';
+import AuthLayout from '../../../Layouts/AuthLayout.vue';
+import BadgeGroup from '../../../Components/Badges/BadgeGroup.vue';
+import Button from '../../../Components/Button.vue';
+import InputError from '../../../Components/InputError.vue';
+
+const pageProps = usePage().props.value;
+const isContractor = (pageProps.contractor !== null);
 
 const props = defineProps({
     work: {
@@ -36,7 +39,7 @@ const contractWorkForm = useForm({
 });
 
 function contractWork() {
-    contractWorkForm.post(route('hired-works.store'), {
+    contractWorkForm.post(route('user.contractor.hired-works.store'), {
         onBefore: function() {
             formError.value = false;
         },
@@ -126,7 +129,7 @@ function contractWork() {
                             </div>
                         </div>
 
-                        <div class="flex">
+                        <div class="flex" v-if="isContractor">
                             <InputError class="mb-1" message="An error ocurred while contracting the work." v-if="formError"/>
                             <Button class="w-full md:py-4 lg:py-5" :disabled="contractWorkForm.processing" @click.prevent="contractWork">Hire</Button>
                         </div>

@@ -1,7 +1,7 @@
 <script setup>
-import AuthLayout from '../../../../Layouts/AuthLayout.vue';
-import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
-import Link from '../../../../Components/Links/Link.vue';
+import AuthLayout from '../../../Layouts/AuthLayout.vue';
+import BadgeGroup from '../../../Components/Badges/BadgeGroup.vue';
+import Link from '../../../Components/Links/Link.vue';
 
 defineProps({
     works: {

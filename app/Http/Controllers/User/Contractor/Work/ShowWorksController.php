@@ -26,6 +26,6 @@ class ShowWorksController extends Controller
             ->where('uuid', $workUuid)
             ->firstOrFail();
 
-        return inertia('User/Contractor/Works/Show', compact('work'));
+        return inertia('User/Works/Show', compact('work'));
     }
 }

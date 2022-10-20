@@ -25,6 +25,6 @@ class ListWorksController extends Controller
         ])
             ->get();
 
-        return inertia('User/Contractor/Works/List', compact('works'));
+        return inertia('User/Works/List', compact('works'));
     }
 }
