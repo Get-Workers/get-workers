@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker;
+namespace App\Http\Controllers\User\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\StoreMyWorkRequest;

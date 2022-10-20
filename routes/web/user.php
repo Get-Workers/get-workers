@@ -24,6 +24,11 @@ use App\Http\Controllers\User\Contractor\HiredWork\{
     ListHiredWorksController,
     StoreHiredWorksController
 };
+use App\Http\Controllers\User\Worker\MyWork\{
+    DestroyMyWorksController,
+    ShowMyWorksController,
+    StoreMyWorksController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
