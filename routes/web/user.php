@@ -57,7 +57,7 @@ Route::middleware([
         });
     });
 
-    Route::prefix('/works')->name('works')->middleware('contractor-profile')->group(function () {
+    Route::prefix('/works')->name('works')->group(function () {
         Route::get('', ListWorksController::class)->name('.list');
         Route::get('{workUuid}', ShowWorksController::class)->name('.show');
     });
