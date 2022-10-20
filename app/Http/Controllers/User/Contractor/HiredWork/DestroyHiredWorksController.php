@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User\Contractor\HiredWork;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Work\HiredWork\DestroyHiredWorkRequest;
+use App\Http\Requests\User\Contractor\HiredWork\DestroyHiredWorkRequest;
 use Illuminate\Http\RedirectResponse;
 
 class DestroyHiredWorksController extends Controller

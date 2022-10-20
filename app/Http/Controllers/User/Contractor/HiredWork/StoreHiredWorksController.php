@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User\Contractor\HiredWork;
 
 use App\Actions\Work\HiredWork\StoreHiredWork;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Work\HiredWork\StoreHiredWorkRequest;
+use App\Http\Requests\User\Contractor\HiredWork\StoreHiredWorkRequest;
 use App\Models\Work;
 use Illuminate\Http\RedirectResponse;
 
