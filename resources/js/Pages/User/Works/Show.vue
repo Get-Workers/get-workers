@@ -1,14 +1,12 @@
 <script setup>
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
 import { ImageOff } from 'mdue';
 import AuthLayout from '../../../Layouts/AuthLayout.vue';
 import BadgeGroup from '../../../Components/Badges/BadgeGroup.vue';
 import Button from '../../../Components/Button.vue';
 import InputError from '../../../Components/InputError.vue';
-
-const pageProps = usePage().props.value;
-const isContractor = (pageProps.contractor !== null);
 
 const props = defineProps({
     work: {
@@ -18,6 +16,7 @@ const props = defineProps({
             slug: null,
             worker: {
                 user: {
+                    uuid: null,
                     name: null,
                 },
             },
@@ -31,6 +30,14 @@ const props = defineProps({
         }
     },
 });
+
+const pageProps = computed(() => usePage().props.value);
+const isContractor = computed(() => (pageProps.value.contractor !== null));
+const isWorker = computed(() => (pageProps.value.worker !== null));
+const isOwnedByAuthWorker = computed(() => (
+    isWorker
+    && (pageProps.value.user.uuid === props.work.worker.user.uuid)
+));
 
 let formError = ref(false);
 
@@ -129,8 +136,8 @@ function contractWork() {
                             </div>
                         </div>
 
-                        <div class="flex" v-if="isContractor">
-                            <InputError class="mb-1" message="An error ocurred while contracting the work." v-if="formError"/>
+                        <div v-if="isContractor && !isOwnedByAuthWorker">
+                            <InputError class="mb-1" :message="contractWorkForm.errors.work" v-if="formError"/>
                             <Button class="w-full md:py-4 lg:py-5" :disabled="contractWorkForm.processing" @click.prevent="contractWork">Hire</Button>
                         </div>
                     </div>
