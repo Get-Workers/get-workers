@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User\Contractor\HiredWork;
 
+use App\Rules\ValidateWorkIsNotFromAuthenticatedWorker;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreHiredWorkRequest extends FormRequest
@@ -29,7 +30,11 @@ class StoreHiredWorkRequest extends FormRequest
     public function rules()
     {
         return [
-            'work' => 'required|exists:works,uuid',
+            'work' => [
+                'required',
+                'string',
+                new ValidateWorkIsNotFromAuthenticatedWorker(),
+            ],
         ];
     }
 }
