@@ -18,9 +18,8 @@ class ValidateHiredWorkIsInitiated implements InvokableRule
     public function __invoke($attribute, $value, $fail)
     {
         $hiredWork = HiredWork::whereUuid($value)->firstOrFail();
+        if (is_null($hiredWork->initiated_at)) return;
 
-        if (! is_null($hiredWork->initiated_at)) {
-            $fail('validation.hired_work_is_initiated')->translate();
-        }
+        $fail('validation.hired_work_is_initiated')->translate();
     }
 }
