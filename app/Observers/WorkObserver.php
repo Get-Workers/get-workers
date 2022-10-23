@@ -69,6 +69,6 @@ class WorkObserver
      */
     private function clearCache(Work $work): void
     {
-        WorkCacheService::FromWorker($work->worker, true);
+        WorkCacheService::fromWorker($work->worker, true);
     }
 }

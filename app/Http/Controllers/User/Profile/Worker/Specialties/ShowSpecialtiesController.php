@@ -18,7 +18,7 @@ class ShowSpecialtiesController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $userSpecialties = SpecialtyWorkerCacheService::FromWorker(auth()->user()->worker);
+        $userSpecialties = SpecialtyWorkerCacheService::fromWorker(auth()->user()->worker);
 
         $userSpecialtiesIds = $userSpecialties->pluck('id');
         $specialties = Specialty::whereKeyNot($userSpecialtiesIds)->get();
