@@ -22,6 +22,6 @@ class DestroyMyWorksController extends Controller
             ->firstOrFail()
             ->delete();
 
-        return redirect()->route('user.worker.my-works')->with('destroy', $workDeleted);
+        return redirect()->route('user.worker.my-works.show')->with('destroy', $workDeleted);
     }
 }
