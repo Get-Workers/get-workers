@@ -12,14 +12,14 @@ import ItemX from '../Menus/Items/ItemX.vue';
 const pageProps = usePage().props.value;
 const currentRoute = computed(() => route().current());
 
-const isWorker = (pageProps.worker !== null);
-const isContractor = (pageProps.contractor !== null);
-const canSee = {
+const isWorker = computed(() => (pageProps.worker !== null));
+const isContractor = computed(() => (pageProps.contractor !== null));
+const canSee = computed(() => ({
     worker: isWorker,
     contractor: isContractor,
-};
+}));
 
-const routes = {
+const routes = computed(() => ({
     // Main
     dashboard: 'dashboard',
 
@@ -42,30 +42,30 @@ const routes = {
     works: {
         list: 'works.list'
     },
-};
+}));
 
 const isRoute = computed(() => ({
     // Main
-    dashboard: (currentRoute.value === routes.dashboard),
+    dashboard: (currentRoute.value === routes.value.dashboard),
 
     // Worker
     worker: {
-        myWorks: (currentRoute.value === routes.worker.myWorks),
+        myWorks: (currentRoute.value === routes.value.worker.myWorks),
         hiredWorks: {
-            list: (currentRoute.value === routes.worker.hiredWorks.list),
+            list: (currentRoute.value === routes.value.worker.hiredWorks.list),
         },
     },
 
     // Contractor
     contractor: {
         hiredWorks: {
-            list: (currentRoute.value === routes.contractor.hiredWorks.list),
+            list: (currentRoute.value === routes.value.contractor.hiredWorks.list),
         },
     },
 
     // Works
     works: {
-        list: (currentRoute.value === routes.works.list),
+        list: (currentRoute.value === routes.value.works.list),
     },
 }));
 

@@ -20,10 +20,11 @@ class ShowWorksController extends Controller
         $work = Work::with([
                 'specialties',
                 'unity',
+                'worker',
                 'worker.user',
                 'specialties',
         ])
-            ->where('uuid', $workUuid)
+            ->whereUuid($workUuid)
             ->firstOrFail();
 
         return inertia('User/Works/Show', compact('work'));
