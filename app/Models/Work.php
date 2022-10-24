@@ -41,6 +41,27 @@ class Work extends Model
         'time' => 'datetime:H:i',
     ];
 
+        /**
+     * @return Attribute
+     */
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?int $value) => (float) ($value / 100),
+            set: fn (?float $value) => (int) ($value * 100),
+        );
+    }
+
+    /**
+     * @return Attribute
+     */
+    protected function slug(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => str($value)->slug()
+        );
+    }
+
     /**
      *
      * Register any events for your application.
@@ -85,24 +106,5 @@ class Work extends Model
         return $this->belongsToMany(Specialty::class)->using(SpecialtyWork::class);
     }
 
-    /**
-     * @return Attribute
-     */
-    protected function price(): Attribute
-    {
-        return Attribute::make(
-            get: fn (?int $value) => (float) ($value / 100),
-            set: fn (?float $value) => (int) ($value * 100),
-        );
-    }
 
-    /**
-     * @return Attribute
-     */
-    protected function slug(): Attribute
-    {
-        return Attribute::make(
-            set: fn (string $value) => str($value)->slug()
-        );
-    }
 }
