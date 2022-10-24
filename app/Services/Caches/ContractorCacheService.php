@@ -14,7 +14,7 @@ class ContractorCacheService
      *
      * @return Contractor|null
      */
-    public static function ContractorProfile(User $user, bool $clear = false): Contractor|null
+    public static function contractorProfile(User $user, bool $clear = false): Contractor|null
     {
         $key = "user:{$user->id}_contractor_profile";
 

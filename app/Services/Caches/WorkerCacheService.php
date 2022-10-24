@@ -14,7 +14,7 @@ class WorkerCacheService
      *
      * @return Worker|null
      */
-    public static function WorkerProfile(User $user, bool $clear = false): ?Worker
+    public static function workerProfile(User $user, bool $clear = false): ?Worker
     {
         $key = "user:{$user->id}_worker_profile";
 

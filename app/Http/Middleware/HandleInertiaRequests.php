@@ -58,7 +58,7 @@ class HandleInertiaRequests extends Middleware
         if (is_null($user)) {
             return null;
         }
-        return ContractorCacheService::ContractorProfile($user);
+        return ContractorCacheService::contractorProfile($user);
     }
 
     /**
@@ -70,6 +70,6 @@ class HandleInertiaRequests extends Middleware
         if (is_null($user)) {
             return null;
         }
-        return WorkerCacheService::WorkerProfile($user);
+        return WorkerCacheService::workerProfile($user);
     }
 }

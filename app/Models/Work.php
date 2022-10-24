@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Uuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -40,6 +41,27 @@ class Work extends Model
     protected $casts = [
         'time' => 'datetime:H:i',
     ];
+
+        /**
+     * @return Attribute
+     */
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?int $value) => (float) ($value / 100),
+            set: fn (?float $value) => (int) ($value * 100),
+        );
+    }
+
+    /**
+     * @return Attribute
+     */
+    protected function slug(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => str($value)->slug()
+        );
+    }
 
     /**
      *
@@ -86,23 +108,19 @@ class Work extends Model
     }
 
     /**
-     * @return Attribute
+     * @param  Builder  $query
+     * @param  array  $filters
+     * @return Builder
      */
-    protected function price(): Attribute
+    public function scopeFilter(Builder $query, array $filters = []): Builder
     {
-        return Attribute::make(
-            get: fn (?int $value) => (float) ($value / 100),
-            set: fn (?float $value) => (int) ($value * 100),
-        );
-    }
-
-    /**
-     * @return Attribute
-     */
-    protected function slug(): Attribute
-    {
-        return Attribute::make(
-            set: fn (string $value) => str($value)->slug()
-        );
+        if (array_key_exists('search', $filters)) {
+            $query->where(function (Builder $query) use (&$filters) {
+                $query->where('name', 'like', "%{$filters['search']}%")
+                    ->orWhere('slug', 'like', "%{$filters['search']}%")
+                    ->orWhere('uuid', $filters['search']);
+            });
+        }
+        return $query;
     }
 }

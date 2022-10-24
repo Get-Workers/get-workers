@@ -2,13 +2,9 @@
 import AuthLayout from '../../../Layouts/AuthLayout.vue';
 import BadgeGroup from '../../../Components/Badges/BadgeGroup.vue';
 import Link from '../../../Components/Links/Link.vue';
+import Pagination from '../../../Components/Pagination.vue';
 
-defineProps({
-    works: {
-        type: Array,
-        default: [],
-    },
-});
+defineProps({ works: Object });
 </script>
 
 <template>
@@ -20,7 +16,7 @@ defineProps({
                     <div class="font-bold text-lg">Works</div>
 
                     <!-- Works List -->
-                    <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
+                    <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.data.length">
                         <div class="min-w-xl">
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
                                 <span class="col-span-3 font-bold" title="Work Name">Name</span>
@@ -31,7 +27,7 @@ defineProps({
                                 <span class="col-span-2 font-bold" title="Work Price">Price</span>
                             </div>
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
-                                v-for="(work) in works"
+                                v-for="work in works.data" :key="work.uuid"
                             >
                                 <div class="col-span-3 flex items-center overflow-y-auto">
                                     <Link class="min-w-fit break-words text-ellipsis"
@@ -57,6 +53,8 @@ defineProps({
                             </div>
                         </div>
                     </div>
+
+                    <Pagination class="mt-2" :links="works.links" />
                 </div>
             </div>
         </template>

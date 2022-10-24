@@ -70,6 +70,6 @@ class SpecialtyWorkerObserver
      */
     private function clearCache(SpecialtyWorker $specialtyWorker): void
     {
-        SpecialtyWorkerCacheService::FromWorker($specialtyWorker->worker, true);
+        SpecialtyWorkerCacheService::fromWorker($specialtyWorker->worker, true);
     }
 }
