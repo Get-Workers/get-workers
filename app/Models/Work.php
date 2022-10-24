@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Uuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -106,5 +107,20 @@ class Work extends Model
         return $this->belongsToMany(Specialty::class)->using(SpecialtyWork::class);
     }
 
-
+    /**
+     * @param  Builder  $query
+     * @param  array  $filters
+     * @return Builder
+     */
+    public function scopeFilter(Builder $query, array $filters = []): Builder
+    {
+        if (array_key_exists('search', $filters)) {
+            $query->where(function (Builder $query) use (&$filters) {
+                $query->where('name', 'like', "%{$filters['search']}%")
+                    ->orWhere('slug', 'like', "%{$filters['search']}%")
+                    ->orWhere('uuid', $filters['search']);
+            });
+        }
+        return $query;
+    }
 }
