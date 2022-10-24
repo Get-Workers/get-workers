@@ -13,7 +13,7 @@ class WorkObserver
      * @param  \App\Models\Work  $work
      * @return void
      */
-    public function created(Work $work)
+    public function created(Work $work): void
     {
         $this->clearCache($work);
     }
@@ -24,7 +24,7 @@ class WorkObserver
      * @param  \App\Models\Work  $work
      * @return void
      */
-    public function updated(Work $work)
+    public function updated(Work $work): void
     {
         $this->clearCache($work);
     }
@@ -35,7 +35,7 @@ class WorkObserver
      * @param  \App\Models\Work  $work
      * @return void
      */
-    public function deleted(Work $work)
+    public function deleted(Work $work): void
     {
         $this->clearCache($work);
     }
@@ -46,7 +46,7 @@ class WorkObserver
      * @param  \App\Models\Work  $work
      * @return void
      */
-    public function restored(Work $work)
+    public function restored(Work $work): void
     {
         $this->clearCache($work);
     }
@@ -57,18 +57,18 @@ class WorkObserver
      * @param  \App\Models\Work  $work
      * @return void
      */
-    public function forceDeleted(Work $work)
+    public function forceDeleted(Work $work): void
     {
         $this->clearCache($work);
     }
 
     /**
      * @param  Work  $work
-     *
      * @return void
      */
     private function clearCache(Work $work): void
     {
         WorkCacheService::fromWorker($work->worker, true);
+        WorkCacheService::listPaginate(clear: true);
     }
 }
