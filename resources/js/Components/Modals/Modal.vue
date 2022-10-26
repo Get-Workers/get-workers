@@ -38,7 +38,7 @@ function closeModal() {
                     </div>
 
                 </div>
-                <div class="mt-2"><slot /></div>
+                <div class="mt-5"><slot /></div>
             </dialog>
         </transition>
     </teleport>
