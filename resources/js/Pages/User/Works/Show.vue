@@ -2,11 +2,15 @@
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
+import { DatePicker } from 'v-calendar';
 import { ImageOff } from 'mdue';
 import AuthLayout from '../../../Layouts/AuthLayout.vue';
 import BadgeGroup from '../../../Components/Badges/BadgeGroup.vue';
 import Button from '../../../Components/Button.vue';
 import InputError from '../../../Components/InputError.vue';
+import Modal from '../../../Components/Modals/Modal.vue';
+import Checkbox from '../../../Components/Checkbox.vue';
+import Label from '../../../Components/Label.vue';
 
 const props = defineProps({
     work: {
@@ -39,19 +43,34 @@ const isOwnedByAuthWorker = computed(() => (
     && (pageProps.value.user.uuid === props.work.worker.user.uuid)
 ));
 
-let formError = ref(false);
+const modalIsOpened = ref(false);
 
 const contractWorkForm = useForm({
-    work: props.work.uuid
+    work: props.work.uuid,
+    needToSchedule: false,
+    scheduled_to: null,
 });
 
-function contractWork() {
+function openModal() {
+    if (modalIsOpened.value) return;
+    if (! contractWorkForm.needToSchedule) return;
+    modalIsOpened.value = true;
+}
+
+function closeModal() {
+    modalIsOpened.value = false;
+    contractWorkForm.reset('scheduled_to');
+}
+
+function hireWork(scheduled = false) {
+    if (! scheduled) {
+        openModal();
+        return;
+    }
+
     contractWorkForm.post(route('user.contractor.hired-works.store'), {
-        onBefore: function() {
-            formError.value = false;
-        },
-        onError: function() {
-            formError.value = true;
+        onFinish: function () {
+            contractWorkForm.reset('scheduled_to');
         }
     });
 }
@@ -137,12 +156,27 @@ function contractWork() {
                         </div>
 
                         <div v-if="isContractor && !isOwnedByAuthWorker">
-                            <InputError class="mb-1" :message="contractWorkForm.errors.work" v-if="formError"/>
-                            <Button class="w-full md:py-4 lg:py-5" :disabled="contractWorkForm.processing" @click.prevent="contractWork">Hire</Button>
+                            <label for="NeedScheduling" class="flex w-fit mb-2">
+                                <Checkbox id="NeedScheduling" class="mr-2" v-model:checked="contractWorkForm.needToSchedule" />
+                                <Label for="Schedule" :optional="true">
+                                    <span>Need to schedule this work?</span>
+                                </Label>
+                            </label>
+
+                            <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="error"/>
+                            <Button class="w-full md:py-4 lg:py-5 " :disabled="contractWorkForm.processing" @click.prevent="hireWork(! contractWorkForm.needToSchedule)" v-html="contractWorkForm.needToSchedule ? 'Schedule': 'Hire'"></Button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <Modal title="Schedule the work" :isOpened="modalIsOpened" :onClose="closeModal" v-if="isContractor && !isOwnedByAuthWorker">
+                <div class="flex flex-col">
+                    <DatePicker class="mx-auto mb-2" mode="dateTime" v-model="contractWorkForm.scheduled_to" :minute-increment="10" :min-date="new Date()" />
+                    <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="error"/>
+                    <Button class="w-full md:py-4 lg:py-5 mt-2" :disabled="contractWorkForm.processing" @click.prevent="hireWork((contractWorkForm.scheduled_to !== null))">Hire</Button>
+                </div>
+            </Modal>
         </template>
     </AuthLayout>
 </template>

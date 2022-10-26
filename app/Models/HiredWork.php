@@ -18,8 +18,15 @@ class HiredWork extends Model
         'contractor_id',
         'price',
         'value_paid',
+        'scheduled_to',
         'initiated_at',
         'done_at',
+    ];
+
+    protected $casts = [
+        'scheduled_to' => 'datetime',
+        'initiated_at' => 'timestamp',
+        'done_at' => 'timestamp',
     ];
 
     /**

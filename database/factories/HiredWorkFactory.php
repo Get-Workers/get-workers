@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Contractor;
 use App\Models\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HiredWork>
@@ -76,13 +77,33 @@ class HiredWorkFactory extends Factory
     /**
      * @return static
      */
+    public function scheduledTo(): static
+    {
+        return $this->state(function (array $attributes) {
+            $timestamp = now();
+            $timestamp->addDays(random_int(0, 30));
+            $timestamp->addHours(random_int(0, 12));
+            $timestamp->addMinutes(random_int(0, 60));
+
+            return [
+                'scheduled_to' => $timestamp,
+            ];
+        });
+    }
+
+    /**
+     * @return static
+     */
     public function initiated(): static
     {
         return $this->state(function (array $attributes) {
             $timestamp = now();
-            $timestamp->subHours(random_int(0, 12));
-            $timestamp->subMinutes(random_int(0, 60));
-            $timestamp->subSeconds(random_int(0, 60));
+            if (key_exists('scheduled_to', $attributes)) {
+                $timestamp = clone $attributes['scheduled_to'];
+            }
+
+            $timestamp->addMinutes(random_int(0, 60));
+            $timestamp->addSeconds(random_int(0, 60));
 
             return [
                 'initiated_at' => $timestamp,

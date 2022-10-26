@@ -25,11 +25,12 @@ class StoreHiredWorksController extends Controller
      */
     public function __invoke(StoreHiredWorkRequest $request): RedirectResponse
     {
-        $workUuid = $request->validated('work');
+        $workUuid = $request->validated(['work']);
         $work = Work::where('uuid', $workUuid)
             ->firstOrFail();
 
-        $this->action->storeHiredWork(auth()->user()->contractor, $work);
+        $request->validated();
+        $this->action->storeHiredWork(auth()->user()->contractor, $work, $request->safe(['scheduled_to']));
 
         return redirect()->route('works.show', ['workUuid' => $work->uuid])->with('store', true);
     }

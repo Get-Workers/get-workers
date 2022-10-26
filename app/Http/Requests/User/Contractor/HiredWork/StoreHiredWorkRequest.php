@@ -35,6 +35,7 @@ class StoreHiredWorkRequest extends FormRequest
                 'string',
                 new ValidateWorkIsNotFromAuthenticatedWorker(),
             ],
+            'scheduled_to' => 'nullable|date|after:now',
         ];
     }
 }
