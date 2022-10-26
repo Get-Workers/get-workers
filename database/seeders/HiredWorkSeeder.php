@@ -24,6 +24,7 @@ class HiredWorkSeeder extends Seeder
 
         $this->addSimple($works, $contractors);
         $this->addWithPrice($works, $contractors);
+        $this->addScheduledTo($works, $contractors);
         $this->addInitialized($works, $contractors);
         $this->addInitializedWithPrice($works, $contractors);
         $this->addInitializedAndDone($works, $contractors);
@@ -58,6 +59,25 @@ class HiredWorkSeeder extends Seeder
     private function addWithPrice(Collection &$works, Collection &$contractors): void
     {
         HiredWork::factory(20)->withPrice()->make()
+            ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
+                $work = $this->getRandomModel($works);
+                $hiredWork->work()->associate($work);
+
+                $contractor = $this->getRandomModel($contractors);
+                $hiredWork->contractor()->associate($contractor);
+
+                $hiredWork->save();
+            });
+    }
+
+    /**
+     * @param  Collection  $works
+     * @param  Collection  $contractors
+     * @return void
+     */
+    private function addScheduledTo(Collection &$works, Collection &$contractors): void
+    {
+        HiredWork::factory(20)->scheduledTo()->make()
             ->each(function (HiredWork $hiredWork) use (&$works, &$contractors) {
                 $work = $this->getRandomModel($works);
                 $hiredWork->work()->associate($work);
