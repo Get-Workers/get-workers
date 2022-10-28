@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Uuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -77,5 +78,18 @@ class HiredWork extends Model
             get: fn (?int $value) => (! is_null($value)) ? ((float) ($value / 100)) : $value,
             set: fn (?float $value) => (! is_null($value)) ? ((int) ($value * 100)) : $value,
         );
+    }
+
+    /**
+     * @param  Builder  $query
+     * @param  array  $filters
+     * @return Builder
+     */
+    public function scopeFilter(Builder $query, array $filters = []): Builder
+    {
+        if (array_key_exists('scheduled_to', $filters)) {
+            $query->whereNotNull('scheduled_to');
+        }
+        return $query;
     }
 }
