@@ -112,7 +112,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
 
                     <!-- Specialties List && Remove Form -->
                     <div class="mt-5 border rounded" v-if="userSpecialties.length">
-                        <div v-for="(specialty, index) in userSpecialties" class="px-5 py-3 hover:bg-gray-300" :class="{ 'border-b': ((index + 1) !== userSpecialties.length)}">
+                        <div v-for="(specialty, index) in userSpecialties" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
                             <div class="flex justify-between items-center">
                                 <span>{{ specialty.name }}</span>
                                 <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">Remove</Button>
