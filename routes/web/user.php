@@ -23,6 +23,7 @@ use App\Http\Controllers\User\Contractor\HiredWork\{
     ListHiredWorksController,
     StoreHiredWorksController
 };
+use App\Http\Controllers\User\Profile\Worker\Appointments\ShowAppointmentsController;
 use App\Http\Controllers\User\Worker\MyWork\{
     DestroyMyWorksController,
     ShowMyWorksController,
@@ -48,6 +49,10 @@ Route::middleware([
                     Route::get('', ShowCertificationsController::class)->name('.show');
                     Route::post('', StoreCertificationsController::class)->name('.store');
                     Route::delete('', DestroyCertificationsController::class)->name('.destroy');
+                });
+
+                Route::prefix('/appointments')->name('.appointments')->group(function () {
+                    Route::get('', ShowAppointmentsController::class)->name('.show');
                 });
             });
         });
