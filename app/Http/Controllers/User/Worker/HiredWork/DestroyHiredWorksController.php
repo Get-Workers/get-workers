@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Worker\HiredWork;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\HiredWork\DestroyHiredWorkRequest;
 use App\Models\HiredWork;
+use App\Services\Caches\HiredWorkCacheService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 
@@ -27,6 +28,8 @@ class DestroyHiredWorksController extends Controller
                 $query->whereId($worker->id);
             })
             ->delete();
+
+        HiredWorkCacheService::fromWorker(clearTag: true);
 
         return redirect()->route('user.worker.hired-works.list')->with('destroy', true);
     }
