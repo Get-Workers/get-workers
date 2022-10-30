@@ -57,7 +57,7 @@ function submitDelete(uuid) {
                             >
                                 <div class="col-span-2 flex items-center overflow-y-auto">
                                     <Link class="min-w-fit break-words text-ellipsis"
-                                        :href="route('works.show', { workUuid: hiredWork.work.uuid })"
+                                        :href="route('user.contractor.hired-works.show', { hiredWorkUuid: hiredWork.uuid })"
                                         :title="hiredWork.work.name"
                                     >{{ hiredWork.work.name }}</Link>
                                 </div>
