@@ -5,6 +5,7 @@ namespace App\Actions\Work\HiredWork;
 use App\Models\HiredWork;
 use App\Models\Contractor;
 use App\Models\Work;
+use App\Services\Caches\HiredWorkCacheService;
 
 class StoreHiredWork
 {
@@ -16,5 +17,6 @@ class StoreHiredWork
         ]);
         $hiredWork->work()->associate($work);
         $contractor->hiredWorks()->save($hiredWork);
+        HiredWorkCacheService::fromWorker(clearTag: true);
     }
 }
