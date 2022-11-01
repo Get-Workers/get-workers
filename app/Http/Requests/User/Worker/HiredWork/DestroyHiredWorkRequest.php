@@ -15,7 +15,7 @@ class DestroyHiredWorkRequest extends FormRequest
     public function authorize()
     {
         $user = auth()->user();
-        if (is_null(auth()->user())) {
+        if (is_null($user)) {
             return false;
         }
 
@@ -32,7 +32,7 @@ class DestroyHiredWorkRequest extends FormRequest
         return [
             'hiredWork' => [
                 'required',
-                new ValidateHiredWorkIsInitiated(),
+                new ValidateHiredWorkIsInitiated,
             ],
         ];
     }
