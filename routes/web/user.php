@@ -17,6 +17,7 @@ use App\Http\Controllers\User\Profile\Worker\Specialties\{
 use App\Http\Controllers\User\Worker\HiredWork\{
     ListHiredWorksController as WorkerListHiredWorksController,
     DestroyHiredWorksController as WorkerDestroyHiredWorksController,
+    DoneHiredWorksController,
     InitiateHiredWorksController
 };
 use App\Http\Controllers\User\Contractor\HiredWork\{
@@ -70,6 +71,7 @@ Route::middleware([
                 Route::get('', WorkerListHiredWorksController::class)->name('.list');
                 Route::delete('', WorkerDestroyHiredWorksController::class)->name('.destroy');
                 Route::post('/initiate', InitiateHiredWorksController::class)->name('.initiate');
+                Route::post('/done', DoneHiredWorksController::class)->name('.done');
             });
         });
 
