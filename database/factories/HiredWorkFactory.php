@@ -4,8 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Contractor;
 use App\Models\Work;
+use App\Models\Worker;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Log;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HiredWork>
@@ -25,10 +25,16 @@ class HiredWorkFactory extends Factory
     /**
      * @return static
      */
-    public function withWork(): static
+    public function withWork(?Worker $worker = null): static
     {
-        return $this->state(function (array $attributes) {
-            $work = Work::factory()->withWorker()->create();
+        return $this->state(function (array $attributes) use (&$worker) {
+            $workFactory = Work::factory();
+            if (is_null($worker)) {
+                $work = $workFactory->withWorker()->create();
+            } else {
+                $work = $workFactory->create(['worker_id' => $worker->id]);
+            }
+
             return [
                 'work_id' => $work->id,
             ];
