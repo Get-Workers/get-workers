@@ -1,9 +1,10 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, onUpdated } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { Loading } from 'mdue';
-import Button from '../../../../Components/Button.vue';
 import AuthLayout from '../../../../Layouts/AuthLayout.vue';
+import Button from '../../../../Components/Button.vue';
+import InputError from '../../../../Components/InputError.vue';
 
 const props = defineProps({hiredWork: {type: Object}});
 
@@ -12,6 +13,10 @@ const hiredWork = ref({});
 onBeforeMount(() => {
     setHiredWork();
 });
+
+onUpdated(() => {
+    setHiredWork();
+})
 
 function setHiredWork() {
     let tempHiredWork = {...props.hiredWork};
@@ -24,14 +29,28 @@ function setHiredWork() {
     hiredWork.value = tempHiredWork;
 }
 
-const deleteForm = useForm({
-    hiredWork: props.hiredWork.uuid,
-});
+const hiredWorkForm = useForm({ hiredWork: props.hiredWork.uuid });
 
 function submitDelete() {
-    deleteForm.delete(route('user.contractor.hired-works.destroy'), {
+    hiredWorkForm.delete(route('user.worker.hired-works.destroy'), {
         onBefore: function() {
-            deleteForm.clearErrors();
+            hiredWorkForm.clearErrors();
+        },
+    })
+}
+
+function submitInitiate() {
+    hiredWorkForm.post(route('user.worker.hired-works.initiate'), {
+        onBefore: function() {
+            hiredWorkForm.clearErrors();
+        },
+    })
+}
+
+function submitDone() {
+    hiredWorkForm.post(route('user.worker.hired-works.done'), {
+        onBefore: function() {
+            hiredWorkForm.clearErrors();
         },
     })
 }
@@ -55,9 +74,9 @@ function submitDelete() {
                         <div class="flex sm:flex-row flex-col">
                             <div class="w-full">
                                 <div>
-                                    <span class="font-bold text-sm">Worker</span>
+                                    <span class="font-bold text-sm">Contractor</span>
                                     <div class="mt-1">
-                                        <span>{{ hiredWork.work.worker.user.name }}</span>
+                                        <span>{{ hiredWork.contractor.user.name }}</span>
                                     </div>
                                 </div>
 
@@ -130,8 +149,17 @@ function submitDelete() {
                         </div>
                     </div>
 
+                    <div class="flex mt-2" v-if="hiredWorkForm.hasErrors">
+                        <InputError :message="hiredWorkForm.errors.hiredWork" />
+                    </div>
+
+                    <div class="mt-2 space-y-2" v-if="! hiredWork.done_at">
+                        <Button class="w-full py-5" title="Initiate" @click="submitInitiate" :disabled="hiredWorkForm.processing" v-if="! hiredWork.initiated_at">Initiate</Button>
+                        <Button class="w-full py-5" title="Done" @click="submitDone" :disabled="hiredWorkForm.processing" v-if="hiredWork.initiated_at && ! hiredWork.done_at">Done</Button>
+                    </div>
+
                     <div class="flex mt-2" v-if="! hiredWork.initiated_at">
-                        <Button class="w-full py-5" title="Cancel" @click="submitDelete" :disabled="deleteForm.processing">Cancel</Button>
+                        <Button class="w-full py-5" title="Cancel" @click="submitDelete" :disabled="hiredWorkForm.processing">Cancel</Button>
                     </div>
                 </div>
             </div>

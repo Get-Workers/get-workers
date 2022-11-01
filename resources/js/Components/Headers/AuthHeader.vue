@@ -9,11 +9,11 @@ import DropdownLink from '../../Components/DropdownLink.vue';
 import MenuHeaderX from '../Menus/MenuHeaderX.vue';
 import ItemX from '../Menus/Items/ItemX.vue';
 
-const pageProps = usePage().props.value;
+const pageProps = computed(() => usePage().props.value);
 const currentRoute = computed(() => route().current());
 
-const isWorker = computed(() => (pageProps.worker !== null));
-const isContractor = computed(() => (pageProps.contractor !== null));
+const isWorker = computed(() => (pageProps.value.worker !== null));
+const isContractor = computed(() => (pageProps.value.contractor !== null));
 const canSee = computed(() => ({
     worker: isWorker,
     contractor: isContractor,

@@ -13,9 +13,7 @@ defineProps({
     },
 });
 
-const deleteForm = useForm({
-    hiredWork: null,
-});
+const deleteForm = useForm({ hiredWork: null });
 
 function submitDelete(uuid) {
     deleteForm.hiredWork = uuid;
@@ -57,7 +55,7 @@ function submitDelete(uuid) {
                             >
                                 <div class="col-span-2 flex items-center overflow-y-auto">
                                     <Link class="min-w-fit break-words text-ellipsis"
-                                        :href="route('works.show', { workUuid: hiredWork.work.uuid })"
+                                        :href="route('user.worker.hired-works.show', { hiredWorkUuid: hiredWork.uuid })"
                                         :title="hiredWork.work.name"
                                     >{{ hiredWork.work.name }}</Link>
                                 </div>
@@ -77,7 +75,7 @@ function submitDelete(uuid) {
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${hiredWork.price}`.replace('.', ',')">{{ `R$ ${hiredWork.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button title="Cancel" @click="submitDelete(hiredWork.uuid)" :disabled="deleteForm.processing">
+                                    <Button title="Cancel" @click="submitDelete(hiredWork.uuid)" :disabled="hiredWork.initiated_at || deleteForm.processing">
                                         Cancel
                                     </Button>
                                 </div>
