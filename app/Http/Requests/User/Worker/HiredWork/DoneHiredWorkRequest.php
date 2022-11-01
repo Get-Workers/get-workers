@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\User\Worker\HiredWork;
 
-use App\Rules\ValidateHiredWorkIsInitiated;
+use App\Rules\ValidateHiredWorkIsDone;
+use App\Rules\ValidateHiredWorkIsNotInitiated;
+use App\Rules\ValidateWorkerOwnHiredWork;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DestroyHiredWorkRequest extends FormRequest
+class DoneHiredWorkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +34,11 @@ class DestroyHiredWorkRequest extends FormRequest
         return [
             'hiredWork' => [
                 'required',
-                new ValidateHiredWorkIsInitiated,
+                'uuid',
+                'exists:hired_works,uuid',
+                new ValidateHiredWorkIsNotInitiated,
+                new ValidateHiredWorkIsDone,
+                new ValidateWorkerOwnHiredWork,
             ],
         ];
     }

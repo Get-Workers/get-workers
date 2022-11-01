@@ -7,7 +7,6 @@ import Label from '../../../../../Components/Label.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 
-
 defineProps({
     specialties: {
         type: Array,

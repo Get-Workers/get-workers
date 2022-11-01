@@ -15,7 +15,6 @@ class ListHiredWorksController extends Controller
      */
     public function __invoke(): Response
     {
-
         $works = auth()->user()->worker->works()->whereHas('hiredWorks')->get();
         $hiredWorks = HiredWork::whereIn('work_id', $works->modelKeys())
             ->with(['work', 'work.worker', 'work.unity', 'work.specialties'])
