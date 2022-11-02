@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker;
+namespace App\Http\Controllers\User\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\StoreMyWorkRequest;
@@ -25,7 +25,7 @@ class StoreMyWorksController extends Controller
         $validatedInputs = $request->safe();
 
         DB::transaction(function () use (&$worker, &$validatedInputs) {
-            $inputFields = $validatedInputs->only(['name', 'time', 'price']);
+            $inputFields = $validatedInputs->only(['name', 'description', 'time', 'price']);
 
             $newWork = $worker->works()->create([...$inputFields, 'slug' => $inputFields['name']]);
 
@@ -34,7 +34,7 @@ class StoreMyWorksController extends Controller
         });
 
 
-        return redirect()->route('user.worker.my-works')->with('store', true);
+        return redirect()->route('user.worker.my-works.show')->with('store', true);
     }
 
     private function associateUnity(Work $work, ?int $unityId): void

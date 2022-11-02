@@ -4,12 +4,13 @@ namespace Database\Factories;
 
 use App\Models\Contractor;
 use App\Models\Work;
+use App\Models\Worker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ContractedWork>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HiredWork>
  */
-class ContractedWorkFactory extends Factory
+class HiredWorkFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -24,10 +25,16 @@ class ContractedWorkFactory extends Factory
     /**
      * @return static
      */
-    public function withWork(): static
+    public function withWork(?Worker $worker = null): static
     {
-        return $this->state(function (array $attributes) {
-            $work = Work::factory()->withWorker()->create();
+        return $this->state(function (array $attributes) use (&$worker) {
+            $workFactory = Work::factory();
+            if (is_null($worker)) {
+                $work = $workFactory->withWorker()->create();
+            } else {
+                $work = $workFactory->create(['worker_id' => $worker->id]);
+            }
+
             return [
                 'work_id' => $work->id,
             ];
@@ -55,7 +62,7 @@ class ContractedWorkFactory extends Factory
         return $this->state(function (array $attributes) {
             $hasPrice = (bool) random_int(0, 1);
             return [
-                'price' => ($hasPrice) ? random_int(100, 999999) : null,
+                'price' => ($hasPrice) ? random_int(100, 999999) : 0,
             ];
         });
     }
@@ -76,20 +83,36 @@ class ContractedWorkFactory extends Factory
     /**
      * @return static
      */
+    public function scheduledTo(): static
+    {
+        return $this->state(function (array $attributes) {
+            $timestamp = now();
+            $timestamp->addDays(random_int(0, 30));
+            $timestamp->addHours(random_int(0, 12));
+            $timestamp->addMinutes(random_int(0, 60));
+
+            return [
+                'scheduled_to' => $timestamp,
+            ];
+        });
+    }
+
+    /**
+     * @return static
+     */
     public function initiated(): static
     {
         return $this->state(function (array $attributes) {
             $timestamp = now();
-
-            $hasInitiated = (bool) random_int(0, 1);
-            if ($hasInitiated) {
-                $timestamp->subHours(random_int(0, 12));
-                $timestamp->subMinutes(random_int(0, 60));
-                $timestamp->subSeconds(random_int(0, 60));
+            if (key_exists('scheduled_to', $attributes)) {
+                $timestamp = clone $attributes['scheduled_to'];
             }
 
+            $timestamp->addMinutes(random_int(0, 60));
+            $timestamp->addSeconds(random_int(0, 60));
+
             return [
-                'initiated_at' => ($hasInitiated) ? $timestamp : null,
+                'initiated_at' => $timestamp,
             ];
         });
     }

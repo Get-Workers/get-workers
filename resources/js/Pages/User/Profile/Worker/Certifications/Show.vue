@@ -139,7 +139,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                                 <span class="w-24">Action</span>
                             </div>
                         </div>
-                        <div v-for="(certification, index) in certifications" class="px-5 py-3 hover:bg-gray-300" :class="{ 'border-b': ((index + 1) !== certifications.length)}">
+                        <div v-for="certification in certifications" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
                             <div class="flex justify-between items-center">
                                 <div class="flex">
                                     <span class="w-40 truncate" :title="certification.name">{{ certification.name }}</span>

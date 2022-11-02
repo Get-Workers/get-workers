@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Contractor\Work;
+namespace App\Http\Controllers\Work;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
@@ -20,12 +20,13 @@ class ShowWorksController extends Controller
         $work = Work::with([
                 'specialties',
                 'unity',
+                'worker',
                 'worker.user',
                 'specialties',
         ])
-            ->where('uuid', $workUuid)
+            ->whereUuid($workUuid)
             ->firstOrFail();
 
-        return inertia('User/Contractor/Works/Show', compact('work'));
+        return inertia('User/Works/Show', compact('work'));
     }
 }

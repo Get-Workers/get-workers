@@ -69,6 +69,6 @@ class CertificationObserver
      */
     private function clearCache(Certification $certification): void
     {
-        CertificationCacheService::FromWorker($certification->worker, true);
+        CertificationCacheService::fromWorker($certification->worker, true);
     }
 }

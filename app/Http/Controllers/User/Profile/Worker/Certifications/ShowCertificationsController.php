@@ -17,7 +17,7 @@ class ShowCertificationsController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $certifications = CertificationCacheService::FromWorker(auth()->user()->worker) ?? [];
+        $certifications = CertificationCacheService::fromWorker(auth()->user()->worker) ?? [];
 
         $storeStatus = session()->get('store', false);
         $deleteStatus = session()->get('destroy', false);

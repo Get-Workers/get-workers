@@ -14,7 +14,7 @@ class SpecialtyWorkerCacheService
      *
      * @return Collection|null
      */
-    public static function FromWorker(Worker $worker, bool $clear = false): ?Collection
+    public static function fromWorker(Worker $worker, bool $clear = false): ?Collection
     {
         $key = "worker:{$worker->id}_specialties";
 

@@ -41,6 +41,7 @@ const nonSelectedSpecialties = computed(() => (props.specialties.filter((special
 
 const newWorkForm = useForm({
     name: '',
+    description: '',
     time: null,
     price: null,
     unity_id: null,
@@ -127,6 +128,15 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                         <Input id="workName" type="text" class="mt-1 block w-full" required autofocus
                                             placeholder="Name" max-length="255" v-model="newWorkForm.name" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.name" />
+                                    </div>
+                                    <div>
+                                        <Label value="Description" for="workDescription" :optional="true" />
+                                        <textarea id="workDescription" class="w-full max-h-60"
+                                            placeholder="Max characters: 512" max-length="512"
+                                            v-model="newWorkForm.description"
+                                        ></textarea>
+                                        <em class="text-sm text-gray-500">Max characters: 512</em>
+                                        <InputError class="mt-1" :message="newWorkForm.errors.description" />
                                     </div>
                                     <div>
                                         <label for="hasUnity" class="flex w-fit">

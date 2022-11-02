@@ -69,6 +69,6 @@ class ContractorObserver
      */
     private function clearCache(Contractor $contractor): void
     {
-        ContractorCacheService::ContractorProfile($contractor->user, true);
+        ContractorCacheService::contractorProfile($contractor->user, true);
     }
 }

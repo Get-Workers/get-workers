@@ -137,6 +137,10 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
+    'hired_work_is_initiated' => 'The :attribute has already been initiated.',
+    'hired_work_is_not_initiated' => 'The :attribute has not been initiated.',
+    'hired_work_is_already_done' => 'The :attribute has already been done.',
+    'work_is_not_from_authenticated_worker' => 'The :attribute can\'t be owned by the authenticated worker',
 
     /*
     |--------------------------------------------------------------------------

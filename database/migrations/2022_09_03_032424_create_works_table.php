@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(Unity::class)->nullable()->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('slug');
+            $table->string('description', 512)->nullable();
             $table->time('time')->nullable();
             $table->unsignedInteger('price')->default(0);
             $table->timestamps();

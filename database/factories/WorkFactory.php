@@ -26,9 +26,12 @@ class WorkFactory extends Factory
         ];
     }
 
-    public function withWorker()
+    /**
+     * @return static
+     */
+    public function withWorker(): static
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             $worker = Worker::factory()->withUser()->create();
             return [
                 'worker_id' => $worker->id,
@@ -36,9 +39,12 @@ class WorkFactory extends Factory
         });
     }
 
-    public function withUnity()
+    /**
+     * @return static
+     */
+    public function withUnity(): static
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             $unity = Unity::inRandomOrder()->first();
             return [
                 'unity_id' => $unity->id,
@@ -46,9 +52,12 @@ class WorkFactory extends Factory
         });
     }
 
-    public function withTime()
+    /**
+     * @return static
+     */
+    public function withTime(): static
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             $hours = random_int(0, 23);
             $minutes = random_int(0, 59);
             return [
@@ -57,11 +66,28 @@ class WorkFactory extends Factory
         });
     }
 
-    public function withPrice()
+    /**
+     * @return static
+     */
+    public function withPrice(): static
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
-                'price' => random_int(0, 999999),
+                'price' => (float) (random_int(0, 99999999) / 100),
+            ];
+        });
+    }
+
+    /**
+     * @return static
+     */
+    public function withDescription(): static
+    {
+        return $this->state(function () {
+            $hasDescription = (bool) random_int(0, 1);
+            $description = ($hasDescription) ? $this->faker->text(rand(100, 512)) : null;
+            return [
+                'description' => $description,
             ];
         });
     }

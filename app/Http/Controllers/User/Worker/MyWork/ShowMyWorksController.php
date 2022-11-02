@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker;
+namespace App\Http\Controllers\User\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Services\Caches\SpecialtyCacheService;
@@ -19,7 +19,7 @@ class ShowMyWorksController extends Controller
      */
     public function __invoke(Request $request): Response
     {
-        $works = WorkCacheService::FromWorker(auth()->user()->worker);
+        $works = WorkCacheService::fromWorker(auth()->user()->worker);
         $works->load('specialties', 'unity');
 
         $unities = UnityCacheService::all();

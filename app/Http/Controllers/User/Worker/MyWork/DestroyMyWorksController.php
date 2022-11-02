@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker;
+namespace App\Http\Controllers\User\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\DestroyMyWorkRequest;
-use App\Models\Work;
+use App\Services\Caches\WorkCacheService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 
 class DestroyMyWorksController extends Controller
 {
@@ -24,6 +23,8 @@ class DestroyMyWorksController extends Controller
             ->firstOrFail()
             ->delete();
 
-        return redirect()->route('user.worker.my-works')->with('destroy', $workDeleted);
+            WorkCacheService::listPaginate(clear: true);
+
+        return redirect()->route('user.worker.my-works.show')->with('destroy', $workDeleted);
     }
 }

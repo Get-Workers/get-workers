@@ -9,16 +9,65 @@ import DropdownLink from '../../Components/DropdownLink.vue';
 import MenuHeaderX from '../Menus/MenuHeaderX.vue';
 import ItemX from '../Menus/Items/ItemX.vue';
 
-const dashboardRoute = 'dashboard';
-const myWorksRoute = 'user.worker.my-works.show';
-const worksRoute = 'works.list';
+const pageProps = computed(() => usePage().props.value);
+const currentRoute = computed(() => route().current());
 
-const isDashboardRoute = computed(() => (route().current() === dashboardRoute));
-const isMyWorksRoute = computed(() => (route().current() === myWorksRoute));
-const isWorksRoute = computed(() => (route().current() === worksRoute));
+const isWorker = computed(() => (pageProps.value.worker !== null));
+const isContractor = computed(() => (pageProps.value.contractor !== null));
+const canSee = computed(() => ({
+    worker: isWorker,
+    contractor: isContractor,
+}));
 
-const showMyWorksMenu = computed(() => (usePage().props.value.worker !== null));
-const showWorksMenu = computed(() => (usePage().props.value.contractor !== null));
+const routes = computed(() => ({
+    // Main
+    dashboard: 'dashboard',
+
+    // Worker
+    worker: {
+        myWorks: 'user.worker.my-works.show',
+        hiredWorks: {
+            list: 'user.worker.hired-works.list',
+        },
+    },
+
+    // Contractor
+    contractor: {
+        hiredWorks: {
+            list: 'user.contractor.hired-works.list',
+        },
+    },
+
+    // Works
+    works: {
+        list: 'works.list'
+    },
+}));
+
+const isRoute = computed(() => ({
+    // Main
+    dashboard: (currentRoute.value === routes.value.dashboard),
+
+    // Worker
+    worker: {
+        myWorks: (currentRoute.value === routes.value.worker.myWorks),
+        hiredWorks: {
+            list: (currentRoute.value === routes.value.worker.hiredWorks.list),
+        },
+    },
+
+    // Contractor
+    contractor: {
+        hiredWorks: {
+            list: (currentRoute.value === routes.value.contractor.hiredWorks.list),
+        },
+    },
+
+    // Works
+    works: {
+        list: (currentRoute.value === routes.value.works.list),
+    },
+}));
 
 const logout = () => {
     Inertia.post(route('logout'));
@@ -29,28 +78,61 @@ const logout = () => {
     <Header>
         <template #links>
             <MenuHeaderX class="h-full">
-                <ItemX class="h-full hover:bg-white" :class="{ 'bg-white': isDashboardRoute }">
-                    <template v-if="! isDashboardRoute">
-                        <Link :href="route(dashboardRoute)" class="flex h-full px-3 items-center">Dashboard</Link>
+                <ItemX class="h-full hover:bg-white" :class="{ 'bg-white': isRoute.dashboard }">
+                    <template v-if="! isRoute.dashboard">
+                        <Link :href="route(routes.dashboard)" class="flex h-full px-3 items-center">Dashboard</Link>
                     </template>
                     <template v-else>
                         <span class="flex h-full px-3 items-center">Dashboard</span>
                     </template>
                 </ItemX>
-                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isMyWorksRoute }" v-if="showMyWorksMenu">
-                    <template v-if="! isMyWorksRoute">
-                        <Link :href="route(myWorksRoute)" class="flex h-full px-3 items-center">My Works</Link>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.works.list }">
+                    <template v-if="! isRoute.works.list">
+                        <Link :href="route(routes.works.list)" class="flex h-full px-3 items-center">Works</Link>
+                    </template>
+                    <template v-else>
+                        <span class="flex h-full px-3 items-center">Works</span>
+                    </template>
+                </ItemX>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.worker.myWorks }" v-if="canSee.worker">
+                    <template v-if="! isRoute.worker.myWorks">
+                        <Link :href="route(routes.worker.myWorks)" class="flex h-full px-3 items-center">My Works</Link>
                     </template>
                     <template v-else>
                         <span class="flex h-full px-3 items-center">My Works</span>
                     </template>
                 </ItemX>
-                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isWorksRoute }" v-if="showWorksMenu">
-                    <template v-if="! isWorksRoute">
-                        <Link :href="route(worksRoute)" class="flex h-full px-3 items-center">Works</Link>
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.worker.hiredWorks.list }" v-if="canSee.worker">
+                    <template v-if="! isRoute.worker.hiredWorks.list">
+                        <Link :href="route(routes.worker.hiredWorks.list)" class="flex h-full px-3">
+                            <div class="flex flex-col justify-center items-center">
+                                <span>Hired Works</span>
+                                <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isContractor">worker</em>
+                            </div>
+                        </Link>
                     </template>
                     <template v-else>
-                        <span class="flex h-full px-3 items-center">Works</span>
+                        <div class="flex flex-col h-full px-3 justify-center items-center">
+                            <span>Hired Works</span>
+                            <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isContractor">worker</em>
+                        </div>
+                    </template>
+                </ItemX>
+
+                <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
+                    <template v-if="! isRoute.contractor.hiredWorks.list">
+                        <Link :href="route(routes.contractor.hiredWorks.list)" class="flex h-full px-3">
+                            <div class="flex flex-col justify-center items-center">
+                                <span>Hired Works</span>
+                                <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isWorker">contractor</em>
+                            </div>
+                        </Link>
+                    </template>
+                    <template v-else>
+                        <div class="flex flex-col h-full px-3 justify-center items-center">
+                            <span>Hired Works</span>
+                            <em class="h-0 relative -top-2 text-xs text-gray-500" v-if="isWorker">contractor</em>
+                        </div>
                     </template>
                 </ItemX>
             </MenuHeaderX>
