@@ -23,6 +23,7 @@
     "dependencies": {
         "mdue": "^0.1.4",
         "v-calendar": "^3.0.0-alpha.8",
-        "vue-currency-input": "^3.0.0"
+        "vue-currency-input": "^3.0.0",
+        "vue-i18n": "^9.2.2"
     }
 }
