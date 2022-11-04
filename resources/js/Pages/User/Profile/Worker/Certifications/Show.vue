@@ -74,12 +74,12 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
 <template>
     <AuthLayout title="Specialties">
         <template #main>
-            <div class="flex">
+            <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->
-                <SidebarMenu class="flex flex-col min-h-fit w-64 md:w-96"/>
+                <SidebarMenu class="sm:m-0 mx-auto sm:w-64 w-full"/>
 
                 <!-- Page Content -->
-                <div class="ml-5 w-full px-5">
+                <div class="px-5 sm:mt-0 mt-2">
                     <div class="font-bold text-lg">My certifications</div>
 
                     <!-- Certifications Add Form -->

@@ -12,20 +12,18 @@ defineProps({
     confirmsTwoFactorAuthentication: Boolean,
     sessions: Array,
 });
-
-
 </script>
 
 <template>
     <AuthLayout title="Profile">
 
         <template #main>
-            <div class="flex">
+            <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->
-                <SidebarMenu class="flex flex-col h-fit w-64 md:w-96"/>
+                <SidebarMenu class="sm:m-0 mx-auto sm:w-64 w-full"/>
 
                 <!-- Page Content -->
-                <div class="flex flex-col w-full ml-5">
+                <div class="flex flex-col px-5 sm:mt-0 mt-2">
                     <div v-if="$page.props.jetstream.canUpdateProfileInformation">
                         <UpdateProfileInformationForm :user="$page.props.user" />
 
