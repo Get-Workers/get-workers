@@ -5,6 +5,7 @@ import { Loading } from 'mdue';
 import AuthLayout from '../../../../Layouts/AuthLayout.vue';
 import Button from '../../../../Components/Button.vue';
 import InputError from '../../../../Components/InputError.vue';
+import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
 const props = defineProps({hiredWork: {type: Object}});
 
@@ -32,7 +33,7 @@ function setHiredWork() {
 const hiredWorkForm = useForm({ hiredWork: props.hiredWork.uuid });
 
 function submitDelete() {
-    hiredWorkForm.delete(route('user.worker.hired-works.destroy'), {
+    hiredWorkForm.delete(route('user.profile.worker.hired-works.destroy'), {
         onBefore: function() {
             hiredWorkForm.clearErrors();
         },
@@ -40,7 +41,7 @@ function submitDelete() {
 }
 
 function submitInitiate() {
-    hiredWorkForm.post(route('user.worker.hired-works.initiate'), {
+    hiredWorkForm.post(route('user.profile.worker.hired-works.initiate'), {
         onBefore: function() {
             hiredWorkForm.clearErrors();
         },
@@ -48,7 +49,7 @@ function submitInitiate() {
 }
 
 function submitDone() {
-    hiredWorkForm.post(route('user.worker.hired-works.done'), {
+    hiredWorkForm.post(route('user.profile.worker.hired-works.done'), {
         onBefore: function() {
             hiredWorkForm.clearErrors();
         },
@@ -60,8 +61,11 @@ function submitDone() {
     <AuthLayout title="Works">
         <template #main>
             <div class="flex">
+                <!-- Sidebard Menu -->
+                <SidebarMenu class="sm:w-5/12 md:w-2/6 lg:w-3/12 w-full sm:m-0 mx-auto"/>
+
                 <!-- Page Content -->
-                <div class="w-full px-5">
+                <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
                     <div class="flex items-center">
                         <div class="font-bold text-lg" :title="hiredWork.work.name">{{ hiredWork.work.name }}</div>
                         <div>
