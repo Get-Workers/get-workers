@@ -14,7 +14,7 @@ use App\Http\Controllers\User\Profile\Worker\Specialties\{
     ShowSpecialtiesController,
     StoreSpecialtiesController
 };
-use App\Http\Controllers\User\Worker\HiredWork\{
+use App\Http\Controllers\User\Profile\Worker\HiredWork\{
     ListHiredWorksController as WorkerListHiredWorksController,
     DestroyHiredWorksController as WorkerDestroyHiredWorksController,
     DoneHiredWorksController,
@@ -28,7 +28,7 @@ use App\Http\Controllers\User\Contractor\HiredWork\{
     StoreHiredWorksController
 };
 use App\Http\Controllers\User\Profile\Worker\Appointments\ShowAppointmentsController;
-use App\Http\Controllers\User\Worker\MyWork\{
+use App\Http\Controllers\User\Profile\Worker\MyWork\{
     DestroyMyWorksController,
     ShowMyWorksController,
     StoreMyWorksController
@@ -55,25 +55,23 @@ Route::middleware([
                     Route::delete('', DestroyCertificationsController::class)->name('.destroy');
                 });
 
+                Route::prefix('/my-works')->name('.my-works')->group(function () {
+                    Route::get('', ShowMyWorksController::class)->name('.show');
+                    Route::post('', StoreMyWorksController::class)->name('.store');
+                    Route::delete('', DestroyMyWorksController::class)->name('.destroy');
+                });
+
+                Route::prefix('/hired-works')->name('.hired-works')->group(function () {
+                    Route::get('', WorkerListHiredWorksController::class)->name('.list');
+                    Route::get('/{hiredWorkUuid}', WorkerShowHiredWorksController::class)->name('.show');
+                    Route::delete('', WorkerDestroyHiredWorksController::class)->name('.destroy');
+                    Route::post('/initiate', InitiateHiredWorksController::class)->name('.initiate');
+                    Route::post('/done', DoneHiredWorksController::class)->name('.done');
+                });
+
                 Route::prefix('/appointments')->name('.appointments')->group(function () {
                     Route::get('', ShowAppointmentsController::class)->name('.show');
                 });
-            });
-        });
-
-        Route::prefix('/worker')->name('.worker')->middleware('worker-profile')->group(function () {
-            Route::prefix('/my-works')->name('.my-works')->group(function () {
-                Route::get('', ShowMyWorksController::class)->name('.show');
-                Route::post('', StoreMyWorksController::class)->name('.store');
-                Route::delete('', DestroyMyWorksController::class)->name('.destroy');
-            });
-
-            Route::prefix('/hired-works')->name('.hired-works')->group(function () {
-                Route::get('', WorkerListHiredWorksController::class)->name('.list');
-                Route::get('/{hiredWorkUuid}', WorkerShowHiredWorksController::class)->name('.show');
-                Route::delete('', WorkerDestroyHiredWorksController::class)->name('.destroy');
-                Route::post('/initiate', InitiateHiredWorksController::class)->name('.initiate');
-                Route::post('/done', DoneHiredWorksController::class)->name('.done');
             });
         });
 

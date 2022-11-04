@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\MyWork;
+namespace App\Http\Controllers\User\Profile\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\StoreMyWorkRequest;
@@ -34,7 +34,7 @@ class StoreMyWorksController extends Controller
         });
 
 
-        return redirect()->route('user.worker.my-works.show')->with('store', true);
+        return redirect()->route('user.profile.worker.my-works.show')->with('store', true);
     }
 
     private function associateUnity(Work $work, ?int $unityId): void

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\MyWork;
+namespace App\Http\Controllers\User\Profile\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\DestroyMyWorkRequest;
@@ -25,6 +25,6 @@ class DestroyMyWorksController extends Controller
 
             WorkCacheService::listPaginate(clear: true);
 
-        return redirect()->route('user.worker.my-works.show')->with('destroy', $workDeleted);
+        return redirect()->route('user.profile.worker.my-works.show')->with('destroy', $workDeleted);
     }
 }

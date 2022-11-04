@@ -19,6 +19,14 @@ const en = {
         specialty: 'Specialty',
         specialties: 'Specialties',
 
+        // HiredWorks
+        hiredWork: 'Hired work',
+        hiredWorks: 'Hired works',
+
+        // Appintments
+        appointment: 'Appointment',
+        appointments: 'Appointments',
+
         // Auth
         register: 'Register',
         login: 'Login',

@@ -1,15 +1,20 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
-import AuthLayout from '../../../../Layouts/AuthLayout.vue';
-import Link from '../../../../Components/Links/Link.vue';
-import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
-import Button from '../../../../Components/Button.vue';
-import InputError from '../../../../Components/InputError.vue';
+import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
+import SidebarMenu from '../../Partials/SidebarMenu.vue';
+import Link from '../../../../../Components/Links/Link.vue';
+import BadgeGroup from '../../../../../Components/Badges/BadgeGroup.vue';
+import Button from '../../../../../Components/Button.vue';
+import InputError from '../../../../../Components/InputError.vue';
 
 defineProps({
     hiredWorks: {
         type: Array,
         default: [],
+    },
+    deleteStatus: {
+        type: Boolean,
+        default: false,
     },
 });
 
@@ -17,7 +22,7 @@ const deleteForm = useForm({ hiredWork: null });
 
 function submitDelete(uuid) {
     deleteForm.hiredWork = uuid;
-    deleteForm.delete(route('user.worker.hired-works.destroy'), {
+    deleteForm.delete(route('user.profile.worker.hired-works.destroy'), {
         onBefore: function() {
             deleteForm.clearErrors();
         },
@@ -31,12 +36,18 @@ function submitDelete(uuid) {
 <template>
     <AuthLayout title="Works">
         <template #main>
-            <div class="flex">
+            <div class="flex flex-col sm:flex-row">
+                <!-- Sidebard Menu -->
+                <SidebarMenu class="sm:w-5/12 md:w-2/6 lg:w-3/12 w-full sm:m-0 mx-auto"/>
+
                 <!-- Page Content -->
-                <div class="w-full px-5">
+                <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
                     <div class="font-bold text-lg">Hired Works</div>
 
                     <InputError :message="deleteForm.errors.hiredWork" class="my-2" />
+                    <div v-if="deleteStatus" class="my-2 font-medium text-sm text-green-600">
+                        Hired work removed successfully
+                    </div>
 
                     <!-- Hired Works List -->
                     <div class="mt-5 border rounded w-full overflow-x-auto" v-if="hiredWorks.length">
@@ -55,7 +66,7 @@ function submitDelete(uuid) {
                             >
                                 <div class="col-span-2 flex items-center overflow-y-auto">
                                     <Link class="min-w-fit break-words text-ellipsis"
-                                        :href="route('user.worker.hired-works.show', { hiredWorkUuid: hiredWork.uuid })"
+                                        :href="route('user.profile.worker.hired-works.show', { hiredWorkUuid: hiredWork.uuid })"
                                         :title="hiredWork.work.name"
                                     >{{ hiredWork.work.name }}</Link>
                                 </div>

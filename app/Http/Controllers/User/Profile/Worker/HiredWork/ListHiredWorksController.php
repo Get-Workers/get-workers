@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\HiredWork;
+namespace App\Http\Controllers\User\Profile\Worker\HiredWork;
 
 use App\Http\Controllers\Controller;
 use App\Models\HiredWork;
@@ -20,6 +20,8 @@ class ListHiredWorksController extends Controller
             ->with(['work', 'work.worker', 'work.unity', 'work.specialties'])
             ->latest()
             ->get();
-        return inertia('User/Worker/HiredWorks/List', compact('hiredWorks'));
+
+        $deleteStatus = session()->get('destroy', false);
+        return inertia('User/Profile/Worker/HiredWorks/List', compact('hiredWorks', 'deleteStatus'));
     }
 }
