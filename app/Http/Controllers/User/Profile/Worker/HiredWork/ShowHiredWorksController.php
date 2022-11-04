@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\HiredWork;
+namespace App\Http\Controllers\User\Profile\Worker\HiredWork;
 
 use App\Http\Controllers\Controller;
 use App\Services\Caches\HiredWorkCacheService;
@@ -26,6 +26,6 @@ class ShowHiredWorksController extends Controller
             abort(HttpResponse::HTTP_NOT_FOUND);
         }
 
-        return inertia('User/Worker/HiredWorks/Show', compact('hiredWork'));
+        return inertia('User/Profile/Worker/HiredWorks/Show', compact('hiredWork'));
     }
 }

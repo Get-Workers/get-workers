@@ -7,9 +7,9 @@ import Link from '../Links/Link.vue';
     <Header>
         <template #profile>
             <div class="space-x-1">
-                <Link :href="route('login')" class="inline-block">Login</Link>
-                <span>or</span>
-                <Link :href="route('register')" class="inline-block">Register</Link>
+                <Link :href="route('login')" class="inline-block">{{ $t('words.login') }}</Link>
+                <span>{{ $t('words.lowerCaseOr') }}</span>
+                <Link :href="route('register')" class="inline-block">{{ $t('words.register') }}</Link>
             </div>
         </template>
     </Header>

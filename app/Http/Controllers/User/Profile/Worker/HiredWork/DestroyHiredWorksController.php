@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\HiredWork;
+namespace App\Http\Controllers\User\Profile\Worker\HiredWork;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Worker\HiredWork\DestroyHiredWorkRequest;
@@ -31,6 +31,6 @@ class DestroyHiredWorksController extends Controller
 
         HiredWorkCacheService::fromWorker(clearTag: true);
 
-        return redirect()->route('user.worker.hired-works.list')->with('destroy', true);
+        return redirect()->route('user.profile.worker.hired-works.list')->with('destroy', true);
     }
 }

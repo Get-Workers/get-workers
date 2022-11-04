@@ -2,14 +2,15 @@
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
-import AuthLayout from '../../../../Layouts/AuthLayout.vue';
-import Button from '../../../../Components/Button.vue';
-import InputError from '../../../../Components/InputError.vue';
-import Input from '../../../../Components/Input.vue';
-import Label from '../../../../Components/Label.vue';
-import Checkbox from '../../../../Components/Checkbox.vue';
-import BadgeGroup from '../../../../Components/Badges/BadgeGroup.vue';
-import InputCurrency from '../../../../Components/InputCurrency.vue';
+import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
+import Button from '../../../../../Components/Button.vue';
+import InputError from '../../../../../Components/InputError.vue';
+import Input from '../../../../../Components/Input.vue';
+import Label from '../../../../../Components/Label.vue';
+import Checkbox from '../../../../../Components/Checkbox.vue';
+import BadgeGroup from '../../../../../Components/Badges/BadgeGroup.vue';
+import InputCurrency from '../../../../../Components/InputCurrency.vue';
+import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
 const props = defineProps({
     works: {
@@ -55,7 +56,7 @@ const deleteForm = useForm({
 });
 
 function submitAdd() {
-    newWorkForm.post(route('user.worker.my-works.store'), {
+    newWorkForm.post(route('user.profile.worker.my-works.store'), {
         preserveScroll: true,
         onSuccess: () => resetCertificationForm()
     });
@@ -63,7 +64,7 @@ function submitAdd() {
 
 function submitDelete(work) {
     deleteForm.work = work;
-    deleteForm.delete(route('user.worker.my-works.destroy'), {
+    deleteForm.delete(route('user.profile.worker.my-works.destroy'), {
         preserveScroll: true,
         onFinish: () => resetCertificationDeleteForm()
     });
@@ -107,9 +108,12 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
 <template>
     <AuthLayout title="My Works">
         <template #main>
-            <div class="flex">
+            <div class="flex flex-col sm:flex-row">
+                <!-- Sidebard Menu -->
+                <SidebarMenu class="sm:w-5/12 md:w-2/6 lg:w-3/12 w-full sm:m-0 mx-auto"/>
+
                 <!-- Page Content -->
-                <div class="w-full px-5">
+                <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
                     <div class="font-bold text-lg">My works</div>
 
                     <!-- Work Add Form -->

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User\Worker\MyWork;
+namespace App\Http\Controllers\User\Profile\Worker\MyWork;
 
 use App\Http\Controllers\Controller;
 use App\Services\Caches\SpecialtyCacheService;
@@ -26,6 +26,6 @@ class ShowMyWorksController extends Controller
         $specialties = SpecialtyCacheService::all();
         $storeStatus = session()->get('store', false);
         $deleteStatus = session()->get('destroy', false);
-        return inertia('User/Worker/MyWorks/Show', compact('works', 'unities', 'specialties', 'storeStatus', 'deleteStatus'));
+        return inertia('User/Profile/Worker/MyWorks/Show', compact('works', 'unities', 'specialties', 'storeStatus', 'deleteStatus'));
     }
 }
