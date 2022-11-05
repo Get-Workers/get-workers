@@ -203,13 +203,13 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                     <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
                         <div class="min-w-xl">
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
-                                <span class="col-span-2 font-bold" title="Work Name">Name</span>
-                                <span class="col-span-2 font-bold" title="Work Slug">Slug</span>
-                                <span class="col-span-3 font-bold" title="Work Specialties">Specialties</span>
-                                <span class="col-span-1 font-bold" title="Work Unity">Unity</span>
-                                <span class="col-span-1 font-bold" title="Work Time">Time</span>
-                                <span class="col-span-2 font-bold" title="Work Price">Price</span>
-                                <span class="col-span-1 font-bold">Action</span>
+                                <span class="col-span-2 font-bold" title="{{ $t('words.name') }}">{{ $t('words.name') }}</span>
+                                <span class="col-span-2 font-bold" title="{{ $t('words.slug') }}">{{ $t('words.slug') }}</span>
+                                <span class="col-span-3 font-bold" title="{{ $t('words.specialties') }}">{{ $t('words.specialties') }}</span>
+                                <span class="col-span-1 font-bold" title="{{ $t('words.unity') }}">{{ $t('words.unity') }}</span>
+                                <span class="col-span-1 font-bold" title="{{ $t('words.time') }}">{{ $t('words.time') }}</span>
+                                <span class="col-span-2 font-bold" title="{{ $t('words.price') }}">{{ $t('words.price') }}</span>
+                                <span class="col-span-1 font-bold" title="{{ $t('words.action') }}">{{ $t('words.action') }}</span>
                             </div>
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
                                 v-for="(work) in works"
@@ -233,8 +233,8 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button title="Delete" @click="submitDelete(work.uuid)" :disabled="isProcessingForms">
-                                        Delete
+                                    <Button :title="$t('words.delete')" @click="submitDelete(work.uuid)" :disabled="isProcessingForms">
+                                        {{ $t('words.delete') }}
                                     </Button>
                                 </div>
                             </div>

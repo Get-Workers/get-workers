@@ -30,10 +30,10 @@ const submit = () => {
             <!-- Register -->
             <AuthenticationCard class="mt-2">
                 <div>
-                    <span class="text-2xl font-semibold">Register</span>
+                    <span class="text-2xl font-semibold">{{ $t('words.register') }}</span>
                     <div>
-                        <span class="inline-block">Already have an account?</span>
-                        <Link class="inline-block ml-2" :href="route('login')">Login</Link>
+                        <span class="inline-block">{{ $t('questions.account.alreadyHave') }}</span>
+                        <Link class="inline-block ml-2" :href="route('login')">{{ $t('words.login') }}</Link>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@ const submit = () => {
                     <form @submit.prevent="submit">
                         <div class="space-y-3">
                             <div>
-                                <Label for="name" value="Name" />
+                                <Label for="name" :value="$t('words.name')" />
                                 <Input
                                     id="name"
                                     v-model="form.name"
@@ -50,13 +50,13 @@ const submit = () => {
                                     required
                                     autofocus
                                     autocomplete="name"
-                                    placeholder="Full name"
+                                    :placeholder="$t('words.fullName')"
                                 />
                                 <InputError class="mt-2" :message="form.errors.name" />
                             </div>
 
                             <div>
-                                <Label for="email" value="Email" />
+                                <Label for="email" :value="$t('words.email')" />
                                 <Input
                                     id="email"
                                     v-model="form.email"
@@ -65,13 +65,13 @@ const submit = () => {
                                     required
                                     autofocus
                                     autocomplete="email"
-                                    placeholder="Email"
+                                    :placeholder="$t('words.email')"
                                 />
                                 <InputError class="mt-2" :message="form.errors.email" />
                             </div>
 
                             <div>
-                                <Label for="password" value="Password" />
+                                <Label for="password" :value="$t('words.password')" />
                                 <Input
                                     id="password"
                                     v-model="form.password"
@@ -80,13 +80,13 @@ const submit = () => {
                                     required
                                     autofocus
                                     autocomplete="password"
-                                    placeholder="Password"
+                                    :placeholder="$t('words.password')"
                                 />
                                 <InputError class="mt-2" :message="form.errors.password" />
                             </div>
 
                             <div>
-                                <Label for="password_confirmation" value="Confirm password" />
+                                <Label for="password_confirmation" :value="$t('words.confirmPassword')" />
                                 <Input
                                     id="password_confirmation"
                                     v-model="form.password_confirmation"
@@ -95,7 +95,7 @@ const submit = () => {
                                     required
                                     autofocus
                                     autocomplete="password"
-                                    placeholder="Confirm password"
+                                    :placeholder="$t('words.confirmPassword')"
                                 />
                                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
                             </div>

@@ -42,24 +42,24 @@ function submitDelete(uuid) {
 
                 <!-- Page Content -->
                 <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
-                    <div class="font-bold text-lg">Hired Works</div>
+                    <div class="font-bold text-lg">{{ $t('words.hiredWorks') }}</div>
 
                     <InputError :message="deleteForm.errors.hiredWork" class="my-2" />
                     <div v-if="deleteStatus" class="my-2 font-medium text-sm text-green-600">
-                        Hired work removed successfully
+                        {{ $t('messages.hiredWork.delete.success') }}
                     </div>
 
                     <!-- Hired Works List -->
                     <div class="mt-5 border rounded w-full overflow-x-auto" v-if="hiredWorks.length">
                         <div class="min-w-xl">
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
-                                <span class="col-span-2 font-bold" title="Work Name">Name</span>
-                                <span class="col-span-2 font-bold" title="Work Slug">Slug</span>
-                                <span class="col-span-3 font-bold" title="Work Specialties">Specialties</span>
-                                <span class="col-span-1 font-bold" title="Work Unity">Unity</span>
-                                <span class="col-span-1 font-bold" title="Work Time">Time</span>
-                                <span class="col-span-2 font-bold" title="Work Price">Price</span>
-                                <span class="col-span-1 font-bold" title="Work Price">Action</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.name')">{{ $t('words.name') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.slug')">{{ $t('words.slug') }}</span>
+                                <span class="col-span-3 font-bold" :title="$t('words.specialties')">{{ $t('words.specialties') }}</span>
+                                <span class="col-span-1 font-bold" :title="$t('words.unity')">{{ $t('words.unity') }}</span>
+                                <span class="col-span-1 font-bold" :title="$t('words.time')">{{ $t('words.time') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.price')">{{ $t('words.price') }}</span>
+                                <span class="col-span-1 font-bold" :title="$t('words.action')">{{ $t('words.action') }}</span>
                             </div>
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
                                 v-for="(hiredWork) in hiredWorks"
@@ -86,8 +86,8 @@ function submitDelete(uuid) {
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${hiredWork.price}`.replace('.', ',')">{{ `R$ ${hiredWork.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button title="Cancel" @click="submitDelete(hiredWork.uuid)" :disabled="hiredWork.initiated_at || deleteForm.processing">
-                                        Cancel
+                                    <Button :title="$t('words.cancel')" @click="submitDelete(hiredWork.uuid)" :disabled="hiredWork.initiated_at || deleteForm.processing">
+                                        {{ $t('words.cancel') }}
                                     </Button>
                                 </div>
                             </div>

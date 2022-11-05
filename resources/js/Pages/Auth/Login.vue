@@ -36,10 +36,10 @@ const submit = () => {
             <!-- Login -->
             <AuthenticationCard class="mt-2">
                 <div>
-                    <span class="text-2xl font-semibold">Login</span>
+                    <span class="text-2xl font-semibold">{{ $t('words.login') }}</span>
                     <div>
-                        <span class="inline-block">Already have an account?</span>
-                        <Link class="inline-block ml-2" :href="route('register')">Register</Link>
+                        <span class="inline-block">{{ $t('questions.account.doesntHave') }}</span>
+                        <Link class="inline-block ml-2" :href="route('register')">{{ $t('words.register') }}</Link>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@ const submit = () => {
                     <form @submit.prevent="submit">
                         <div class="space-y-3">
                             <div>
-                                <Label for="email" value="Email" />
+                                <Label for="email" :value="$t('words.email')" />
                                 <Input
                                     id="email"
                                     v-model="form.email"
@@ -59,13 +59,13 @@ const submit = () => {
                                     class="mt-1 block w-full"
                                     required
                                     autofocus
-                                    placeholder="Email"
+                                    :placeholder="$t('words.email')"
                                 />
                                 <InputError class="mt-2" :message="form.errors.email" />
                             </div>
 
                             <div>
-                                <Label for="password" value="Password" />
+                                <Label for="password" :value="$t('words.password')" />
                                 <Input
                                     id="password"
                                     v-model="form.password"
@@ -73,7 +73,7 @@ const submit = () => {
                                     class="mt-1 block w-full"
                                     required
                                     autocomplete="current-password"
-                                    placeholder="Password"
+                                    :placeholder="$t('words.password')"
                                 />
                                 <InputError class="mt-2" :message="form.errors.password" />
                             </div>
@@ -84,11 +84,11 @@ const submit = () => {
                         <div class="flex justify-between mt-5">
                             <label class="flex items-center">
                                 <Checkbox v-model:checked="form.remember" name="remember" />
-                                <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                                <span class="ml-2 text-sm text-gray-600">{{ $t('messages.rememberMe') }}</span>
                             </label>
 
                             <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                                Forgot your password?
+                                {{ $t('questions.password.forgot') }}
                             </Link>
                         </div>
 
@@ -96,7 +96,7 @@ const submit = () => {
 
                         <div class="flex items-center justify-end mt-8">
                             <Button class="mx-auto w-full text-center" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Login
+                                {{ $t('words.login') }}
                             </Button>
                         </div>
                     </form>
