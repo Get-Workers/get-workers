@@ -1,4 +1,4 @@
-const en = {
+ const en = {
     words: {
         // Contractor
         contractor: 'Contratante',
@@ -27,12 +27,33 @@ const en = {
         appointment: 'Compromisso',
         appointments: 'Compromissos',
 
+        // Labels
+        name: 'Nome',
+        slug: 'Slug',
+        time: 'Tempo',
+        price: 'Preço',
+        action: 'Ação',
+        delete: 'Deletar',
+        cancel: 'Cancelar',
+
+
+        // Unities
+        unity: 'Unidade',
+        unities: 'Unidades',
+
         // Auth
         register: 'Registrar',
         login: 'Entrar',
         lowerCaseOr: 'ou',
     },
     phrases: {},
+    messages: {
+        hiredWork: {
+            delete: {
+                success: 'O serviço contratado foi excluído com sucesso!'
+            },
+        },
+    },
 };
 
 export default en;
