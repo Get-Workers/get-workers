@@ -14,10 +14,12 @@
         // Certifications
         certification: 'Certificado',
         certifications: 'Certificados',
+        myCertifications: 'Minhas certificações',
 
         // Specialties
         specialty: 'Especialidade',
         specialties: 'Especialidades',
+        mySpecialties: 'Minhas especialidades',
 
         // HiredWorks
         hiredWork: 'Serviço contratado',
@@ -42,8 +44,10 @@
         unities: 'Unidades',
 
         // Auth
+        profile: 'Perfil',
         register: 'Registrar',
         login: 'Entrar',
+        logout: 'Sair',
         lowerCaseOr: 'ou',
     },
     phrases: {},

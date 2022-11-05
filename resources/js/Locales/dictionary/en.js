@@ -14,10 +14,12 @@ const en = {
         // Certifications
         certification: 'Certification',
         certifications: 'Certifications',
+        myCertifications: 'My certifications',
 
         // Specialties
         specialty: 'Specialty',
         specialties: 'Specialties',
+        mySpecialties: 'My specialties',
 
         // HiredWorks
         hiredWork: 'Hired work',
@@ -42,8 +44,10 @@ const en = {
         unities: 'Unities',
 
         // Auth
+        profile: 'Profile',
         register: 'Register',
         login: 'Login',
+        logout: 'Logout',
         lowerCaseOr: 'or',
     },
     phrases: {},
