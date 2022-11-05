@@ -13,7 +13,7 @@ defineProps({ works: Object });
             <div class="flex">
                 <!-- Page Content -->
                 <div class="w-full px-5">
-                    <div class="font-bold text-lg">Works</div>
+                    <div class="font-bold text-lg">{{ $t('words.works') }}</div>
 
                     <!-- Works List -->
                     <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.data.length">

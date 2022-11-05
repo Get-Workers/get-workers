@@ -80,7 +80,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
 
                 <!-- Page Content -->
                 <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
-                    <div class="font-bold text-lg">My specialities</div>
+                    <div class="font-bold text-lg">{{ $t('words.mySpecialties') }}</div>
 
                     <!-- Specialties Add Form -->
                     <div class="mt-5 border rounded px-5 py-3">
