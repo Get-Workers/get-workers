@@ -9,7 +9,7 @@ use App\Services\Caches\HiredWorkCacheService;
 
 class StoreHiredWork
 {
-    public function storeHiredWork(Contractor $contractor, Work $work, array $data = []): void
+    public function storeHiredWork(Contractor $contractor, Work $work, array $data = []): HiredWork
     {
         $hiredWork = new HiredWork([
             'price' => $work->price,
@@ -17,6 +17,9 @@ class StoreHiredWork
         ]);
         $hiredWork->work()->associate($work);
         $contractor->hiredWorks()->save($hiredWork);
+
         HiredWorkCacheService::fromWorker(clearTag: true);
+
+        return $hiredWork;
     }
 }
