@@ -49,6 +49,8 @@
         login: 'Entrar',
         logout: 'Sair',
         lowerCaseOr: 'ou',
+        email: 'E-mail',
+        password: 'Senha',
     },
     phrases: {},
     messages: {
@@ -56,6 +58,15 @@
             delete: {
                 success: 'O serviço contratado foi excluído com sucesso!'
             },
+        },
+        rememberMe: 'Lembrar de mim',
+    },
+    questions: {
+        account: {
+            doesntHave: 'Ainda não possui uma conta?',
+        },
+        password: {
+            forgot: 'Esqueceu sua senha?',
         },
     },
 };

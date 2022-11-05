@@ -49,6 +49,8 @@ const en = {
         login: 'Login',
         logout: 'Logout',
         lowerCaseOr: 'or',
+        email: 'E-mail',
+        password: 'Password',
     },
     phrases: {},
     messages: {
@@ -56,6 +58,15 @@ const en = {
             hired: {
                 success: 'Hired work removed successfully'
             },
+        },
+        rememberMe: 'Remember me',
+    },
+    questions: {
+        account: {
+            doesntHave: 'Doesn\'t have an account?',
+        },
+        password: {
+            forgot: 'Forgot your password?',
         },
     },
 };
