@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User\Contractor\HiredWork;
 
 use App\Http\Controllers\Controller;
+use App\Services\Caches\HiredWorkCacheService;
+use Illuminate\Database\Eloquent\Builder;
 use Inertia\Response;
 
 class ListHiredWorksController extends Controller
@@ -14,8 +16,17 @@ class ListHiredWorksController extends Controller
      */
     public function __invoke(): Response
     {
-        $hiredWorks = auth()->user()->contractor->hiredWorks;
-        $hiredWorks->load(['work', 'work.worker', 'work.unity', 'work.specialties']);
-        return inertia('User/Contractor/HiredWorks/List', compact('hiredWorks'));
+        $hiredWorks = HiredWorkCacheService::fromContractor(
+            auth()->user()->contractor,
+            [
+                'work' => fn ($query) => $query->withTrashed(),
+                'work.worker',
+                'work.unity',
+                'work.specialties'
+            ]
+        );
+
+        $deleteStatus = session()->get('destroy', false);
+        return inertia('User/Contractor/HiredWorks/List', compact('hiredWorks', 'deleteStatus'));
     }
 }

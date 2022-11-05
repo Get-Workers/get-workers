@@ -72,10 +72,10 @@ const logout = () => {
                 </ItemX>
                 <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.works.list }">
                     <template v-if="! isRoute.works.list">
-                        <Link :href="route(routes.works.list)" class="flex h-full px-3 items-center">Works</Link>
+                        <Link :href="route(routes.works.list)" class="flex h-full px-3 items-center">{{ $t('words.works') }}</Link>
                     </template>
                     <template v-else>
-                        <span class="flex h-full px-3 items-center">Works</span>
+                        <span class="flex h-full px-3 items-center">{{ $t('words.works') }}</span>
                     </template>
                 </ItemX>
                 <ItemX class="h-full hover:bg-white border-l" :class="{ 'bg-white': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
@@ -121,7 +121,7 @@ const logout = () => {
                         </div>
 
                         <DropdownLink :href="route('profile.show')">
-                            Profile
+                            {{ $t('words.profile') }}
                         </DropdownLink>
 
                         <div class="border-t border-gray-100" />
@@ -129,7 +129,7 @@ const logout = () => {
                         <!-- Authentication -->
                         <form @submit.prevent="logout">
                             <DropdownLink as="button">
-                                Log Out
+                                {{ $t('words.logout') }}
                             </DropdownLink>
                         </form>
                     </template>

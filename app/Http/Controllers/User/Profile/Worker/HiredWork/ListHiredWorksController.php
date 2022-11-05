@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Profile\Worker\HiredWork;
 
 use App\Http\Controllers\Controller;
 use App\Models\HiredWork;
+use App\Services\Caches\HiredWorkCacheService;
 use Inertia\Response;
 
 class ListHiredWorksController extends Controller
@@ -15,11 +16,16 @@ class ListHiredWorksController extends Controller
      */
     public function __invoke(): Response
     {
-        $works = auth()->user()->worker->works()->whereHas('hiredWorks')->get();
-        $hiredWorks = HiredWork::whereIn('work_id', $works->modelKeys())
-            ->with(['work', 'work.worker', 'work.unity', 'work.specialties'])
-            ->latest()
-            ->get();
+        $worker = auth()->user()->worker;
+        $hiredWorks = HiredWorkCacheService::fromWorker(
+            $worker,
+            [
+                'work' => fn ($query) => $query->withTrashed(),
+                'work.worker',
+                'work.unity',
+                'work.specialties'
+            ]
+        );
 
         $deleteStatus = session()->get('destroy', false);
         return inertia('User/Profile/Worker/HiredWorks/List', compact('hiredWorks', 'deleteStatus'));
