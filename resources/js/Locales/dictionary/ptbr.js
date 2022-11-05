@@ -51,6 +51,8 @@
         lowerCaseOr: 'ou',
         email: 'E-mail',
         password: 'Senha',
+        fullName: 'Nome completo',
+        confirmPassword: 'Confirmar senha',
     },
     phrases: {},
     messages: {
@@ -63,6 +65,7 @@
     },
     questions: {
         account: {
+            alreadyHave: 'Já possui uma conta?',
             doesntHave: 'Ainda não possui uma conta?',
         },
         password: {

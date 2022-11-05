@@ -51,6 +51,8 @@ const en = {
         lowerCaseOr: 'or',
         email: 'E-mail',
         password: 'Password',
+        fullName: 'Full name',
+        confirmPassword: 'Confirm password',
     },
     phrases: {},
     messages: {
@@ -63,6 +65,7 @@ const en = {
     },
     questions: {
         account: {
+            alreadyHave: 'Already have an account?',
             doesntHave: 'Doesn\'t have an account?',
         },
         password: {
