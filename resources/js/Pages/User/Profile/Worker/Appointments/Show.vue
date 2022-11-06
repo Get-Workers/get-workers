@@ -39,12 +39,12 @@ onMounted(() => {
 
                 <!-- Page Content -->
                 <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
-                    <div class="font-bold text-lg">Appointments</div>
+                    <div class="font-bold text-lg">{{ $t('words.appointments') }}</div>
 
                     <div class="flex 2xl:max-w-fit xl:max-w-4xl lg:max-w-screen-sm md:max-w-md sm:max-w-sm mt-5 overflow-x-auto">
                         <div class="min-w-lg">
                             <Calendar
-                                class="custom-calendar w-full"
+                                class="w-full"
                                 :masks="masks"
                                 :attributes="attributes"
                                 disable-page-swipe

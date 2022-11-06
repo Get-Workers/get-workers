@@ -114,15 +114,15 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
 
                 <!-- Page Content -->
                 <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
-                    <div class="font-bold text-lg">My works</div>
+                    <div class="font-bold text-lg">{{ $t('words.myWorks') }}</div>
 
                     <!-- Work Add Form -->
                     <div class="mt-5 border rounded px-5 py-3">
                         <div class="flex justify-between items-center">
-                            <div>New work</div>
+                            <div>{{ $t('words.newWork') }}</div>
                             <Button type="button" @click="toggleNewCertificateForm"
-                                v-if="! newWorkFormShow">New</Button>
-                            <Button type="button" @click="toggleNewCertificateForm" v-else>Close</Button>
+                                v-if="! newWorkFormShow">{{ $t('words.new') }}</Button>
+                            <Button type="button" @click="toggleNewCertificateForm" v-else>{{ $t('words.close') }}</Button>
                         </div>
                         <div class="mt-2 border rounded p-5" v-if="newWorkFormShow">
                             <form @submit.prevent="submitAdd">
@@ -136,18 +136,18 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     <div>
                                         <Label value="Description" for="workDescription" :optional="true" />
                                         <textarea id="workDescription" class="w-full max-h-60"
-                                            placeholder="Max characters: 512" max-length="512"
+                                            :placeholder="`${$t('words.maxChars')}: 512`" max-length="512"
                                             v-model="newWorkForm.description"
                                         ></textarea>
-                                        <em class="text-sm text-gray-500">Max characters: 512</em>
+                                        <em class="text-sm text-gray-500">{{ $t('words.maxChars') }}: 512</em>
                                         <InputError class="mt-1" :message="newWorkForm.errors.description" />
                                     </div>
                                     <div>
                                         <label for="hasUnity" class="flex w-fit">
                                             <Checkbox id="hasUnity" class="mr-2" v-model:checked="newWorkForm.has_unity" />
                                             <Label for="hasUnity" value="" :optional="true">
-                                                <span>Work has unity type</span>
-                                                <em class="ml-1 text-gray-500">(for price measurement)</em>
+                                                <span>{{ $t('questions.work.hasUnity') }}</span>
+                                                <em class="ml-1 text-gray-500">({{ $t('messages.priceMeasurement') }})</em>
                                             </Label>
                                         </label>
                                     </div>
@@ -186,7 +186,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                         <InputError class="mt-1" :message="newWorkForm.errors.price" />
                                     </div>
                                     <div class="flex align-items-end">
-                                        <Button class="ml-auto" :disabled="isProcessingForms">Register</Button>
+                                        <Button class="ml-auto" :disabled="isProcessingForms">{{ $t('words.register') }}</Button>
                                     </div>
                                 </div>
                             </form>
@@ -196,20 +196,20 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                     <!-- Works Remove Form Messages -->
                     <InputError :message="deleteForm.errors.certification" class="my-2" />
                     <div v-if="deleteStatus" class="my-2 font-medium text-sm text-green-600">
-                        Work removed successfully
+                        {{ $t('messages.work.delete.success') }}
                     </div>
 
                     <!-- Works List && Remove Form -->
                     <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
                         <div class="min-w-xl">
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
-                                <span class="col-span-2 font-bold" title="{{ $t('words.name') }}">{{ $t('words.name') }}</span>
-                                <span class="col-span-2 font-bold" title="{{ $t('words.slug') }}">{{ $t('words.slug') }}</span>
-                                <span class="col-span-3 font-bold" title="{{ $t('words.specialties') }}">{{ $t('words.specialties') }}</span>
-                                <span class="col-span-1 font-bold" title="{{ $t('words.unity') }}">{{ $t('words.unity') }}</span>
-                                <span class="col-span-1 font-bold" title="{{ $t('words.time') }}">{{ $t('words.time') }}</span>
-                                <span class="col-span-2 font-bold" title="{{ $t('words.price') }}">{{ $t('words.price') }}</span>
-                                <span class="col-span-1 font-bold" title="{{ $t('words.action') }}">{{ $t('words.action') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.name')">{{ $t('words.name') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.slug')">{{ $t('words.slug') }}</span>
+                                <span class="col-span-3 font-bold" :title="$t('words.specialties')">{{ $t('words.specialties') }}</span>
+                                <span class="col-span-1 font-bold" :title="$t('words.unity')">{{ $t('words.unity') }}</span>
+                                <span class="col-span-1 font-bold" :title="$t('words.time')">{{ $t('words.time') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.price')">{{ $t('words.price') }}</span>
+                                <span class="col-span-1 font-bold" :title="$t('words.action')">{{ $t('words.action') }}</span>
                             </div>
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
                                 v-for="(work) in works"

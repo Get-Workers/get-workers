@@ -86,9 +86,9 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
     <!-- User Settings -->
     <div>
         <Link v-if="!isRoute.profile.show" :href="route(routes.profile.show)">
-            <Item class="font-semibold hover:bg-blue-200">User Settings</Item>
+            <Item class="font-semibold hover:bg-blue-200">{{ $t('words.userSettings') }}</Item>
         </Link>
-        <Item v-else class="bg-gray-300 text-gray-700 font-semibold" >User Settings</Item>
+        <Item v-else class="bg-gray-300 text-gray-700 font-semibold" >{{ $t('words.userSettings') }}</Item>
     </div>
 
     <!-- Worker Settings -->
