@@ -1,11 +1,11 @@
 <script setup>
-import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
-import SidebarMenu from '../../Partials/SidebarMenu.vue';
-import Button from '../../../../../Components/Button.vue';
-import InputError from '../../../../../Components/InputError.vue';
-import Label from '../../../../../Components/Label.vue';
-import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
+import { useForm } from '@inertiajs/inertia-vue3';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
+import Button from '@/Components/Button.vue';
+import InputError from '@/Components/InputError.vue';
+import Label from '@/Components/Label.vue';
+import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
 defineProps({
     specialties: {

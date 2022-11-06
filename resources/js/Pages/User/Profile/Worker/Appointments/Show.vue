@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Calendar } from 'v-calendar';
-import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
 const props = defineProps({ hiredWorks: Array });

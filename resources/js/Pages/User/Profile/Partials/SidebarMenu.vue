@@ -3,10 +3,10 @@ import { ref } from 'vue';
 import { computed } from '@vue/reactivity';
 import { usePage } from '@inertiajs/inertia-vue3';
 import { ChevronRight, ChevronDown, SubdirectoryArrowRight } from 'mdue';
-import Sidebar from '../../../../Components/Menus/Sidebar.vue';
-import Link from '../../../../Components/Links/Link.vue';
-import Item from '../../../../Components/Menus/Items/Item.vue';
-import SubItem from '../../../../Components/Menus/Items/SubItem.vue';
+import Sidebar from '@/Components/Menus/Sidebar.vue';
+import Link from '@/Components/Links/Link.vue';
+import Item from '@/Components/Menus/Items/Item.vue';
+import SubItem from '@/Components/Menus/Items/SubItem.vue';
 
 const pageProps = computed(() => usePage().props.value);
 const isWorker = computed(() => (pageProps.value.worker !== null));

@@ -2,8 +2,8 @@
 import { ref, onBeforeMount } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { Loading } from 'mdue';
-import Button from '../../../../Components/Button.vue';
-import AuthLayout from '../../../../Layouts/AuthLayout.vue';
+import Button from '@/Components/Button.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
 
 const props = defineProps({hiredWork: {type: Object}});
 

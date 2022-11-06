@@ -1,11 +1,11 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
-import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
-import SidebarMenu from '../../Partials/SidebarMenu.vue';
-import Link from '../../../../../Components/Links/Link.vue';
-import BadgeGroup from '../../../../../Components/Badges/BadgeGroup.vue';
-import Button from '../../../../../Components/Button.vue';
-import InputError from '../../../../../Components/InputError.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
+import SidebarMenu from '@/Partials/SidebarMenu.vue';
+import Link from '@/Components/Links/Link.vue';
+import BadgeGroup from '@/Components/Badges/BadgeGroup.vue';
+import Button from '@/Components/Button.vue';
+import InputError from '@/Components/InputError.vue';
 
 defineProps({
     hiredWorks: {
