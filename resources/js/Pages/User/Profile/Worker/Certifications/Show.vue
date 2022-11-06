@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import SidebarMenu from '@/Partials/SidebarMenu.vue';
+import SidebarMenu from '../../Partials/SidebarMenu.vue';
 import Button from '@/Components/Button.vue';
 import InputError from '@/Components/InputError.vue';
 import Input from '@/Components/Input.vue';

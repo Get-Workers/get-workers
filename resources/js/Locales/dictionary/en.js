@@ -44,6 +44,7 @@ const en = {
         unities: 'Unities',
 
         // Auth
+        manageAccount: 'Manage account',
         profile: 'Profile',
         register: 'Register',
         login: 'Login',

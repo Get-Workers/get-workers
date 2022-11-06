@@ -44,6 +44,7 @@
         unities: 'Unidades',
 
         // Auth
+        manageAccount: 'Gerenciar conta',
         profile: 'Perfil',
         register: 'Registrar',
         login: 'Entrar',
