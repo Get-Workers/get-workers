@@ -14,14 +14,6 @@ const props = defineProps({
         type: Array,
         default: () => ['py-1', 'bg-white'],
     },
-    position: {
-        type: String,
-        default: 'relative',
-    },
-    dropdownPosition: {
-        type: String,
-        default: 'fixed',
-    },
 });
 
 let open = ref(false);
@@ -38,7 +30,6 @@ onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
 const widthClass = computed(() => {
     return {
         '48': 'w-48',
-        'screen': 'w-screen',
     }[props.width.toString()];
 });
 
@@ -56,13 +47,13 @@ const alignmentClasses = computed(() => {
 </script>
 
 <template>
-    <div :class="position">
+    <div class="relative">
         <div @click="open = ! open">
             <slot name="trigger" />
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
-        <div v-show="open" class="inset-0 z-40" :class="dropdownPosition" @click="open = false" />
+        <div v-show="open" class="fixed inset-0 z-40" @click="open = false" />
 
         <transition
             enter-active-class="transition ease-out duration-200"

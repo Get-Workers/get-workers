@@ -2,9 +2,9 @@
 import { ref, onBeforeMount, onUpdated } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { Loading } from 'mdue';
-import AuthLayout from '../../../../../Layouts/AuthLayout.vue';
-import Button from '../../../../../Components/Button.vue';
-import InputError from '../../../../../Components/InputError.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
+import Button from '@/Components/Button.vue';
+import InputError from '@/Components/InputError.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
 const props = defineProps({hiredWork: {type: Object}});

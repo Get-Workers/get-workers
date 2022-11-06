@@ -9,12 +9,15 @@ const en = {
         // Work
         work: 'Work',
         works: 'Works',
+        newWork: 'New work',
         hiredWork: 'Hired work',
+        myWorks: 'My works',
 
         // Certifications
         certification: 'Certification',
         certifications: 'Certifications',
         myCertifications: 'My certifications',
+        newCertificate: 'New certificate',
 
         // Specialties
         specialty: 'Specialty',
@@ -31,19 +34,22 @@ const en = {
 
         // Labels
         name: 'Name',
+        description: 'Description',
         slug: 'Slug',
         time: 'Time',
         price: 'Price',
         action: 'Action',
         delete: 'Delete',
+        remove: 'Remove',
         cancel: 'Cancel',
-
+        add: 'Add',
 
         // Unities
         unity: 'Unity',
         unities: 'Unities',
 
         // Auth
+        manageAccount: 'Manage account',
         profile: 'Profile',
         register: 'Register',
         login: 'Login',
@@ -54,12 +60,39 @@ const en = {
         fullName: 'Full name',
         confirmPassword: 'Confirm password',
         resetPassword: 'Reset password',
+        new: 'New',
+        close: 'Close',
+        maxChars: 'Max characters',
+        certifiedCredential: 'Certified credential',
+        certifiedLink: 'Certified link',
+        certificationName: 'Certification name',
+        certificationIdentificator: 'Certification name',
+        userSettings: 'User settings',
     },
     phrases: {},
     messages: {
+        priceMeasurement: 'for price measurement',
+        work: {
+            delete: {
+                success: 'Work removed successfully',
+            },
+        },
+        certification: {
+            delete: {
+                success: 'Certification removed successfully',
+            },
+        },
+        specialty: {
+            store: {
+                success: 'Specialty added successfully',
+            },
+            delete: {
+                success: 'Specialty removed successfully',
+            },
+        },
         hiredWork: {
             delete: {
-                success: 'Hired work removed successfully'
+                success: 'Hired work removed successfully',
             },
         },
         rememberMe: 'Remember me',
@@ -73,6 +106,9 @@ const en = {
         password: {
             forgot: 'Forgot your password?',
             reset: 'Email password reset link',
+        },
+        work: {
+            hasUnity: 'Work has unity type?',
         },
     },
 };
