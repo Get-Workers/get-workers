@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\UserRegisterController;
+use App\Http\Controllers\Auth\{RegisterController, UserRegisterController};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {

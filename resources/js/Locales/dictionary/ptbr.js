@@ -53,6 +53,7 @@
         password: 'Senha',
         fullName: 'Nome completo',
         confirmPassword: 'Confirmar senha',
+        resetPassword: 'Alterar senha',
     },
     phrases: {},
     messages: {
@@ -62,6 +63,7 @@
             },
         },
         rememberMe: 'Lembrar de mim',
+        forgotPassword: 'Esqueceu sua senha? Sem problemas. Somente nos informe seu endereço de e-mail e nós enviaremos um e-mail para você com um link que possibilitará a troca da sua senha.',
     },
     questions: {
         account: {
@@ -70,6 +72,7 @@
         },
         password: {
             forgot: 'Esqueceu sua senha?',
+            reset: 'E-mail com link para troca de senha',
         },
     },
 };
