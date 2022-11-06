@@ -6,8 +6,8 @@ import { Link } from '@inertiajs/inertia-vue3';
     <div class="w-fit">
         <Link :href="route('landingpage')">
             <div class="flex items-center">
-                <object data="/logo.svg" class="w-14 h-14"/>
-                <h1 class="font-bold text-3xl">
+                <object data="/logo.svg" class="w-14 h-14" ></object>
+                <h1 class="font-bold text-3xl sm:block hidden">
                     GetWorkers
                 </h1>
             </div>

@@ -1,13 +1,13 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '../../Components/AuthenticationCard.vue';
-import Button from '../../Components/Button.vue';
-import Input from '../../Components/Input.vue';
-import InputError from '../../Components/InputError.vue';
-import Checkbox from '../../Components/Checkbox.vue';
-import Label from '../../Components/Label.vue';
-import GuestLayout from '../../Layouts/GuestLayout.vue';
-import Link from '../../Components/Links/Link.vue';
+import AuthenticationCard from '@/Components/AuthenticationCard.vue';
+import Button from '@/Components/Button.vue';
+import Input from '@/Components/Input.vue';
+import InputError from '@/Components/InputError.vue';
+import Checkbox from '@/Components/Checkbox.vue';
+import Label from '@/Components/Label.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import Link from '@/Components/Links/Link.vue';
 
 const form = useForm({
     name: '',
@@ -41,14 +41,13 @@ const submit = () => {
                     <form @submit.prevent="submit">
                         <div class="space-y-3">
                             <div>
-                                <Label for="name" :value="$t('words.name')" />
+                                <Label for="name" :value="$t('words.name')" required/>
                                 <Input
                                     id="name"
                                     v-model="form.name"
                                     type="text"
                                     class="mt-1 block w-full"
                                     required
-                                    autofocus
                                     autocomplete="name"
                                     :placeholder="$t('words.fullName')"
                                 />
@@ -56,14 +55,13 @@ const submit = () => {
                             </div>
 
                             <div>
-                                <Label for="email" :value="$t('words.email')" />
+                                <Label for="email" :value="$t('words.email')" required/>
                                 <Input
                                     id="email"
                                     v-model="form.email"
                                     type="email"
                                     class="mt-1 block w-full"
                                     required
-                                    autofocus
                                     autocomplete="email"
                                     :placeholder="$t('words.email')"
                                 />
@@ -71,14 +69,13 @@ const submit = () => {
                             </div>
 
                             <div>
-                                <Label for="password" :value="$t('words.password')" />
+                                <Label for="password" :value="$t('words.password')" required/>
                                 <Input
                                     id="password"
                                     v-model="form.password"
                                     type="password"
                                     class="mt-1 block w-full"
                                     required
-                                    autofocus
                                     autocomplete="password"
                                     :placeholder="$t('words.password')"
                                 />
@@ -86,14 +83,13 @@ const submit = () => {
                             </div>
 
                             <div>
-                                <Label for="password_confirmation" :value="$t('words.confirmPassword')" />
+                                <Label for="password_confirmation" :value="$t('words.confirmPassword')" required/>
                                 <Input
                                     id="password_confirmation"
                                     v-model="form.password_confirmation"
                                     type="password"
                                     class="mt-1 block w-full"
                                     required
-                                    autofocus
                                     autocomplete="password"
                                     :placeholder="$t('words.confirmPassword')"
                                 />

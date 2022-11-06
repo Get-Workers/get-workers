@@ -1,7 +1,7 @@
 <script setup>
-import AuthLayout from '../../../../Layouts/AuthLayout.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
-import SectionBorder from '../../../../../../vendor/laravel/jetstream/stubs/inertia/resources/js/Components/SectionBorder.vue';
+import SectionBorder from '@/Components/SectionBorder.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import TwoFactorAuthenticationForm from './Partials/TwoFactorAuthenticationForm.vue';
 import LogoutOtherBrowserSessionsForm from './Partials/LogoutOtherBrowserSessionsForm.vue';

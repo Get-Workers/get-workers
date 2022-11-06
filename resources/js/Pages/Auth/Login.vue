@@ -1,13 +1,13 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
-import AuthenticationCard from '../../Components/AuthenticationCard.vue';
-import Button from '../../Components/Button.vue';
-import Input from '../../Components/Input.vue';
-import InputError from '../../Components/InputError.vue';
-import Checkbox from '../../Components/Checkbox.vue';
-import Label from '../../Components/Label.vue';
-import Link from '../../Components/Links/Link.vue';
-import GuestLayout from '../../Layouts/GuestLayout.vue';
+import AuthenticationCard from '@/Components/AuthenticationCard.vue';
+import Button from '@/Components/Button.vue';
+import Input from '@/Components/Input.vue';
+import InputError from '@/Components/InputError.vue';
+import Checkbox from '@/Components/Checkbox.vue';
+import Label from '@/Components/Label.vue';
+import Link from '@/Components/Links/Link.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 defineProps({ status: String });
 

@@ -4,13 +4,13 @@ import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
 import { DatePicker } from 'v-calendar';
 import { ImageOff } from 'mdue';
-import AuthLayout from '../../../Layouts/AuthLayout.vue';
-import BadgeGroup from '../../../Components/Badges/BadgeGroup.vue';
-import Button from '../../../Components/Button.vue';
-import InputError from '../../../Components/InputError.vue';
-import Modal from '../../../Components/Modals/Modal.vue';
-import Checkbox from '../../../Components/Checkbox.vue';
-import Label from '../../../Components/Label.vue';
+import AuthLayout from '@/Layouts/AuthLayout.vue';
+import BadgeGroup from '@/Components/Badges/BadgeGroup.vue';
+import Button from '@/Components/Button.vue';
+import InputError from '@/Components/InputError.vue';
+import Modal from '@/Components/Modals/Modal.vue';
+import Checkbox from '@/Components/Checkbox.vue';
+import Label from '@/Components/Label.vue';
 
 const props = defineProps({
     work: {
