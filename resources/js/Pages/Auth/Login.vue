@@ -9,10 +9,7 @@ import Label from '../../Components/Label.vue';
 import Link from '../../Components/Links/Link.vue';
 import GuestLayout from '../../Layouts/GuestLayout.vue';
 
-defineProps({
-    canResetPassword: Boolean,
-    status: String,
-});
+defineProps({ status: String });
 
 const form = useForm({
     email: '',
@@ -87,7 +84,7 @@ const submit = () => {
                                 <span class="ml-2 text-sm text-gray-600">{{ $t('messages.rememberMe') }}</span>
                             </label>
 
-                            <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                            <Link :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                                 {{ $t('questions.password.forgot') }}
                             </Link>
                         </div>

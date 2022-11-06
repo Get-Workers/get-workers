@@ -53,15 +53,17 @@ const en = {
         password: 'Password',
         fullName: 'Full name',
         confirmPassword: 'Confirm password',
+        resetPassword: 'Reset password',
     },
     phrases: {},
     messages: {
         hiredWork: {
-            hired: {
+            delete: {
                 success: 'Hired work removed successfully'
             },
         },
         rememberMe: 'Remember me',
+        forgotPassword: 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
     },
     questions: {
         account: {
@@ -70,6 +72,7 @@ const en = {
         },
         password: {
             forgot: 'Forgot your password?',
+            reset: 'Email password reset link',
         },
     },
 };

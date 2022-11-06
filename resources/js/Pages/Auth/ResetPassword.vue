@@ -35,7 +35,7 @@ const submit = () => {
                 <form @submit.prevent="submit">
                     <div class="space-y-2">
                         <div>
-                            <Label for="email" value="Email" />
+                            <Label for="email" :value="$t('words.email')" />
                             <Input
                                 id="email"
                                 v-model="form.email"
@@ -43,13 +43,13 @@ const submit = () => {
                                 class="mt-1 block w-full"
                                 required
                                 autofocus
-                                placeholder="Email"
+                                :placeholder="$t('words.email')"
                             />
                             <InputError class="mt-2" :message="form.errors.email" />
                         </div>
 
                         <div>
-                            <Label for="password" value="Password" />
+                            <Label for="password" :value="$t('words.password')" />
                             <Input
                                 id="password"
                                 v-model="form.password"
@@ -57,13 +57,13 @@ const submit = () => {
                                 class="mt-1 block w-full"
                                 required
                                 autocomplete="new-password"
-                                placeholder="Password"
+                                :placeholder="$t('words.password')"
                             />
                             <InputError class="mt-2" :message="form.errors.password" />
                         </div>
 
                         <div>
-                            <Label for="password_confirmation" value="Confirm Password" />
+                            <Label for="password_confirmation" :value="$t('words.confirmPassword')" />
                             <Input
                                 id="password_confirmation"
                                 v-model="form.password_confirmation"
@@ -71,7 +71,7 @@ const submit = () => {
                                 class="mt-1 block w-full"
                                 required
                                 autocomplete="new-password"
-                                placeholder="Confirm password"
+                                :placeholder="$t('words.confirmPassword')"
                             />
                             <InputError class="mt-2" :message="form.errors.password_confirmation" />
                         </div>
@@ -79,7 +79,7 @@ const submit = () => {
 
                     <div class="flex items-center justify-end mt-8">
                         <Button class="mx-auto w-full text-center" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                            Reset Password
+                            {{ $t('words.resetPassword') }}
                         </Button>
                     </div>
                 </form>
