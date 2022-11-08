@@ -1,5 +1,12 @@
 const en = {
     words: {
+
+        save: 'Save',
+        saved: 'Saved.',
+        enable: 'Enable',
+        confirm: 'Confirm',
+        done: 'Done.',
+
         // Contractor
         contractor: 'Contractor',
 
@@ -68,8 +75,54 @@ const en = {
         certificationName: 'Certification name',
         certificationIdentificator: 'Certification name',
         userSettings: 'User settings',
+
+        //Profile Information
+        profileInformation: 'Informação do Perfil',
+
+        //Update Password
+        updatePassword:'Update Password',
+        currentPassword: 'Current Password',
+        newPassword: 'New Password',
+
+        //Two Factor Authentication
+        twoFactorAuthentication: 'Two Factor Authentication',
+        setupKey: 'Setup Key',
+        code: 'Code',
+        
+        //Browser Sessions
+        browserSessions: 'Browser Sessions',
+        thisDevice: 'This device',
+
     },
-    phrases: {},
+    phrases: {
+
+        //Profile Information
+        updateInformation: 'Update your accounts profile information and email address.',
+        unverifiedEmail: 'Your email address is unverified.',
+        clickHereEmail: 'Click here to re-send the verification email.',
+        newVerificationLink: 'A new verification link has been sent to your email address.',
+
+        //Update Password
+        ensureYourAccount: 'Ensure your account is using a long, random password to stay secure.',
+
+        //Two Factor Authentication
+        addAdditionalSecurity: 'Add additional security to your account using two factor authentication.',
+        factorAuthentication: 'You have not enabled two factor authentication.',
+        finishEnablingAuthentication: 'Finish enabling two factor authentication.',
+        whenTwoFactorAuthentication: 'When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phones Google Authenticator application.',
+        toFinishEnabling: 'To finish enabling two factor authentication, scan the following QR code using your phones authenticator application or enter the setup key and provide the generated OTP code.',
+        twoFactorAuthenticationIsNowEnabled: 'Two factor authentication is now enabled. Scan the following QR code using your phones authenticator application or enter the setup key.',
+        storeTheseRecoveryCodes: 'Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.',
+        regenerateRecoveryCodes: 'Regenerate Recovery Codes',
+        showRecoveryCodes: 'Show Recovery Codes',
+
+        //Browser Sessions
+        manageSessions: 'Manage and log out your active sessions on other browsers and devices.',
+        ifNecessary: 'If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.',
+        lastActive: 'Last active',
+        logOutOtherBrowserSessions: 'Log Out Other Browser Sessions',
+        pleaseEnteryourPassword: 'Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.',
+    },
     messages: {
         priceMeasurement: 'for price measurement',
         work: {
