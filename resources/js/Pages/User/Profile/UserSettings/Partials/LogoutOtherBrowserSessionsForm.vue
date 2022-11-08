@@ -45,16 +45,16 @@ const closeModal = () => {
 <template>
     <JetActionSection>
         <template #title>
-            Browser Sessions
+            {{$t('words.browserSessions')}}
         </template>
 
         <template #description>
-            Manage and log out your active sessions on other browsers and devices.
+            {{$t('phrases.manageSessions')}}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.
+                {{$t('phrases.ifNecessary')}}
             </div>
 
             <!-- Other Browser Sessions -->
@@ -104,8 +104,8 @@ const closeModal = () => {
                             <div class="text-xs text-gray-500">
                                 {{ session.ip_address }},
 
-                                <span v-if="session.is_current_device" class="text-green-500 font-semibold">This device</span>
-                                <span v-else>Last active {{ session.last_active }}</span>
+                                <span v-if="session.is_current_device" class="text-green-500 font-semibold">{{$t('words.thisDevice')}}</span>
+                                <span v-else>{{$t('phrases.lastActive')}} {{ session.last_active }}</span>
                             </div>
                         </div>
                     </div>
@@ -114,22 +114,22 @@ const closeModal = () => {
 
             <div class="flex items-center mt-5">
                 <JetButton @click="confirmLogout">
-                    Log Out Other Browser Sessions
+                    {{$t('phrases.logOutOtherBrowserSessions')}}
                 </JetButton>
 
                 <JetActionMessage :on="form.recentlySuccessful" class="ml-3">
-                    Done.
+                    {{$t('words.done')}}
                 </JetActionMessage>
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
             <JetDialogModal :show="confirmingLogout" @close="closeModal">
                 <template #title>
-                    Log Out Other Browser Sessions
+                    {{$t('phrases.logOutOtherBrowserSessions')}}
                 </template>
 
                 <template #content>
-                    Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
+                    {{$t('phrases.pleaseEnteryourPassword')}}
 
                     <div class="mt-4">
                         <JetInput
@@ -137,7 +137,7 @@ const closeModal = () => {
                             v-model="form.password"
                             type="password"
                             class="mt-1 block w-3/4"
-                            placeholder="Password"
+                            :placeholder="$t('words.password')"
                             @keyup.enter="logoutOtherBrowserSessions"
                         />
 
@@ -147,7 +147,7 @@ const closeModal = () => {
 
                 <template #footer>
                     <JetSecondaryButton @click="closeModal">
-                        Cancel
+                        {{$t('words.cancel')}}
                     </JetSecondaryButton>
 
                     <JetButton
@@ -156,7 +156,7 @@ const closeModal = () => {
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"
                     >
-                        Log Out Other Browser Sessions
+                        {{$t('phrases.logOutOtherBrowserSessions')}}
                     </JetButton>
                 </template>
             </JetDialogModal>
