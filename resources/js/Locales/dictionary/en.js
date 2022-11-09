@@ -88,7 +88,7 @@ const en = {
         twoFactorAuthentication: 'Two Factor Authentication',
         setupKey: 'Setup Key',
         code: 'Code',
-        
+
         //Browser Sessions
         browserSessions: 'Browser Sessions',
         thisDevice: 'This device',
@@ -122,6 +122,10 @@ const en = {
         lastActive: 'Last active',
         logOutOtherBrowserSessions: 'Log Out Other Browser Sessions',
         pleaseEnteryourPassword: 'Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.',
+    },
+    phrases: {
+        moreDetails: 'More details',
+        noDescription: 'No description',
     },
     messages: {
         priceMeasurement: 'for price measurement',

@@ -124,6 +124,10 @@
         logOutOtherBrowserSessions: 'Sair de outras sessões do navegador',
         pleaseEnteryourPassword: 'Digite sua senha para confirmar que deseja sair de suas outras sessões do navegador em todos os seus dispositivos.',
     },
+    phrases: {
+        moreDetails: 'Mais detalhes',
+        noDescription: 'Sem descrição',
+    },
     messages: {
         priceMeasurement: 'para referência de preço',
         work: {
