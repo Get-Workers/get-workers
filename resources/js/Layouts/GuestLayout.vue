@@ -1,7 +1,7 @@
 <script setup>
-import Main from '../Components/Mains/Main.vue';
+import Main from '@/Components/Mains/Main.vue';
 import BaseLayout from './BaseLayout.vue';
-import GuestHeader from '../Components/Headers/GuestHeader.vue';
+import GuestHeader from '@/Components/Headers/GuestHeader.vue';
 
 defineProps({
     title: String,

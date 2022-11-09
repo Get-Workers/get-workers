@@ -19,7 +19,15 @@ class ListWorksController extends Controller
     {
         $page = $request->get('page', 1);
         $filters = $request->all(['search']);
-        $works = WorkCacheService::listPaginate(actualPage: $page, filters: $filters);
+        $works = WorkCacheService::listPaginate(
+            actualPage: $page,
+            filters: $filters,
+            with: [
+                'specialties',
+                'unity',
+                'worker',
+            ]
+        );
         return inertia('User/Works/List', compact('works'));
     }
 }

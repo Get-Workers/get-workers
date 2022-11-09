@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User\Worker;
 
+use App\Models\Work;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -27,7 +28,7 @@ class DestroyMyWorkRequest extends FormRequest
         return [
             'work' => [
                 'string',
-                Rule::exists('works', 'uuid')
+                Rule::exists(Work::class, 'uuid')
                     ->where('worker_id', auth()->user()->worker->id)
             ]
         ];
