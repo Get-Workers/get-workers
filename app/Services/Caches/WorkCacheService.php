@@ -37,26 +37,25 @@ class WorkCacheService
      * @param  boolean  $clear
      * @return LengthAwarePaginator
      */
-    public static function listPaginate(int $perPage = 20, int $actualPage = 1, array $filters = [], bool $clear = false): ?LengthAwarePaginator
+    public static function listPaginate(int $perPage = 20, int $actualPage = 1, array $filters = [], array|string $with = '', bool $clear = false): ?LengthAwarePaginator
     {
         $filtersJson = json_encode($filters);
-        $key = "works:paginate:perPage({$perPage}):page({$actualPage}):withFilters({$filtersJson})";
+        $withJson = json_encode($with);
+        $key = "works:paginate:perPage({$perPage}):page({$actualPage}):withFilters({$filtersJson}):with({$withJson})";
 
         if ($clear) {
             Cache::tags(['works:paginate'])->flush();
             return null;
         }
 
-        return Cache::tags(['works:paginate', 'paginate'])->rememberForever($key, function () use (&$perPage, &$actualPage, &$filters) {
-            return Work::query()
-                ->with([
-                    'specialties',
-                    'unity',
-                    'worker',
-                    'specialties',
-                ])
-                ->filter($filters)
-                ->paginate(perPage: $perPage, page: $actualPage);
+        return Cache::tags(['works:paginate', 'paginate'])->rememberForever($key, function () use (&$perPage, &$actualPage, &$filters, &$with) {
+            $query = Work::query();
+
+            if (! empty($with)) {
+                $query->with($with);
+            }
+
+            return $query->filter($filters)->paginate(perPage: $perPage, page: $actualPage);
         });
     }
 }
