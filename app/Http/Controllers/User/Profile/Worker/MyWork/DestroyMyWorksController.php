@@ -20,7 +20,7 @@ class DestroyMyWorksController extends Controller
         $workDeleted = auth()->user()->worker
             ->works()
             ->where('uuid', $request->validated('work'))
-            ->firstOrFail()
+            ->first()
             ->delete();
 
             WorkCacheService::listPaginate(clear: true);
