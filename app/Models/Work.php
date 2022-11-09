@@ -114,13 +114,35 @@ class Work extends Model
      */
     public function scopeFilter(Builder $query, array $filters = []): Builder
     {
-        if (array_key_exists('search', $filters)) {
+
+        if (in_array('search', $filters)) {
             $query->where(function (Builder $query) use (&$filters) {
-                $query->where('name', 'like', "%{$filters['search']}%")
-                    ->orWhere('slug', 'like', "%{$filters['search']}%")
-                    ->orWhere('uuid', $filters['search']);
+                $query->search($filters['search']);
             });
         }
+
+        if (in_array('moreHires', $filters)) {
+            $query->moreHires();
+        }
+
         return $query;
+    }
+
+    /**
+     * @param  Builder  $query
+     * @param  string  $search
+     * @return Builder
+     */
+    public function scopeSearch(Builder $query, string $search): Builder
+    {
+        return $query->where('name', 'like', "%{$search}%")
+            ->orWhere('slug', 'like', "%{$search}%")
+            ->orWhere('uuid', $search);
+    }
+
+    public function scopeMoreHires(Builder $query): Builder
+    {
+        return $query->withCount('hiredWorks')
+            ->orderByDesc('hired_works_count');
     }
 }
