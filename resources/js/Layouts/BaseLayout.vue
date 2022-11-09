@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="min-h-screen">
+    <div class="min-h-fit">
         <Head :title="title" />
 
         <!-- Header -->
@@ -19,5 +19,4 @@ defineProps({
         <!-- Footer -->
         <slot name="footer" />
     </div>
-
 </template>
