@@ -69,7 +69,10 @@
         certificationIdentificator: 'Identificador do certificado',
         userSettings: 'Configurações do usuário',
     },
-    phrases: {},
+    phrases: {
+        moreDetails: 'Mais detalhes',
+        noDescription: 'Sem descrição',
+    },
     messages: {
         priceMeasurement: 'para referência de preço',
         work: {

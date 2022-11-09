@@ -69,7 +69,10 @@ const en = {
         certificationIdentificator: 'Certification name',
         userSettings: 'User settings',
     },
-    phrases: {},
+    phrases: {
+        moreDetails: 'More details',
+        noDescription: 'No description',
+    },
     messages: {
         priceMeasurement: 'for price measurement',
         work: {
