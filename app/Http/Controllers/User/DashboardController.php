@@ -3,17 +3,25 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Services\Caches\WorkCacheService;
+use Illuminate\Http\Request;
 use Inertia\Response;
 
 class DashboardController extends Controller
 {
     /**
-     * Handle the incoming request.
-     *
-     * @return \Inertia\Response
+     * @param  Request  $request
+     * @return Response
      */
-    public function __invoke(): Response
+    public function __invoke(Request $request): Response
     {
-        return inertia('Dashboard');
+        $works = WorkCacheService::listPaginate(
+            perPage: 21,
+            actualPage: $request->input('page', 1),
+            filters: ['moreHires'],
+            with: ['unity', 'worker.user']
+        );
+
+        return inertia('Dashboard', compact('works'));
     }
 }
