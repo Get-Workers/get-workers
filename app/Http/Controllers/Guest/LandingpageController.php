@@ -9,6 +9,10 @@ use Inertia\Response;
 
 class LandingpageController extends Controller
 {
+    /**
+     * @param  Request  $request
+     * @return Response
+     */
     public function __invoke(Request $request): Response
     {
         $works = WorkCacheService::listPaginate(
