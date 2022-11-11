@@ -1,7 +1,5 @@
 <script setup>
-import { Information } from 'mdue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import Link from '@/Components/Links/Link.vue';
 import WorkCard from '../Components/Cards/WorkCard.vue';
 
 defineProps({ works: Object });
