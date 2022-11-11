@@ -27,6 +27,7 @@ use App\Http\Controllers\User\Contractor\HiredWork\{
     ShowHiredWorksController,
     StoreHiredWorksController
 };
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\Profile\Worker\Appointments\ShowAppointmentsController;
 use App\Http\Controllers\User\Profile\Worker\MyWork\{
     DestroyMyWorksController,
@@ -40,6 +41,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
     Route::prefix('/user')->name('user')->group(function () {
         Route::prefix('/profile')->name('.profile')->group(function () {
             Route::prefix('/worker')->name('.worker')->middleware('worker-profile')->group(function () {
