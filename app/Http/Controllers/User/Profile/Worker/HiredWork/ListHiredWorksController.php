@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User\Profile\Worker\HiredWork;
 
 use App\Http\Controllers\Controller;
-use App\Models\HiredWork;
 use App\Services\Caches\HiredWorkCacheService;
 use Inertia\Response;
 

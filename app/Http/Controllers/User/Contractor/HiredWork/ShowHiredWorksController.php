@@ -17,7 +17,7 @@ class ShowHiredWorksController extends Controller
     public function __invoke(string $hiredWorkUuid): Response
     {
         $hiredWork = HiredWorkCacheService::findUuid($hiredWorkUuid, [
-            'work',
+            'work' => fn ($query) => $query->withTrashed(),
             'work.unity',
             'work.worker',
             'work.worker.user',
