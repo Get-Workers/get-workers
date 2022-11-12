@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\User\Profile\ShowCertificationController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,13 +14,3 @@ use Illuminate\Support\Facades\Route;
 require 'web/auth.php';
 require 'web/guest.php';
 require 'web/user.php';
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return inertia('Dashboard');
-    })->name('dashboard');
-});

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Guest;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Services\Caches\WorkCacheService;
 use Illuminate\Http\Request;
 use Inertia\Response;
 
-class LandingpageController extends Controller
+class DashboardController extends Controller
 {
     /**
      * @param  Request  $request
@@ -22,6 +22,6 @@ class LandingpageController extends Controller
             with: ['unity', 'worker.user']
         );
 
-        return inertia('Landingpage', compact('works'));
+        return inertia('Dashboard', compact('works'));
     }
 }
