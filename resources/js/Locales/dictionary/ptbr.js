@@ -96,6 +96,10 @@
 
     },
     phrases: {
+        mostHiredWorks: 'Serviços mais contratados',
+
+        moreDetails: 'Mais detalhes',
+        noDescription: 'Sem descrição',
 
         //Profile Information
         updateInformation: 'Atualize as informações de perfil e o endereço de e-mail da sua conta.',
@@ -123,10 +127,6 @@
         lastActive: 'Ativo pela última vez',
         logOutOtherBrowserSessions: 'Sair de outras sessões do navegador',
         pleaseEnteryourPassword: 'Digite sua senha para confirmar que deseja sair de suas outras sessões do navegador em todos os seus dispositivos.',
-    },
-    phrases: {
-        moreDetails: 'Mais detalhes',
-        noDescription: 'Sem descrição',
     },
     messages: {
         priceMeasurement: 'para referência de preço',
