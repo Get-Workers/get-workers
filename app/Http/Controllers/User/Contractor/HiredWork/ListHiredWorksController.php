@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User\Contractor\HiredWork;
 
 use App\Http\Controllers\Controller;
 use App\Services\Caches\HiredWorkCacheService;
-use Illuminate\Database\Eloquent\Builder;
 use Inertia\Response;
 
 class ListHiredWorksController extends Controller

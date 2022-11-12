@@ -53,7 +53,7 @@ function submitDelete() {
                     <!-- Work Infos -->
                     <div class="mt-5 p-5 space-y-3 border rounded w-full overflow-x-auto">
                         <div class="flex sm:flex-row flex-col">
-                            <div class="w-full">
+                            <div class="w-full sm:mr-5">
                                 <div>
                                     <span class="font-bold text-sm">Worker</span>
                                     <div class="mt-1">
@@ -63,7 +63,7 @@ function submitDelete() {
 
                                 <div v-if="hiredWork.work.description">
                                     <span class="font-bold text-sm">Description</span>
-                                    <div class="mt-1 border rounded p-3">
+                                    <div class="mt-1 border rounded p-3 max-w-full">
                                         <span>{{ hiredWork.work.description }}</span>
                                     </div>
                                 </div>

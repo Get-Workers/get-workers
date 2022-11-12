@@ -76,7 +76,7 @@ function submitDone() {
                     <!-- Work Infos -->
                     <div class="mt-5 p-5 space-y-3 border rounded w-full overflow-x-auto">
                         <div class="flex sm:flex-row flex-col">
-                            <div class="w-full">
+                            <div class="w-full sm:mr-5">
                                 <div>
                                     <span class="font-bold text-sm">Contractor</span>
                                     <div class="mt-1">
