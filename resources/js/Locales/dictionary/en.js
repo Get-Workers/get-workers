@@ -6,6 +6,7 @@ const en = {
         enable: 'Enable',
         confirm: 'Confirm',
         done: 'Done.',
+        optional: 'Optional',
 
         // Contractor
         contractor: 'Contractor',
@@ -19,6 +20,9 @@ const en = {
         newWork: 'New work',
         hiredWork: 'Hired work',
         myWorks: 'My works',
+        workSpecialties: 'Work specialties',
+        reference: 'Reference',
+        scheduleWork: 'Schedule the work',
 
         // Certifications
         certification: 'Certification',
@@ -34,6 +38,8 @@ const en = {
         // HiredWorks
         hiredWork: 'Hired work',
         hiredWorks: 'Hired works',
+        schedule: 'Schedule',
+        hire : 'Hire',
 
         // Appintments
         appointment: 'Appointment',
@@ -100,6 +106,12 @@ const en = {
         moreDetails: 'More details',
         noDescription: 'No description',
 
+        moreDetails: 'More details',
+        noDescription: 'No description',
+
+        //Works
+        scheduleWork: 'Need to schedule this work?',
+
         //Profile Information
         updateInformation: 'Update your accounts profile information and email address.',
         unverifiedEmail: 'Your email address is unverified.',
@@ -119,6 +131,7 @@ const en = {
         storeTheseRecoveryCodes: 'Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.',
         regenerateRecoveryCodes: 'Regenerate Recovery Codes',
         showRecoveryCodes: 'Show Recovery Codes',
+        confirmYourpassword: 'For your security, please confirm your password to continue.',
 
         //Browser Sessions
         manageSessions: 'Manage and log out your active sessions on other browsers and devices.',

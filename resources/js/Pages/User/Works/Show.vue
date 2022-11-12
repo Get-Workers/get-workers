@@ -97,21 +97,21 @@ function hireWork(scheduled = false) {
                         </div>
 
                         <div>
-                            <span class="font-bold text-sm">Worker</span>
+                            <span class="font-bold text-sm">{{$t('words.worker')}}</span>
                             <div class="mt-1">
                                 {{ work.worker.user.name }}
                             </div>
                         </div>
 
                         <div v-if="work.description">
-                            <span class="font-bold text-sm">Description</span>
+                            <span class="font-bold text-sm">{{$t('words.description')}}</span>
                             <div class="mt-1 border rounded p-3">
                                 <span>{{ work.description }}</span>
                             </div>
                         </div>
 
                         <div v-if="work.specialties.length">
-                            <span class="font-bold text-sm">Work specialties</span>
+                            <span class="font-bold text-sm">{{$t('words.workSpecialties')}}</span>
                             <div class="rounded border p-3 mt-1 h-32 max-w-lg overflow-y-auto">
                                 <BadgeGroup :badges="work.specialties"/>
                             </div>
@@ -120,9 +120,9 @@ function hireWork(scheduled = false) {
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
                             <div v-if="work.unity">
                                 <div class="flex items-center" title="Work unity reference">
-                                    <span class="font-bold text-sm">Unity</span>
+                                    <span class="font-bold text-sm">{{$t('words.unity')}}</span>
                                     <div>
-                                        <em class="ml-1 text-xs">(reference)</em>
+                                        <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
                                     </div>
                                 </div>
                                 <div class="mt-1">
@@ -132,9 +132,9 @@ function hireWork(scheduled = false) {
 
                             <div v-if="work.time">
                                 <div class="flex items-center" title="Work time reference">
-                                    <span class="font-bold text-sm">Time</span>
+                                    <span class="font-bold text-sm">{{$t('words.time')}}</span>
                                     <div>
-                                        <em class="ml-1 text-xs">(reference)</em>
+                                        <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
                                     </div>
                                 </div>
                                 <div class="mt-1">
@@ -144,9 +144,9 @@ function hireWork(scheduled = false) {
 
                             <div v-if="work.price">
                                 <div class="flex items-center" title="Work price reference">
-                                    <span class="font-bold text-sm">Price</span>
+                                    <span class="font-bold text-sm">{{$t('words.price')}}</span>
                                     <div>
-                                        <em class="ml-1 text-xs">(reference)</em>
+                                        <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
                                     </div>
                                 </div>
                                 <div class="mt-1">
@@ -159,22 +159,22 @@ function hireWork(scheduled = false) {
                             <label for="NeedScheduling" class="flex w-fit mb-2">
                                 <Checkbox id="NeedScheduling" class="mr-2" v-model:checked="contractWorkForm.needToSchedule" />
                                 <Label for="Schedule" :optional="true">
-                                    <span>Need to schedule this work?</span>
+                                    <span>{{$t('phrases.scheduleWork')}}</span>
                                 </Label>
                             </label>
 
                             <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="error"/>
-                            <Button class="w-full md:py-4 lg:py-5 " :disabled="contractWorkForm.processing" @click.prevent="hireWork(! contractWorkForm.needToSchedule)" v-html="contractWorkForm.needToSchedule ? 'Schedule': 'Hire'"></Button>
+                            <Button class="w-full md:py-4 lg:py-5 " :disabled="contractWorkForm.processing" @click.prevent="hireWork(! contractWorkForm.needToSchedule)" v-html="contractWorkForm.needToSchedule ? $t('words.schedule'): $t('words.hire')"></Button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <Modal title="Schedule the work" :isOpened="modalIsOpened" :onClose="closeModal" v-if="isContractor && !isOwnedByAuthWorker">
+            <Modal :title="$t('words.scheduleWork')" :isOpened="modalIsOpened" :onClose="closeModal" v-if="isContractor && !isOwnedByAuthWorker">
                 <div class="flex flex-col">
                     <DatePicker class="mx-auto mb-2" mode="dateTime" v-model="contractWorkForm.scheduled_to" :minute-increment="10" :min-date="new Date()" />
                     <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="error"/>
-                    <Button class="w-full md:py-4 lg:py-5 mt-2" :disabled="contractWorkForm.processing" @click.prevent="hireWork((contractWorkForm.scheduled_to !== null))">Hire</Button>
+                    <Button class="w-full md:py-4 lg:py-5 mt-2" :disabled="contractWorkForm.processing" @click.prevent="hireWork((contractWorkForm.scheduled_to !== null))">{{$t('words.hire')}}</Button>
                 </div>
             </Modal>
         </template>
