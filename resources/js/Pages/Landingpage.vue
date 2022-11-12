@@ -10,7 +10,7 @@ defineProps({ works: Object });
         <template #main>
             <div class="min-h-full">
                 <div class="mx-auto w-fit">
-                    <h1 class="font-bold text-lg">{{ $t('words.works') }}</h1>
+                    <h1 class="font-bold text-lg">{{ $t('phrases.mostHiredWorks') }}</h1>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 lg:gap-7 w-fit mx-auto mt-5">
