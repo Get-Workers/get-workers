@@ -24,6 +24,7 @@
         workSpecialties: 'Especialidades do trabalho',
         reference: 'Referência',
         scheduleWork: 'Agendar o serviço',
+        select: 'Selecione...',
 
         // Certifications
         certification: 'Certificado',

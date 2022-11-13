@@ -24,6 +24,7 @@ const en = {
         workSpecialties: 'Work specialties',
         reference: 'Reference',
         scheduleWork: 'Schedule the work',
+        select: 'Select...',
 
         // Certifications
         certification: 'Certification',
