@@ -5,8 +5,9 @@
         saved: 'Salvou.',
         enable: 'Habilitar',
         confirm: 'Confirmar',
-        done: 'Feito.',
+        done: 'Realizado.',
         optional: 'Opcional',
+        status: 'Situação',
 
         // Contractor
         contractor: 'Contratante',
@@ -40,6 +41,8 @@
         hiredWorks: 'Serviços contratados',
         schedule: 'Agendar',
         hire: 'Contratar',
+        estimatedTime: 'Tempo estimado',
+        initiate: 'Iniciar',
 
 
         // Appintments
@@ -114,6 +117,12 @@
 
         //Works
         scheduleWork: 'Precisa agendar este trabalho?',
+
+         // HiredWorks
+         notInitiated: 'Não iniciado',
+         initiated: 'Iniciado em:',
+         done: 'Realizado em:',
+         progress: 'Em andamento',
 
         //Profile Information
         updateInformation: 'Atualize as informações de perfil e o endereço de e-mail da sua conta.',

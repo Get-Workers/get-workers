@@ -7,6 +7,7 @@ const en = {
         confirm: 'Confirm',
         done: 'Done.',
         optional: 'Optional',
+        status: 'Status',
 
         // Contractor
         contractor: 'Contractor',
@@ -40,6 +41,8 @@ const en = {
         hiredWorks: 'Hired works',
         schedule: 'Schedule',
         hire : 'Hire',
+        estimatedTime: 'Estimated time',
+        initiate: 'Initiate',
 
         // Appintments
         appointment: 'Appointment',
@@ -111,6 +114,12 @@ const en = {
 
         //Works
         scheduleWork: 'Need to schedule this work?',
+
+         // HiredWorks
+         notInitiated: 'Not initiated',
+         initiated: 'Initiated at:',
+         done: 'Done at:', 
+         progress: 'In progress',
 
         //Profile Information
         updateInformation: 'Update your accounts profile information and email address.',
