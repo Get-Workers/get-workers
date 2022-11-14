@@ -6,6 +6,8 @@ const en = {
         enable: 'Enable',
         confirm: 'Confirm',
         done: 'Done.',
+        optional: 'Optional',
+        status: 'Status',
 
         // Contractor
         contractor: 'Contractor',
@@ -19,6 +21,10 @@ const en = {
         newWork: 'New work',
         hiredWork: 'Hired work',
         myWorks: 'My works',
+        workSpecialties: 'Work specialties',
+        reference: 'Reference',
+        scheduleWork: 'Schedule the work',
+        select: 'Select...',
 
         // Certifications
         certification: 'Certification',
@@ -34,6 +40,10 @@ const en = {
         // HiredWorks
         hiredWork: 'Hired work',
         hiredWorks: 'Hired works',
+        schedule: 'Schedule',
+        hire : 'Hire',
+        estimatedTime: 'Estimated time',
+        initiate: 'Initiate',
 
         // Appintments
         appointment: 'Appointment',
@@ -50,6 +60,7 @@ const en = {
         remove: 'Remove',
         cancel: 'Cancel',
         add: 'Add',
+        cnpj: 'CNPJ',
 
         // Unities
         unity: 'Unity',
@@ -75,6 +86,7 @@ const en = {
         certificationName: 'Certification name',
         certificationIdentificator: 'Certification name',
         userSettings: 'User settings',
+        update: 'Update',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -93,12 +105,27 @@ const en = {
         browserSessions: 'Browser Sessions',
         thisDevice: 'This device',
 
+        workerProfile: 'Worker profile',
+        updateCnpjForm: 'Update CNPJ form',
+
     },
     phrases: {
         mostHiredWorks: 'Most hired works',
 
         moreDetails: 'More details',
         noDescription: 'No description',
+
+        moreDetails: 'More details',
+        noDescription: 'No description',
+
+        //Works
+        scheduleWork: 'Need to schedule this work?',
+
+         // HiredWorks
+         notInitiated: 'Not initiated',
+         initiated: 'Initiated at:',
+         done: 'Done at:', 
+         progress: 'In progress',
 
         //Profile Information
         updateInformation: 'Update your accounts profile information and email address.',
@@ -119,6 +146,7 @@ const en = {
         storeTheseRecoveryCodes: 'Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.',
         regenerateRecoveryCodes: 'Regenerate Recovery Codes',
         showRecoveryCodes: 'Show Recovery Codes',
+        confirmYourpassword: 'For your security, please confirm your password to continue.',
 
         //Browser Sessions
         manageSessions: 'Manage and log out your active sessions on other browsers and devices.',
@@ -126,6 +154,9 @@ const en = {
         lastActive: 'Last active',
         logOutOtherBrowserSessions: 'Log Out Other Browser Sessions',
         pleaseEnteryourPassword: 'Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.',
+
+        // Worker Profile
+        cnpjUpdated: 'CNPJ was updated successfully',
     },
     messages: {
         priceMeasurement: 'for price measurement',

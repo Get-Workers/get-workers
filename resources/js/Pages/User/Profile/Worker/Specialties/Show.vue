@@ -72,7 +72,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
 </script>
 
 <template>
-    <AuthLayout title="Specialties">
+    <AuthLayout :title="$t('words.mySpecialties')">
         <template #main>
             <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->

@@ -78,11 +78,11 @@ const closeModal = () => {
 
         <JetDialogModal :show="confirmingPassword" @close="closeModal">
             <template #title>
-                {{ title }}
+                {{$t('words.confirm')}}
             </template>
 
             <template #content>
-                {{ content }}
+                {{$t('phrases.confirmYourpassword')}}
 
                 <div class="mt-4">
                     <JetInput
@@ -90,7 +90,7 @@ const closeModal = () => {
                         v-model="form.password"
                         type="password"
                         class="mt-1 block w-3/4"
-                        placeholder="Password"
+                        :placeholder="$t('words.password')"
                         @keyup.enter="confirmPassword"
                     />
 
@@ -100,7 +100,7 @@ const closeModal = () => {
 
             <template #footer>
                 <JetSecondaryButton @click="closeModal">
-                    Cancel
+                    {{$t('words.cancel')}}
                 </JetSecondaryButton>
 
                 <JetButton
@@ -109,7 +109,7 @@ const closeModal = () => {
                     :disabled="form.processing"
                     @click="confirmPassword"
                 >
-                    {{ button }}
+                    {{$t('words.confirm')}}
                 </JetButton>
             </template>
         </JetDialogModal>

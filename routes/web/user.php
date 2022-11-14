@@ -34,6 +34,10 @@ use App\Http\Controllers\User\Profile\Worker\MyWork\{
     ShowMyWorksController,
     StoreMyWorksController
 };
+use App\Http\Controllers\User\Profile\Worker\Profile\{
+    ShowWorkerProfileController,
+    UpdateWorkerCnpjController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -46,6 +50,11 @@ Route::middleware([
     Route::prefix('/user')->name('user')->group(function () {
         Route::prefix('/profile')->name('.profile')->group(function () {
             Route::prefix('/worker')->name('.worker')->middleware('worker-profile')->group(function () {
+                Route::prefix('/profile')->name('.profile')->group(function () {
+                    Route::get('', ShowWorkerProfileController::class)->name('.show');
+                    Route::put('cnpj', UpdateWorkerCnpjController::class)->name('.cnpj');
+                });
+
                 Route::prefix('/specialties')->name('.specialties')->group(function () {
                     Route::get('', ShowSpecialtiesController::class)->name('.show');
                     Route::post('', StoreSpecialtiesController::class)->name('.store');

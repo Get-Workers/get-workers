@@ -128,13 +128,13 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                             <form @submit.prevent="submitAdd">
                                 <div class="space-y-5">
                                     <div>
-                                        <Label value="Name" for="workName" :required="true" />
+                                        <Label :value="$t('words.name')" for="workName" :required="true" />
                                         <Input id="workName" type="text" class="mt-1 block w-full" required autofocus
-                                            placeholder="Name" max-length="255" v-model="newWorkForm.name" />
+                                            :placeholder="$t('words.name')" max-length="255" v-model="newWorkForm.name" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.name" />
                                     </div>
                                     <div>
-                                        <Label value="Description" for="workDescription" :optional="true" />
+                                        <Label :value="$t('words.description')" for="workDescription" :optional="true" />
                                         <textarea id="workDescription" class="w-full max-h-60"
                                             :placeholder="`${$t('words.maxChars')}: 512`" max-length="512"
                                             v-model="newWorkForm.description"
@@ -152,21 +152,21 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                         </label>
                                     </div>
                                     <div v-if="newWorkForm.has_unity">
-                                        <Label value="Unity" for="Unity" :required="true" />
+                                        <Label :value="$t('words.unity')" for="Unity" :required="true" />
                                         <select id="Unity" class="w-full mt-1 h-10 rounded"
                                             v-model="newWorkForm.unity_id">
-                                            <option class="text-gray-400" :value="null" selected default>Select...
+                                            <option class="text-gray-400" :value="null" selected default>{{$t('words.select')}}
                                             </option>
                                             <option v-for="unity in unities" :value="unity.id">{{ unity.name }}</option>
                                         </select>
                                         <InputError class="mt-1" :message="newWorkForm.errors.unity_id" />
                                     </div>
                                     <div>
-                                        <Label value="Specialties" for="SpecialtySelect" :optional="true" />
+                                        <Label :value="$t('words.specialties')" for="SpecialtySelect" :optional="true" />
                                         <select id="SpecialtySelect" class="w-full mt-1 h-10 rounded"
                                             v-model="specialtiesSelect" @change="selectSpecialty">
                                             <option class="text-gray-400" :value="null" selected default>
-                                                Select...
+                                                {{$t('words.select')}}
                                             </option>
                                             <option v-for="specialty in nonSelectedSpecialties" :value="specialty">
                                                 {{ specialty.name }}
@@ -176,12 +176,12 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                         <BadgeGroup class="mt-2 max-h-32 overflow-y-auto" :removable="true" :badges="newWorkForm.specialtiesList" @remove="removeSelectedSpecialty($event.badgeId)"/>
                                     </div>
                                     <div>
-                                        <Label value="Time" for="workTime" :optional="true" />
+                                        <Label :value="$t('words.time')" for="workTime" :optional="true" />
                                         <Input id="workTime" type="time" class="mt-1 block w-full" v-model="newWorkForm.time" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.time" />
                                     </div>
                                     <div>
-                                        <Label value="Price" for="workPrice" :optional="true" />
+                                        <Label :value="$t('words.price')" for="workPrice" :optional="true" />
                                         <InputCurrency id="workPrice" class="mt-1 block w-full" v-model="newWorkForm.price" />
                                         <InputError class="mt-1" :message="newWorkForm.errors.price" />
                                     </div>
