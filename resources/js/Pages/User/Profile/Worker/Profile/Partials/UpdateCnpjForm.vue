@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, usePage } from '@inertiajs/inertia-vue3';
+import FormSection from '@/Components/FormSection.vue';
 import Label from '@/Components/Label.vue';
 import InputSuccess from '@/Components/InputSuccess.vue';
 import InputError from '@/Components/InputError.vue';
@@ -23,22 +24,25 @@ function sendCnpjForm() {
 </script>
 
 <template>
-    <div class="mt-5 border rounded px-5 py-3">
-        <div class="font-semibold">{{ $t('words.updateCnpjForm') }}</div>
+    <FormSection @submitted="sendCnpjForm">
+        <template #title>
+            {{ $t('words.updateCnpjForm') }}
+        </template>
 
-        <div class="mt-5">
-            <form @submit.prevent="sendCnpjForm">
-                <div>
-                    <Label for="cnpj" :value="$t('words.cnpj')" :optional="true" info="teste" />
-                    <div class="flex mt-1 items-center">
-                        <Input class="w-full" id="cnpj" type="text" required placeholder="00.000.000/0000-00"
-                            maxlength="18" mask="##.###.###/####-##" v-model="formCnpj.cnpj" />
-                        <Button type="submit" class="ml-5 h-fit" :disabled="formCnpj.processing">{{ $t('words.update') }}</Button>
-                    </div>
-                    <InputError class="mt-1" :message="formCnpj.errors.cnpj"/>
-                    <InputSuccess class="mt-1" :success="formCnpj.wasSuccessful" :message="$t('phrases.cnpjUpdated')"/>
+        <template #form>
+            <div class="col-span-6">
+                <Label for="cnpj" :value="$t('words.cnpj')" :optional="true" info="teste" />
+                <div class="flex mt-1 items-center">
+                    <Input class="w-full" id="cnpj" type="text" required placeholder="00.000.000/0000-00"
+                        maxlength="18" mask="##.###.###/####-##" v-model="formCnpj.cnpj" />
                 </div>
-            </form>
-        </div>
-    </div>
+                <InputError class="mt-1" :message="formCnpj.errors.cnpj"/>
+                <InputSuccess class="mt-1" :success="formCnpj.wasSuccessful" :message="$t('phrases.cnpjUpdated')"/>
+            </div>
+        </template>
+
+        <template #actions>
+            <Button type="submit" class="ml-5 h-fit" :disabled="formCnpj.processing">{{ $t('words.update') }}</Button>
+        </template>
+    </FormSection>
 </template>

@@ -2,10 +2,6 @@
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 import UpdateCnpjForm from './Partials/UpdateCnpjForm.vue';
-
-defineProps({
-    cnpjUpdated: Boolean,
-});
 </script>
 
 <template>
@@ -19,7 +15,9 @@ defineProps({
                 <div class="sm:w-7/12 md:w-4/6 lg:w-9/12 w-full px-5 sm:mt-0 mt-2">
                     <div class="font-bold text-lg">{{ $t('words.workerProfile') }}</div>
 
-                    <UpdateCnpjForm class="border rounded mt-5 px-5 py-3" :updated="cnpjUpdated"/>
+                    <div class="mt-5">
+                        <UpdateCnpjForm />
+                    </div>
                 </div>
             </div>
         </template>
