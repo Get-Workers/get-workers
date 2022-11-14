@@ -3,9 +3,11 @@
 
         save: 'Salvar',
         saved: 'Salvou.',
-        enable: 'Permitir',
+        enable: 'Habilitar',
         confirm: 'Confirmar',
-        done: 'Feito.',
+        done: 'Realizado.',
+        optional: 'Opcional',
+        status: 'Situação',
 
         // Contractor
         contractor: 'Contratante',
@@ -19,6 +21,10 @@
         newWork: 'Novo serviço',
         hiredWork: 'Serviço contratado',
         myWorks: 'Meus serviços',
+        workSpecialties: 'Especialidades do trabalho',
+        reference: 'Referência',
+        scheduleWork: 'Agendar o serviço',
+        select: 'Selecione...',
 
         // Certifications
         certification: 'Certificado',
@@ -34,6 +40,11 @@
         // HiredWorks
         hiredWork: 'Serviço contratado',
         hiredWorks: 'Serviços contratados',
+        schedule: 'Agendar',
+        hire: 'Contratar',
+        estimatedTime: 'Tempo estimado',
+        initiate: 'Iniciar',
+
 
         // Appintments
         appointment: 'Compromisso',
@@ -91,6 +102,7 @@
         setupKey: 'Chave de configuração',
         code: 'Código',
         disable: 'Desativar',
+        confirmPassword: 'Confirme a Senha',
 
         //Browser Sessions
         browserSessions: 'Sessões do navegador',
@@ -104,6 +116,18 @@
 
         moreDetails: 'Mais detalhes',
         noDescription: 'Sem descrição',
+
+        moreDetails: 'Mais detalhes',
+        noDescription: 'Sem descrição',
+
+        //Works
+        scheduleWork: 'Precisa agendar este trabalho?',
+
+         // HiredWorks
+         notInitiated: 'Não iniciado',
+         initiated: 'Iniciado em:',
+         done: 'Realizado em:',
+         progress: 'Em andamento',
 
         //Profile Information
         updateInformation: 'Atualize as informações de perfil e o endereço de e-mail da sua conta.',
@@ -124,6 +148,7 @@
         storeTheseRecoveryCodes: 'Armazene esses códigos de recuperação em um gerenciador de senhas seguro. Eles podem ser usados ​​para recuperar o acesso à sua conta se seu dispositivo de autenticação de dois fatores for perdido.',
         regenerateRecoveryCodes: 'Regenerar Códigos de Recuperação',
         showRecoveryCodes: 'Mostrar códigos de recuperação',
+        confirmYourpassword: 'Para sua segurança, confirme sua senha para continuar.',
 
         //Browser Sessions
         manageSessions: 'Gerencie e desconecte suas sessões ativas em outros navegadores e dispositivos.',

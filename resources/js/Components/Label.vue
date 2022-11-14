@@ -25,6 +25,6 @@ defineProps({
         <span v-else><slot /></span>
         <span class="ml-1 text-indigo-500" v-if="info.length" :title="info"><Information /></span>
         <span class="ml-1 text-red-400" v-if="required && !optional">*</span>
-        <em class="ml-1 text-gray-500" v-if="optional && !required">(optional)</em>
+        <em class="ml-1 text-gray-500" v-if="optional && !required">({{$t('words.optional')}})</em>
     </label>
 </template>
