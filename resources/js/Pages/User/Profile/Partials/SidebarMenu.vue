@@ -15,7 +15,6 @@ const currentRoute = computed(() => route().current());
 const routes = {
     // Worker
     worker: {
-        myWorks: 'user.profile.worker.my-works.show',
         hiredWorks: {
             list: 'user.worker.hired-works.list',
         },
@@ -30,6 +29,7 @@ const routes = {
     user: {
         profile: {
             worker: {
+                profile: {show: 'user.profile.worker.profile.show'},
                 specialties: {show: 'user.profile.worker.specialties.show'},
                 certifications: {show: 'user.profile.worker.certifications.show'},
                 myWorks: {show: 'user.profile.worker.my-works.show'},
@@ -43,7 +43,6 @@ const routes = {
 const isRoute = computed(() => ({
     // Worker
     worker: {
-        myWorks: (currentRoute.value === routes.worker.myWorks),
         hiredWorks: {
             list: (currentRoute.value === routes.worker.hiredWorks),
         },
@@ -52,6 +51,7 @@ const isRoute = computed(() => ({
     user: {
         profile: {
             worker: {
+                profile: {show: (currentRoute.value === routes.user.profile.worker.profile.show)},
                 specialties: {show: (currentRoute.value === routes.user.profile.worker.specialties.show)},
                 certifications: {show: (currentRoute.value === routes.user.profile.worker.certifications.show)},
                 myWorks: {show: (currentRoute.value === routes.user.profile.worker.myWorks.show)},
@@ -64,6 +64,7 @@ const isRoute = computed(() => ({
 
 const isWorkerSettingsOpen = computed(() =>  (
     menu.value.workerSettings.open ||
+    isRoute.value.user.profile.worker.profile.show ||
     isRoute.value.user.profile.worker.specialties.show ||
     isRoute.value.user.profile.worker.certifications.show ||
     isRoute.value.user.profile.worker.appointments.show ||
@@ -98,7 +99,7 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
             :class="{ 'hover:bg-blue-200': !isWorkerSettingsOpen, 'bg-gray-300 text-gray-700': isWorkerSettingsOpen }"
             @click="toggleMenuItem('workerSettings')"
         >
-            {{ $t('words.worker') }}
+            <div>{{ $t('words.worker') }}</div>
             <template #icon>
                 <div class="flex items-center font-black">
                     <ChevronDown v-if="isWorkerSettingsOpen" />
@@ -108,16 +109,22 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
         </Item>
 
         <div class="space-y-1 mt-1" v-if="isWorkerSettingsOpen">
-            <!-- <div> -->
-                <!-- <SubItem v-if="true"> -->
-                    <!-- <Link><div>Profile</div></Link> -->
-                    <!-- <template #icon>-</template> -->
-                <!-- </SubItem> -->
-                <!-- <SubItem v-else> -->
-                    <!-- Profile -->
-                    <!-- <template #icon>-</template> -->
-                <!-- </SubItem> -->
-            <!-- </div> -->
+            <div>
+                <Link :href="route(routes.user.profile.worker.profile.show)" v-if="!isRoute.user.profile.worker.profile.show">
+                    <SubItem class="hover:bg-blue-200">
+                        <div>{{ $t('words.profile') }}</div>
+                        <template #icon>
+                            <SubdirectoryArrowRight />
+                        </template>
+                    </SubItem>
+                </Link>
+                <SubItem class="bg-gray-300 text-gray-700" v-else>
+                    <div>{{ $t('words.profile') }}</div>
+                    <template #icon>
+                        <SubdirectoryArrowRight />
+                    </template>
+                </SubItem>
+            </div>
 
             <div>
                 <Link :href="route(routes.user.profile.worker.specialties.show)" v-if="!isRoute.user.profile.worker.specialties.show">
@@ -129,7 +136,7 @@ function toggleMenuItem(menuItem) { menu.value[menuItem].open = !menu.value[menu
                 <SubItem class="bg-gray-300 text-gray-700" v-else>
                         <div>{{ $t('words.specialties') }}</div>
                     <template #icon>
-                        <SubdirectoryArrowRight class="m-auto"/>
+                        <SubdirectoryArrowRight />
                     </template>
                 </SubItem>
             </div>
