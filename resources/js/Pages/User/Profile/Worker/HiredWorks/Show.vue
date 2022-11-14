@@ -7,7 +7,7 @@ import Button from '@/Components/Button.vue';
 import InputError from '@/Components/InputError.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
-const props = defineProps({hiredWork: {type: Object}});
+const props = defineProps({hiredWork: Object});
 
 const hiredWork = ref({});
 
@@ -58,7 +58,7 @@ function submitDone() {
 </script>
 
 <template>
-    <AuthLayout title="Works">
+    <AuthLayout :title="$t('works.hiredWorks')">
         <template #main>
             <div class="flex">
                 <!-- Sidebard Menu -->
