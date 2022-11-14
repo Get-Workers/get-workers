@@ -626,6 +626,11 @@
   dependencies:
     "sourcemap-codec" "^1.4.8"
 
+"maska@^1.5.0":
+  "integrity" "sha512-BwZXzs5gHeu6wtn3iWFqrKRtcsM3sTpkHvfAngVNVNlN7tl9ZyQUeHTz11s9Sy7Bq1MoQ+xyR/+IzghY8nR84Q=="
+  "resolved" "https://registry.npmjs.org/maska/-/maska-1.5.0.tgz"
+  "version" "1.5.0"
+
 "mdue@^0.1.4":
   "integrity" "sha512-MjpRercURZK4uNlcvHf9+Igd3/SwIMOEhZl80USDYUDZhNXXo0zl5mcOJKB86HWbN0+DWQ+uIfq85BMKmeKsNw=="
   "resolved" "https://registry.npmjs.org/mdue/-/mdue-0.1.4.tgz"
