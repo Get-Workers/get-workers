@@ -181,6 +181,7 @@
             },
         },
         hiredWork: {
+            errorDate: 'O agendamento deve ser posterior a data e horário atual.',
             delete: {
                 success: 'O serviço contratado foi excluído com sucesso!',
             },

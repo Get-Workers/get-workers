@@ -179,6 +179,7 @@ const en = {
             },
         },
         hiredWork: {
+            errorDate: 'The scheduled to must be a date after now.',
             delete: {
                 success: 'Hired work removed successfully',
             },

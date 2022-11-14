@@ -88,7 +88,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
                             <Label :value="$t('words.specialties')" for="specialtiesSelect" />
                             <div class="flex mt-2">
                                 <select id="specialtiesSelect" class="w-full h-10 rounded" v-model="addForm.specialty">
-                                    <option value="" class="text-gray-400" selected disabled default>Select...</option>
+                                    <option value="" class="text-gray-400" selected disabled default>{{$t('words.select')}}</option>
                                     <option v-for="specialty in specialties" :value="specialty.id" >{{ specialty.name }}</option>
                                 </select>
 
