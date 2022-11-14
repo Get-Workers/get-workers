@@ -1,12 +1,14 @@
 <script setup>
 import { onMounted, ref } from 'vue';
+import { maska as vMaska } from 'maska';
 
 defineProps({
     modelValue: String,
     disabled: {
         type: Boolean,
         default: false
-    }
+    },
+    mask: '',
 });
 
 defineEmits(['update:modelValue']);
@@ -30,5 +32,6 @@ defineExpose({ focus: () => input.value.focus() });
         :disabled="disabled"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        v-maska="mask"
     >
 </template>
