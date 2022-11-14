@@ -50,6 +50,7 @@
         remove: 'Remover',
         cancel: 'Cancelar',
         add: 'Adicionar',
+        cnpj: 'CNPJ',
 
         // Unities
         unity: 'Unidade',
@@ -75,6 +76,7 @@
         certificationName: 'Nome do certificado',
         certificationIdentificator: 'Identificador do certificado',
         userSettings: 'Configurações do usuário',
+        update: 'Alterar',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -94,6 +96,8 @@
         browserSessions: 'Sessões do navegador',
         thisDevice: 'Este aparelho',
 
+        workerProfile: 'Perfil do prestador der serviço',
+        updateCnpjForm: 'Formulário para alteração de CNPJ',
     },
     phrases: {
         mostHiredWorks: 'Serviços mais contratados',
@@ -127,6 +131,9 @@
         lastActive: 'Ativo pela última vez',
         logOutOtherBrowserSessions: 'Sair de outras sessões do navegador',
         pleaseEnteryourPassword: 'Digite sua senha para confirmar que deseja sair de suas outras sessões do navegador em todos os seus dispositivos.',
+
+        // Worker Profile
+        cnpjUpdated: 'O CNPJ foi alterado com sucesso',
     },
     messages: {
         priceMeasurement: 'para referência de preço',

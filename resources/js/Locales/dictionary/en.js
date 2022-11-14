@@ -50,6 +50,7 @@ const en = {
         remove: 'Remove',
         cancel: 'Cancel',
         add: 'Add',
+        cnpj: 'CNPJ',
 
         // Unities
         unity: 'Unity',
@@ -75,6 +76,7 @@ const en = {
         certificationName: 'Certification name',
         certificationIdentificator: 'Certification name',
         userSettings: 'User settings',
+        update: 'Update',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -92,6 +94,9 @@ const en = {
         //Browser Sessions
         browserSessions: 'Browser Sessions',
         thisDevice: 'This device',
+
+        workerProfile: 'Worker profile',
+        updateCnpjForm: 'Update CNPJ form',
 
     },
     phrases: {
@@ -126,6 +131,9 @@ const en = {
         lastActive: 'Last active',
         logOutOtherBrowserSessions: 'Log Out Other Browser Sessions',
         pleaseEnteryourPassword: 'Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.',
+
+        // Worker Profile
+        cnpjUpdated: 'CNPJ was updated successfully',
     },
     messages: {
         priceMeasurement: 'for price measurement',
