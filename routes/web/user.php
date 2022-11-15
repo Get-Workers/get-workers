@@ -28,6 +28,13 @@ use App\Http\Controllers\User\Contractor\HiredWork\{
     StoreHiredWorksController
 };
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\Profile\{
+    CurrentUserController,
+    OtherBrowserSessionsController,
+    ProfilePhotoController,
+    UpdateCpfController,
+    UserProfileController
+};
 use App\Http\Controllers\User\Profile\Worker\Appointments\ShowAppointmentsController;
 use App\Http\Controllers\User\Profile\Worker\MyWork\{
     DestroyMyWorksController,
@@ -39,6 +46,7 @@ use App\Http\Controllers\User\Profile\Worker\Profile\{
     UpdateWorkerCnpjController
 };
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Jetstream;
 
 Route::middleware([
     'auth:sanctum',
@@ -47,8 +55,36 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
+    Route::get('/user/profile', [UserProfileController::class, 'show'])
+        ->name('profile.show');
+
+    Route::delete('/user/other-browser-sessions', [OtherBrowserSessionsController::class, 'destroy'])
+        ->name('other-browser-sessions.destroy');
+
+    Route::delete('/user/profile-photo', [ProfilePhotoController::class, 'destroy'])
+        ->name('current-user-photo.destroy');
+
+    if (Jetstream::hasAccountDeletionFeatures()) {
+        Route::delete('/user', [CurrentUserController::class, 'destroy'])
+            ->name('current-user.destroy');
+    }
+
+    // Route::group(['middleware' => 'verified'], function () {
+    //     // API...
+    //     if (Jetstream::hasApiFeatures()) {
+    //         Route::get('/user/api-tokens', [ApiTokenController::class, 'index'])->name('api-tokens.index');
+    //         Route::post('/user/api-tokens', [ApiTokenController::class, 'store'])->name('api-tokens.store');
+    //         Route::put('/user/api-tokens/{token}', [ApiTokenController::class, 'update'])->name('api-tokens.update');
+    //         Route::delete('/user/api-tokens/{token}', [ApiTokenController::class, 'destroy'])->name('api-tokens.destroy');
+    //     }
+    // });
+
     Route::prefix('/user')->name('user')->group(function () {
+        // Profile
         Route::prefix('/profile')->name('.profile')->group(function () {
+            Route::put('/cpf', UpdateCpfController::class)->name('.cpf');
+
+            // Worker
             Route::prefix('/worker')->name('.worker')->middleware('worker-profile')->group(function () {
                 Route::prefix('/profile')->name('.profile')->group(function () {
                     Route::get('', ShowWorkerProfileController::class)->name('.show');

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\User\Worker;
+namespace App\Http\Requests\User\Profile;
 
-use App\Models\Worker;
-use App\Rules\IsCnpjValid;
+use App\Models\User;
+use App\Rules\IsCpfValid;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateWorkerCnpjRequest extends FormRequest
+class UpdateCpfRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class UpdateWorkerCnpjRequest extends FormRequest
      */
     public function authorize()
     {
-        return (! is_null(auth()->user()->worker));
+        return (! is_null(auth()->user()));
     }
 
     /**
@@ -26,16 +26,16 @@ class UpdateWorkerCnpjRequest extends FormRequest
      */
     public function rules()
     {
-        $worker = auth()->user()->worker;
-        $actualCnpj = $worker->cnpj ?? '';
+        $user = auth()->user();
+        $actualCpf = $user->cpf ?? '';
 
         return [
-            'cnpj' => [
+            'cpf' => [
                 'required',
-                "not_in:{$actualCnpj}",
-                Rule::unique(Worker::class)
-                    ->whereNot('id', $worker->id),
-                new IsCnpjValid,
+                "not_in:{$actualCpf}",
+                Rule::unique(User::class)
+                    ->whereNot('id', $user->id),
+                new IsCpfValid,
             ],
         ];
     }

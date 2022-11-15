@@ -15,6 +15,8 @@ const formCnpj = useForm({
 });
 
 function sendCnpjForm() {
+    if (! formCnpj.isDirty) return;
+
     formCnpj.put(route('user.profile.worker.profile.cnpj'), {
         onBefore() {
             formCnpj.clearErrors();
@@ -31,7 +33,7 @@ function sendCnpjForm() {
 
         <template #form>
             <div class="col-span-6">
-                <Label for="cnpj" :value="$t('words.cnpj')" :optional="true" info="teste" />
+                <Label for="cnpj" :value="$t('words.cnpj')" :required="true" :info="$t('words.cnpj')" />
                 <div class="flex mt-1 items-center">
                     <Input class="w-full" id="cnpj" type="text" required placeholder="00.000.000/0000-00"
                         maxlength="18" mask="##.###.###/####-##" v-model="formCnpj.cnpj" />
