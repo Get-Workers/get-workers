@@ -173,6 +173,9 @@
             delete: {
                 success: 'Serviço removido com sucesso',
             },
+            store: {
+                success: 'Serviço criado com sucesso',
+            },
         },
         certification: {
             delete: {

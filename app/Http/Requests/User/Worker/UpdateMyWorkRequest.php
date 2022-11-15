@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\User\Worker;
 
+use App\Rules\ValidateWorkIsNotFromAuthenticatedWorker;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMyWorkRequest extends FormRequest
+class UpdateMyWorkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +25,8 @@ class StoreMyWorkRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required|integer|exists:works',
+            'uuid' => new ValidateWorkIsNotFromAuthenticatedWorker,
             'name' => 'required|string|min:5|max:255',
             'description' => 'nullable|string|min:10|max:512',
             'time' => 'nullable|string|date_format:H:i',

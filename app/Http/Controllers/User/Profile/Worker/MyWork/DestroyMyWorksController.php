@@ -17,14 +17,14 @@ class DestroyMyWorksController extends Controller
      */
     public function __invoke(DestroyMyWorkRequest $request): RedirectResponse
     {
-        $workDeleted = auth()->user()->worker
+        auth()->user()->worker
             ->works()
             ->where('uuid', $request->validated('work'))
             ->first()
             ->delete();
 
-            WorkCacheService::listPaginate(clear: true);
+        WorkCacheService::listPaginate(clear: true);
 
-        return redirect()->route('user.profile.worker.my-works.show')->with('destroy', $workDeleted);
+        return redirect()->route('user.profile.worker.my-works.show');
     }
 }
