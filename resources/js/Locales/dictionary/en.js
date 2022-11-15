@@ -171,6 +171,9 @@ const en = {
             delete: {
                 success: 'Work removed successfully',
             },
+            store: {
+                success: 'Work created successfully',
+            },
         },
         certification: {
             delete: {

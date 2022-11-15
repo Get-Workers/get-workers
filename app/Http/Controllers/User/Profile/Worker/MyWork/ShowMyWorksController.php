@@ -24,8 +24,7 @@ class ShowMyWorksController extends Controller
 
         $unities = UnityCacheService::all();
         $specialties = SpecialtyCacheService::all();
-        $storeStatus = session()->get('store', false);
-        $deleteStatus = session()->get('destroy', false);
-        return inertia('User/Profile/Worker/MyWorks/Show', compact('works', 'unities', 'specialties', 'storeStatus', 'deleteStatus'));
+
+        return inertia('User/Profile/Worker/MyWorks/Show', compact('works', 'unities', 'specialties'));
     }
 }
