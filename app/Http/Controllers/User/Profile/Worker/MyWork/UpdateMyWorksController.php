@@ -77,8 +77,6 @@ class UpdateMyWorksController extends Controller
      */
     private function updateSpecialties(Work $work, array $specialties): void
     {
-        if (empty($specialties)) return;
-
         $specialties = Specialty::query()
             ->whereKey($specialties)
             ->get();
