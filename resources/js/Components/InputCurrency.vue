@@ -1,4 +1,5 @@
 <script setup>
+import { onUpdated } from 'vue';
 import { useCurrencyInput } from 'vue-currency-input';
 
 const props = defineProps({
@@ -23,11 +24,15 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'change']);
 
-const { inputRef, numberValue } = useCurrencyInput(props.options, false);
+const { inputRef, numberValue, setValue } = useCurrencyInput(props.options, false);
 
 function updateModelValue() {
     emit('update:modelValue', numberValue);
 }
+
+onUpdated(() => {
+    setValue(props.modelValue);
+});
 </script>
 
 <template>
