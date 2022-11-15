@@ -34,7 +34,7 @@ class StoreMyWorksController extends Controller
         });
 
 
-        return redirect()->route('user.profile.worker.my-works.show')->with('store', true);
+        return redirect()->route('user.profile.worker.my-works.show');
     }
 
     private function associateUnity(Work $work, ?int $unityId): void

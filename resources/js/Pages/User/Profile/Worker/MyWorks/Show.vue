@@ -1,16 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-import { computed } from '@vue/reactivity';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import Button from '@/Components/Button.vue';
 import InputError from '@/Components/InputError.vue';
-import Input from '@/Components/Input.vue';
-import Label from '@/Components/Label.vue';
-import Checkbox from '@/Components/Checkbox.vue';
+import InputSuccess from '@/Components/InputSuccess.vue';
 import BadgeGroup from '@/Components/Badges/BadgeGroup.vue';
-import InputCurrency from '@/Components/InputCurrency.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
+import NewWorkForm from './Partials/NewWorkForm.vue';
 
 const props = defineProps({
     works: {
@@ -28,81 +25,24 @@ const props = defineProps({
         required: true,
         default: []
     },
-    storeStatus: {
-        type: Boolean,
-        default: false
-    },
-    deleteStatus: {
-        type: Boolean,
-        default: false
-    }
-});
-
-const nonSelectedSpecialties = computed(() => (props.specialties.filter((specialty) => !newWorkForm.specialties.includes(specialty.id))));
-
-const newWorkForm = useForm({
-    name: '',
-    description: '',
-    time: null,
-    price: null,
-    unity_id: null,
-    has_unity: false,
-    specialties: [],
-    specialtiesList: []
 });
 
 const deleteForm = useForm({
     work: '',
 });
 
-function submitAdd() {
-    newWorkForm.post(route('user.profile.worker.my-works.store'), {
-        preserveScroll: true,
-        onSuccess: () => resetCertificationForm()
-    });
-}
-
 function submitDelete(work) {
     deleteForm.work = work;
     deleteForm.delete(route('user.profile.worker.my-works.destroy'), {
         preserveScroll: true,
-        onFinish: () => resetCertificationDeleteForm()
+        onFinish: () => deleteForm.reset(),
     });
 }
 
-function resetCertificationDeleteForm() {
-    deleteForm.reset();
-    newWorkForm.clearErrors();
-}
-
-function resetCertificationForm() {
-    newWorkForm.reset();
-    deleteForm.clearErrors()
-    newWorkFormShow.value = false;
-}
-
 let newWorkFormShow = ref(false);
-function toggleNewCertificateForm() {
+function toggleNewWorkForm() {
     newWorkFormShow.value = !newWorkFormShow.value;
 }
-
-let specialtiesSelect = ref(null);
-function selectSpecialty() {
-    let item = specialtiesSelect.value;
-    specialtiesSelect.value = null;
-    if ((item === null) || (newWorkForm.specialties.includes(item.id))) {
-        return;
-    }
-    newWorkForm.specialties.push(item.id);
-    newWorkForm.specialtiesList.push(item);
-}
-
-function removeSelectedSpecialty(specialtyId) {
-    newWorkForm.specialties = newWorkForm.specialties.filter((specialty) => (specialty !== specialtyId));
-    newWorkForm.specialtiesList = newWorkForm.specialtiesList.filter((specialty) => (specialty.id !== specialtyId));
-}
-
-const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.processing));
 </script>
 
 <template>
@@ -120,84 +60,18 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                     <div class="mt-5 border rounded px-5 py-3">
                         <div class="flex justify-between items-center">
                             <div>{{ $t('words.newWork') }}</div>
-                            <Button type="button" @click="toggleNewCertificateForm"
+
+                            <Button type="button" @click="toggleNewWorkForm"
                                 v-if="! newWorkFormShow">{{ $t('words.new') }}</Button>
-                            <Button type="button" @click="toggleNewCertificateForm" v-else>{{ $t('words.close') }}</Button>
+                            <Button type="button" @click="toggleNewWorkForm" v-else>{{ $t('words.close') }}</Button>
                         </div>
-                        <div class="mt-2 border rounded p-5" v-if="newWorkFormShow">
-                            <form @submit.prevent="submitAdd">
-                                <div class="space-y-5">
-                                    <div>
-                                        <Label :value="$t('words.name')" for="workName" :required="true" />
-                                        <Input id="workName" type="text" class="mt-1 block w-full" required autofocus
-                                            :placeholder="$t('words.name')" max-length="255" v-model="newWorkForm.name" />
-                                        <InputError class="mt-1" :message="newWorkForm.errors.name" />
-                                    </div>
-                                    <div>
-                                        <Label :value="$t('words.description')" for="workDescription" :optional="true" />
-                                        <textarea id="workDescription" class="w-full max-h-60"
-                                            :placeholder="`${$t('words.maxChars')}: 512`" max-length="512"
-                                            v-model="newWorkForm.description"
-                                        ></textarea>
-                                        <em class="text-sm text-gray-500">{{ $t('words.maxChars') }}: 512</em>
-                                        <InputError class="mt-1" :message="newWorkForm.errors.description" />
-                                    </div>
-                                    <div>
-                                        <label for="hasUnity" class="flex w-fit">
-                                            <Checkbox id="hasUnity" class="mr-2" v-model:checked="newWorkForm.has_unity" />
-                                            <Label for="hasUnity" value="" :optional="true">
-                                                <span>{{ $t('questions.work.hasUnity') }}</span>
-                                                <em class="ml-1 text-gray-500">({{ $t('messages.priceMeasurement') }})</em>
-                                            </Label>
-                                        </label>
-                                    </div>
-                                    <div v-if="newWorkForm.has_unity">
-                                        <Label :value="$t('words.unity')" for="Unity" :required="true" />
-                                        <select id="Unity" class="w-full mt-1 h-10 rounded"
-                                            v-model="newWorkForm.unity_id">
-                                            <option class="text-gray-400" :value="null" selected default>{{$t('words.select')}}
-                                            </option>
-                                            <option v-for="unity in unities" :value="unity.id">{{ unity.name }}</option>
-                                        </select>
-                                        <InputError class="mt-1" :message="newWorkForm.errors.unity_id" />
-                                    </div>
-                                    <div>
-                                        <Label :value="$t('words.specialties')" for="SpecialtySelect" :optional="true" />
-                                        <select id="SpecialtySelect" class="w-full mt-1 h-10 rounded"
-                                            v-model="specialtiesSelect" @change="selectSpecialty">
-                                            <option class="text-gray-400" :value="null" selected default>
-                                                {{$t('words.select')}}
-                                            </option>
-                                            <option v-for="specialty in nonSelectedSpecialties" :value="specialty">
-                                                {{ specialty.name }}
-                                            </option>
-                                        </select>
-                                        <InputError class="mt-1" :message="newWorkForm.errors.specialties" />
-                                        <BadgeGroup class="mt-2 max-h-32 overflow-y-auto" :removable="true" :badges="newWorkForm.specialtiesList" @remove="removeSelectedSpecialty($event.badgeId)"/>
-                                    </div>
-                                    <div>
-                                        <Label :value="$t('words.time')" for="workTime" :optional="true" />
-                                        <Input id="workTime" type="time" class="mt-1 block w-full" v-model="newWorkForm.time" />
-                                        <InputError class="mt-1" :message="newWorkForm.errors.time" />
-                                    </div>
-                                    <div>
-                                        <Label :value="$t('words.price')" for="workPrice" :optional="true" />
-                                        <InputCurrency id="workPrice" class="mt-1 block w-full" v-model="newWorkForm.price" />
-                                        <InputError class="mt-1" :message="newWorkForm.errors.price" />
-                                    </div>
-                                    <div class="flex align-items-end">
-                                        <Button class="ml-auto" :disabled="isProcessingForms">{{ $t('words.register') }}</Button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+
+                        <NewWorkForm class="mt-3 border-t pt-5" :unities="unities" :specialties="specialties" v-if="newWorkFormShow" />
                     </div>
 
                     <!-- Works Remove Form Messages -->
-                    <InputError :message="deleteForm.errors.certification" class="my-2" />
-                    <div v-if="deleteStatus" class="my-2 font-medium text-sm text-green-600">
-                        {{ $t('messages.work.delete.success') }}
-                    </div>
+                    <InputError class="my-2" :message="deleteForm.errors.certification" />
+                    <InputSuccess class="my-2" :success="deleteForm.wasSuccessful" :message="$t('messages.work.delete.success')" />
 
                     <!-- Works List && Remove Form -->
                     <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
@@ -233,7 +107,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newWorkForm.p
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button :title="$t('words.delete')" @click="submitDelete(work.uuid)" :disabled="isProcessingForms">
+                                    <Button :title="$t('words.delete')" @click="submitDelete(work.uuid)" :disabled="deleteForm.processing">
                                         {{ $t('words.delete') }}
                                     </Button>
                                 </div>
