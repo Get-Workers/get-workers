@@ -62,6 +62,7 @@
         cancel: 'Cancelar',
         add: 'Adicionar',
         cnpj: 'CNPJ',
+        cpf: 'CPF',
 
         // Unities
         unity: 'Unidade',
@@ -110,6 +111,9 @@
 
         workerProfile: 'Perfil do prestador der serviço',
         updateCnpjForm: 'Formulário para alteração de CNPJ',
+
+        contractorProfile: 'Perfil do contratante',
+        updateCpfForm: 'Formulário para alteração de CPF',
     },
     phrases: {
         mostHiredWorks: 'Serviços mais contratados',
@@ -159,6 +163,9 @@
 
         // Worker Profile
         cnpjUpdated: 'O CNPJ foi alterado com sucesso',
+
+        // Contractor Profile
+        cpfUpdated: 'O CPF foi alterado com sucesso',
     },
     messages: {
         priceMeasurement: 'para referência de preço',
@@ -181,6 +188,7 @@
             },
         },
         hiredWork: {
+            errorDate: 'O agendamento deve ser posterior a data e horário atual.',
             delete: {
                 success: 'O serviço contratado foi excluído com sucesso!',
             },

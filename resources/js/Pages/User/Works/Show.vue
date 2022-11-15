@@ -163,7 +163,7 @@ function hireWork(scheduled = false) {
                                 </Label>
                             </label>
 
-                            <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="error"/>
+                            <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="$t('messages.hiredWork.errorDate')"/>
                             <Button class="w-full md:py-4 lg:py-5 " :disabled="contractWorkForm.processing" @click.prevent="hireWork(! contractWorkForm.needToSchedule)" v-html="contractWorkForm.needToSchedule ? $t('words.schedule'): $t('words.hire')"></Button>
                         </div>
                     </div>
@@ -173,7 +173,7 @@ function hireWork(scheduled = false) {
             <Modal :title="$t('words.scheduleWork')" :isOpened="modalIsOpened" :onClose="closeModal" v-if="isContractor && !isOwnedByAuthWorker">
                 <div class="flex flex-col">
                     <DatePicker class="mx-auto mb-2" mode="dateTime" v-model="contractWorkForm.scheduled_to" :minute-increment="10" :min-date="new Date()" />
-                    <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="error"/>
+                    <InputError class="mb-1" v-for="(error, errorKey) in contractWorkForm.errors" :key="errorKey" :message="$t('messages.hiredWork.errorDate')"/>
                     <Button class="w-full md:py-4 lg:py-5 mt-2" :disabled="contractWorkForm.processing" @click.prevent="hireWork((contractWorkForm.scheduled_to !== null))">{{$t('words.hire')}}</Button>
                 </div>
             </Modal>

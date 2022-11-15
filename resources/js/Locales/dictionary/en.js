@@ -61,6 +61,7 @@ const en = {
         cancel: 'Cancel',
         add: 'Add',
         cnpj: 'CNPJ',
+        cpf: 'ID',
 
         // Unities
         unity: 'Unity',
@@ -108,6 +109,9 @@ const en = {
         workerProfile: 'Worker profile',
         updateCnpjForm: 'Update CNPJ form',
 
+        contractorProfile: 'Contractor profile',
+        updateCpfForm: 'Update CPF form',
+
     },
     phrases: {
         mostHiredWorks: 'Most hired works',
@@ -124,7 +128,7 @@ const en = {
          // HiredWorks
          notInitiated: 'Not initiated',
          initiated: 'Initiated at:',
-         done: 'Done at:', 
+         done: 'Done at:',
          progress: 'In progress',
 
         //Profile Information
@@ -157,6 +161,9 @@ const en = {
 
         // Worker Profile
         cnpjUpdated: 'CNPJ was updated successfully',
+
+        // Contractor Profile
+        cpfUpdated: 'CPF was updated successfully',
     },
     messages: {
         priceMeasurement: 'for price measurement',
@@ -179,6 +186,7 @@ const en = {
             },
         },
         hiredWork: {
+            errorDate: 'The scheduled to must be a date after now.',
             delete: {
                 success: 'Hired work removed successfully',
             },

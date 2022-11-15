@@ -7,6 +7,7 @@ import TwoFactorAuthenticationForm from './Partials/TwoFactorAuthenticationForm.
 import LogoutOtherBrowserSessionsForm from './Partials/LogoutOtherBrowserSessionsForm.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import SidebarMenu from '../Partials/SidebarMenu.vue';
+import UpdateCpfForm from './Partials/UpdateCpfForm.vue';
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -32,6 +33,12 @@ defineProps({
 
                     <div v-if="$page.props.jetstream.canUpdatePassword">
                         <UpdatePasswordForm class="mt-10 sm:mt-0" />
+
+                        <SectionBorder />
+                    </div>
+
+                    <div>
+                        <UpdateCpfForm />
 
                         <SectionBorder />
                     </div>

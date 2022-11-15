@@ -142,6 +142,7 @@ return [
     'hired_work_is_already_done' => 'The :attribute has already been done.',
     'work_is_not_from_authenticated_worker' => 'The :attribute can\'t be owned by the authenticated worker',
     'cnpj_is_not_valid' => 'The :attribute is not valid',
+    'cpf_is_not_valid' => 'The :attribute is not valid',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,6 +174,7 @@ return [
 
     'attributes' => [
         'cnpj' => 'CNPJ',
+        'cpf' => 'CPF',
     ],
 
 ];
