@@ -39,9 +39,17 @@ function submitDelete(work) {
     });
 }
 
-let newWorkFormShow = ref(false);
-function toggleNewWorkForm() {
-    newWorkFormShow.value = !newWorkFormShow.value;
+const newWorkFormShow = ref(false);
+function toggleNewWorkForm(el, status = false) {
+    workToUpdate.value = null;
+    newWorkFormShow.value = status ? status : !newWorkFormShow.value;
+}
+
+const workToUpdate = ref(null);
+function setWorkToUpdate(work) {
+    if (work?.id === workToUpdate?.value) return;
+    toggleNewWorkForm(null, true);
+    workToUpdate.value = work;
 }
 </script>
 
@@ -66,7 +74,14 @@ function toggleNewWorkForm() {
                             <Button type="button" @click="toggleNewWorkForm" v-else>{{ $t('words.close') }}</Button>
                         </div>
 
-                        <NewWorkForm class="mt-3 border-t pt-5" :unities="unities" :specialties="specialties" v-if="newWorkFormShow" />
+                        <NewWorkForm class="mt-3 border-t pt-3"
+                            :unities="unities"
+                            :specialties="specialties"
+                            :workToUpdate="workToUpdate"
+                            :key="workToUpdate?.uuid"
+                            @reset="setWorkToUpdate(null)"
+                            v-if="newWorkFormShow"
+                        />
                     </div>
 
                     <!-- Works Remove Form Messages -->
@@ -79,14 +94,14 @@ function toggleNewWorkForm() {
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
                                 <span class="col-span-2 font-bold" :title="$t('words.name')">{{ $t('words.name') }}</span>
                                 <span class="col-span-2 font-bold" :title="$t('words.slug')">{{ $t('words.slug') }}</span>
-                                <span class="col-span-3 font-bold" :title="$t('words.specialties')">{{ $t('words.specialties') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.specialties')">{{ $t('words.specialties') }}</span>
                                 <span class="col-span-1 font-bold" :title="$t('words.unity')">{{ $t('words.unity') }}</span>
                                 <span class="col-span-1 font-bold" :title="$t('words.time')">{{ $t('words.time') }}</span>
                                 <span class="col-span-2 font-bold" :title="$t('words.price')">{{ $t('words.price') }}</span>
-                                <span class="col-span-1 font-bold" :title="$t('words.action')">{{ $t('words.action') }}</span>
+                                <span class="col-span-2 font-bold" :title="$t('words.action')">{{ $t('words.action') }}</span>
                             </div>
                             <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
-                                v-for="(work) in works"
+                                v-for="(work) in works" :key="`work-${work.uuid}`"
                             >
                                 <div class="col-span-2 flex items-center overflow-y-auto">
                                     <span class="min-w-fit break-words text-ellipsis" :title="work.name">{{ work.name }}</span>
@@ -94,7 +109,7 @@ function toggleNewWorkForm() {
                                 <div class="col-span-2 flex items-center overflow-y-auto">
                                     <span class="min-w-fit break-words text-ellipsis" :title="work.slug">{{ work.slug }}</span>
                                 </div>
-                                <div class="col-span-3 overflow-y-auto">
+                                <div class="col-span-2 overflow-y-auto">
                                     <BadgeGroup :badges="work.specialties" />
                                 </div>
                                 <div class="col-span-1 flex items-center">
@@ -106,9 +121,13 @@ function toggleNewWorkForm() {
                                 <div class="col-span-2 flex items-center">
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
                                 </div>
-                                <div class="col-span-1 flex items-center overflow-y-auto">
+                                <div class="col-span-2 flex flex-col items-center overflow-y-auto">
                                     <Button :title="$t('words.delete')" @click="submitDelete(work.uuid)" :disabled="deleteForm.processing">
                                         {{ $t('words.delete') }}
+                                    </Button>
+
+                                    <Button class="mt-2" :title="$t('words.update')" @click="setWorkToUpdate(work)" :disabled="deleteForm.processing">
+                                        {{ $t('words.update') }}
                                     </Button>
                                 </div>
                             </div>

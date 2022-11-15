@@ -39,7 +39,8 @@ use App\Http\Controllers\User\Profile\Worker\Appointments\ShowAppointmentsContro
 use App\Http\Controllers\User\Profile\Worker\MyWork\{
     DestroyMyWorksController,
     ShowMyWorksController,
-    StoreMyWorksController
+    StoreMyWorksController,
+    UpdateMyWorksController
 };
 use App\Http\Controllers\User\Profile\Worker\Profile\{
     ShowWorkerProfileController,
@@ -106,6 +107,7 @@ Route::middleware([
                 Route::prefix('/my-works')->name('.my-works')->group(function () {
                     Route::get('', ShowMyWorksController::class)->name('.show');
                     Route::post('', StoreMyWorksController::class)->name('.store');
+                    Route::put('', UpdateMyWorksController::class)->name('.update');
                     Route::delete('', DestroyMyWorksController::class)->name('.destroy');
                 });
 

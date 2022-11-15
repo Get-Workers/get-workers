@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 import Button from '@/Components/Button.vue';
+import ButtonCancel from '@/Components/ButtonCancel.vue';
 import Input from '@/Components/Input.vue';
 import Label from '@/Components/Label.vue';
 import Checkbox from '@/Components/Checkbox.vue';
@@ -22,30 +23,41 @@ const props = defineProps({
         required: true,
         default: []
     },
+    workToUpdate: Object,
 });
 
-const nonSelectedSpecialties = computed(() => (props.specialties.filter((specialty) => !newWorkForm.specialties.includes(specialty.id))));
+const emits = defineEmits(['reset']);
 
 const newWorkForm = useForm({
-    name: '',
-    description: '',
-    time: null,
-    price: 0,
-    unity_id: null,
-    has_unity: false,
-    specialties: [],
-    specialtiesList: []
+    id: props.workToUpdate?.id ?? null,
+    name:  props.workToUpdate?.name ?? '',
+    description: props.workToUpdate?.description ?? '',
+    time: props.workToUpdate?.time ?? null,
+    price: props.workToUpdate?.price ?? 0,
+    unity_id: props.workToUpdate?.unity_id ?? null,
+    has_unity: props.workToUpdate?.unity_id ? true : false,
+    specialties: props.workToUpdate?.specialties.map((specialty) => specialty.id) ?? [],
+    specialtiesList: props.workToUpdate?.specialties ?? [],
 });
 
 function submitAdd() {
-    newWorkForm.post(route('user.profile.worker.my-works.store'), {
+    let options = {
         preserveScroll: true,
-        onSuccess: () => newWorkForm.reset(),
+        onSuccess: () => newWorkForm.reset() && emits('reset'),
         onBefore: () => newWorkForm.clearErrors(),
-    });
+    };
+
+    if (props.workToUpdate) {
+        newWorkForm.put(route('user.profile.worker.my-works.update'), options);
+        return;
+    }
+
+    newWorkForm.post(route('user.profile.worker.my-works.store'), options);
 }
 
-let specialtiesSelect = ref(null);
+const nonSelectedSpecialties = computed(() => (props.specialties.filter((specialty) => !newWorkForm.specialties.includes(specialty.id))));
+
+const specialtiesSelect = ref(null);
 function selectSpecialty() {
     let item = specialtiesSelect.value;
     specialtiesSelect.value = null;
@@ -64,12 +76,12 @@ function removeSelectedSpecialty(specialtyId) {
 
 <template>
     <div>
-        <form @submit.prevent="submitAdd">
+        <form @submit.prevent="submitAdd" @reset.prevent="emits('reset')">
             <div class="space-y-5">
                 <div>
                     <Label :value="$t('words.name')" for="workName" :required="true" />
                     <Input id="workName" type="text" class="mt-1 block w-full" required autofocus
-                        :placeholder="$t('words.name')" max-length="255" v-model="newWorkForm.name" />
+                        :placeholder="$t('words.name')" max-length="255" v-model="newWorkForm.name"/>
                     <InputError class="mt-1" :message="newWorkForm.errors.name" />
                 </div>
                 <div>
@@ -125,7 +137,10 @@ function removeSelectedSpecialty(specialtyId) {
                     <InputError class="mt-1" :message="newWorkForm.errors.price" />
                 </div>
                 <div class="flex align-items-end">
-                    <Button class="ml-auto" :disabled="newWorkForm.processing">{{ $t('words.register') }}</Button>
+                    <div class="ml-auto">
+                        <ButtonCancel type="reset" :disabled="newWorkForm.processing" v-if="workToUpdate">{{ $t('words.cancel') }}</ButtonCancel>
+                        <Button class="ml-2" :disabled="newWorkForm.processing">{{ workToUpdate ? $t('words.update') : $t('words.register') }}</Button>
+                    </div>
                 </div>
             </div>
 
