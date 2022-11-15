@@ -31,6 +31,7 @@ class UpdateWorkerCnpjRequest extends FormRequest
 
         return [
             'cnpj' => [
+                'required',
                 "not_in:{$actualCnpj}",
                 Rule::unique(Worker::class)
                     ->whereNot('id', $worker->id),
