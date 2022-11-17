@@ -24,6 +24,6 @@ class ValidateWorkIsNotFromAuthenticatedWorker implements InvokableRule
             ->where('worker_id', '!=', $worker->id)
             ->first();
         if (! is_null($work)) return;
-        $fail('validation.work_is_not_from_authenticated_worker')->translate();
+        $fail('validation.work_is_from_authenticated_worker')->translate();
     }
 }
