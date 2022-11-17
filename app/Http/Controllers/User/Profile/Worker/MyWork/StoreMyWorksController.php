@@ -29,9 +29,7 @@ class StoreMyWorksController extends Controller
 
             $newWork = $worker->works()->create([...$inputFields, 'slug' => $inputFields['name']]);
 
-            $unity = $validatedInputs['has_unity']
-                ? ($validatedInputs['unity_id'] ?? null)
-                : null;
+            $unity = $validatedInputs['unity_id'] ?? null;
 
             $this->associateUnity($newWork, $unity);
             $this->associateSpecialties($newWork, $validatedInputs['specialties'] ?? []);
