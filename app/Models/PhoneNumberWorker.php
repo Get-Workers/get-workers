@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PhoneNumber extends Model
+class PhoneNumberWorker extends Pivot
 {
     use HasFactory;
 
@@ -16,7 +15,9 @@ class PhoneNumber extends Model
      * @var string[]
      */
     protected $fillable = [
-        'number',
+        'worker_id',
+        'phone_number_id',
+        'validated_at',
     ];
 
     /**
@@ -25,15 +26,9 @@ class PhoneNumber extends Model
      * @var array
      */
     protected $casts = [
+        'validated_at' => 'timestamp',
         'created_at' => 'timestamp',
         'updated_at' => 'timestamp',
     ];
 
-    /**
-     * @return BelongsToMany
-     */
-    public function workers(): BelongsToMany
-    {
-        return $this->belongsToMany(Worker::class)->using(PhoneNumberWorker::class);
-    }
 }

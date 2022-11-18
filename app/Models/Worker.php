@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Worker extends Model
 {
@@ -53,5 +54,13 @@ class Worker extends Model
     public function specialties(): BelongsToMany
     {
         return $this->belongsToMany(Specialty::class)->using(SpecialtyWorker::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function phoneNumbers(): BelongsToMany
+    {
+        return $this->belongsToMany(PhoneNumber::class)->using(PhoneNumberWorker::class);
     }
 }
