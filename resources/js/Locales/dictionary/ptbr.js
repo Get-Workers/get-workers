@@ -61,8 +61,10 @@
         remove: 'Remover',
         cancel: 'Cancelar',
         add: 'Adicionar',
+        addMore: 'Adicionar mais',
         cnpj: 'CNPJ',
         cpf: 'CPF',
+        phoneNumbers: 'Números de telefone',
 
         // Unities
         unity: 'Unidade',
@@ -111,6 +113,7 @@
 
         workerProfile: 'Perfil do prestador der serviço',
         updateCnpjForm: 'Formulário para alteração de CNPJ',
+        updatePhonesForm: 'Formulário para alteração de números de telefone',
 
         contractorProfile: 'Perfil do contratante',
         updateCpfForm: 'Formulário para alteração de CPF',

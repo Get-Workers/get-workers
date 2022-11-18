@@ -60,8 +60,10 @@ const en = {
         remove: 'Remove',
         cancel: 'Cancel',
         add: 'Add',
+        addMore: 'Add more',
         cnpj: 'CNPJ',
         cpf: 'ID',
+        phoneNumbers: 'Phone numbers',
 
         // Unities
         unity: 'Unity',
@@ -108,6 +110,7 @@ const en = {
 
         workerProfile: 'Worker profile',
         updateCnpjForm: 'Update CNPJ form',
+        updatePhonesForm: 'Update Phones form',
 
         contractorProfile: 'Contractor profile',
         updateCpfForm: 'Update CPF form',
