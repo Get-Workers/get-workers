@@ -8,7 +8,7 @@ defineProps({
         type: Boolean,
         default: false
     },
-    mask: '',
+    mask: [Object, Array, String],
 });
 
 defineEmits(['update:modelValue']);
