@@ -2,10 +2,10 @@ const en = {
     words: {
 
         save: 'Save',
-        saved: 'Saved.',
+        saved: 'Saved',
         enable: 'Enable',
         confirm: 'Confirm',
-        done: 'Done.',
+        done: 'Done',
         optional: 'Optional',
         status: 'Status',
 

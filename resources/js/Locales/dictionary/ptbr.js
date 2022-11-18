@@ -2,10 +2,10 @@
     words: {
 
         save: 'Salvar',
-        saved: 'Salvou.',
+        saved: 'Salvou',
         enable: 'Habilitar',
         confirm: 'Confirmar',
-        done: 'Realizado.',
+        done: 'Realizado',
         optional: 'Opcional',
         status: 'Situação',
 
