@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Faker\Provider\pt_BR\PhoneNumber;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class PhoneNumberFactory extends Factory
     public function definition()
     {
         return [
-            'number' => $this->faker->phoneNumber(),
+            'number' => PhoneNumber::cellphoneNumber(),
         ];
     }
 }
