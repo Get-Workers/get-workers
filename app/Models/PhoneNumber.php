@@ -17,4 +17,14 @@ class PhoneNumber extends Model
     protected $fillable = [
         'number',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'timestamp',
+        'updated_at' => 'timestamp',
+    ];
 }
