@@ -9,21 +9,34 @@ use Illuminate\Support\Facades\Cache;
 class WorkerCacheService
 {
     /**
+     * @return void
+     */
+    public static function clearAll(): void
+    {
+        self::workerProfile(clearTag: true);
+    }
+
+    /**
      * @param  User  $user
      * @param  bool  $clear
      *
      * @return Worker|null
      */
-    public static function workerProfile(User $user, bool $clear = false): ?Worker
+    public static function workerProfile(?User $user = null, bool $clear = false, bool $clearTag = false): ?Worker
     {
-        $key = "user:{$user->id}_worker_profile";
-
-        if ($clear) {
-            Cache::forget($key);
+        if ($clearTag) {
+            Cache::tags(['user:workerProfile'])->flush();
             return null;
         }
 
-        return Cache::rememberForever($key, function () use (&$user) {
+        $key = "user:{$user->id}_worker_profile";
+
+        if ($clear) {
+            Cache::tags(['user:workerProfile'])->forget($key);
+            return null;
+        }
+
+        return Cache::tags(['user:workerProfile'])->remember($key, now()->addHour(), function () use (&$user) {
             return $user->worker;
         });
     }

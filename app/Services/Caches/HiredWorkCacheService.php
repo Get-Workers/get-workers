@@ -50,7 +50,7 @@ class HiredWorkCacheService
             return null;
         }
 
-        return Cache::tags(['worker:hired_works'])->rememberForever($key, function () use (&$worker, &$with, &$filters) {
+        return Cache::tags(['worker:hired_works'])->remember($key, now()->addHour(), function () use (&$worker, &$with, &$filters) {
             $query = HiredWork::filter($filters);
 
             if (! empty($with)) {
@@ -94,7 +94,7 @@ class HiredWorkCacheService
             return null;
         }
 
-        return Cache::tags(['contractor:hired_works'])->rememberForever($key, function () use (&$contractor, &$with, &$filters) {
+        return Cache::tags(['contractor:hired_works'])->remember($key, now()->addHour(), function () use (&$contractor, &$with, &$filters) {
             $query = HiredWork::filter($filters);
 
             if (! empty($with)) {
@@ -130,7 +130,7 @@ class HiredWorkCacheService
             return null;
         }
 
-        return Cache::tags(['hired_work', 'hired_work:uuid'])->rememberForever($key, function () use (&$uuid, &$with) {
+        return Cache::tags(['hired_work', 'hired_work:uuid'])->remember($key, now()->addHour(), function () use (&$uuid, &$with) {
             $query = HiredWork::query();
             if (! empty($with)) {
                 $query->with($with);

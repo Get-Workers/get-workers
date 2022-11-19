@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Worker;
+use App\Services\Caches\HiredWorkCacheService;
+use App\Services\Caches\WorkCacheService;
 use App\Services\Caches\WorkerCacheService;
 
 class WorkerObserver
@@ -64,11 +66,12 @@ class WorkerObserver
 
     /**
      * @param  Worker  $worker
-     *
      * @return void
      */
     private function clearCache(Worker $worker): void
     {
         WorkerCacheService::workerProfile($worker->user, true);
+        WorkCacheService::clearAll();
+        HiredWorkCacheService::clearAll();
     }
 }

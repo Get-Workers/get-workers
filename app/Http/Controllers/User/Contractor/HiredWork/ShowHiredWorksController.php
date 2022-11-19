@@ -21,6 +21,7 @@ class ShowHiredWorksController extends Controller
             'work.unity',
             'work.worker',
             'work.worker.user',
+            'work.worker.phoneNumbers',
             'contractor',
         ]);
         if (is_null($hiredWork)) {
