@@ -31,7 +31,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <AuthLayout title="Appointments">
+    <AuthLayout :title="$t('words.appointments')">
         <template #main>
             <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->

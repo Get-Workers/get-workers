@@ -58,7 +58,7 @@ function submitDone() {
 </script>
 
 <template>
-    <AuthLayout :title="$t('works.hiredWorks')">
+    <AuthLayout :title="$t('words.hiredWorks')">
         <template #main>
             <div class="flex">
                 <!-- Sidebard Menu -->
@@ -78,14 +78,14 @@ function submitDone() {
                         <div class="flex sm:flex-row flex-col">
                             <div class="w-full sm:mr-5">
                                 <div>
-                                    <span class="font-bold text-sm">{{$t('words.contractor')}}</span>
+                                    <span class="font-bold text-sm">{{ $t('words.contractor') }}</span>
                                     <div class="mt-1">
                                         <span>{{ hiredWork.contractor.user.name }}</span>
                                     </div>
                                 </div>
 
                                 <div v-if="hiredWork.work.description">
-                                    <span class="font-bold text-sm">{{$t('words.description')}}</span>
+                                    <span class="font-bold text-sm">{{ $t('words.description') }}</span>
                                     <div class="mt-1 border rounded p-3">
                                         <span>{{ hiredWork.work.description }}</span>
                                     </div>
@@ -94,9 +94,9 @@ function submitDone() {
                                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3" v-if="(hiredWork.work.unity) || (hiredWork.work.time) || (hiredWork.work.price)">
                                     <div v-if="hiredWork.work.unity">
                                         <div class="flex items-center" title="Work unity reference">
-                                            <span class="font-bold text-sm">{{$t('words.unity')}}</span>
+                                            <span class="font-bold text-sm">{{ $t('words.unity') }}</span>
                                             <div>
-                                                <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
+                                                <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
                                             </div>
                                         </div>
                                         <div class="mt-1">
@@ -106,9 +106,9 @@ function submitDone() {
 
                                     <div v-if="hiredWork.work.time">
                                         <div class="flex items-center" title="Estimated time">
-                                            <span class="font-bold text-sm">{{$t('words.estimatedTime')}}</span>
+                                            <span class="font-bold text-sm">{{ $t('words.estimatedTime') }}</span>
                                             <div>
-                                                <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
+                                                <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
                                             </div>
                                         </div>
                                         <div class="mt-1">
@@ -118,9 +118,9 @@ function submitDone() {
 
                                     <div v-if="hiredWork.work.price">
                                         <div class="flex items-center" title="Work price reference">
-                                            <span class="font-bold text-sm">{{$t('words.price')}}</span>
+                                            <span class="font-bold text-sm">{{ $t('words.price') }}</span>
                                             <div>
-                                                <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
+                                                <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
                                             </div>
                                         </div>
                                         <div class="mt-1">
@@ -131,22 +131,22 @@ function submitDone() {
                             </div>
 
                             <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2">
-                                <span class="font-bold text-sm">{{$t('words.status')}}</span>
+                                <span class="font-bold text-sm">{{ $t('words.status') }}</span>
                                 <div class="mt-1">
                                     <div v-if="hiredWork.initiated_at">
                                         <div>
-                                            <span>{{$t('phrases.initiated')}} {{ `${hiredWork.initiated_at.toLocaleDateString()} ${hiredWork.initiated_at.toLocaleTimeString()}` }}</span>
+                                            <span>{{ $t('phrases.initiated') }} {{ `${hiredWork.initiated_at.toLocaleDateString()} ${hiredWork.initiated_at.toLocaleTimeString()}` }}</span>
                                         </div>
                                         <div class="mt-1">
-                                            <span v-if="hiredWork.done_at">{{$t('phrases.done')}} {{ `${hiredWork.done_at.toLocaleDateString()} ${hiredWork.done_at.toLocaleTimeString()}` }}</span>
-                                            <div class="flex" v-else>
+                                            <span v-if="hiredWork.done_at">{{ $t('phrases.done') }} {{ `${hiredWork.done_at.toLocaleDateString()} ${hiredWork.done_at.toLocaleTimeString()}` }}</span>
+                                            <div class="flex items-center" v-else>
                                                 <Loading class="animate-spin"/>
-                                                <span class="ml-1">^{{$t('phrases.progress')}}</span>
+                                                <span class="ml-2">{{ $t('phrases.progress') }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div v-else>
-                                        <span>{{$t('phrases.notInitiated')}}</span>
+                                        <span>{{ $t('phrases.notInitiated') }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -158,12 +158,12 @@ function submitDone() {
                     </div>
 
                     <div class="mt-2 space-y-2" v-if="! hiredWork.done_at">
-                        <Button class="w-full py-5" title="Initiate" @click="submitInitiate" :disabled="hiredWorkForm.processing" v-if="! hiredWork.initiated_at">{{$t('words.initiate')}}</Button>
-                        <Button class="w-full py-5" title="Done" @click="submitDone" :disabled="hiredWorkForm.processing" v-if="hiredWork.initiated_at && ! hiredWork.done_at">{{$t('words.done')}}</Button>
+                        <Button class="w-full py-5" :title="$t('words.initiate')" @click="submitInitiate" :disabled="hiredWorkForm.processing" v-if="! hiredWork.initiated_at">{{ $t('words.initiate') }}</Button>
+                        <Button class="w-full py-5" :title="$t('words.done')" @click="submitDone" :disabled="hiredWorkForm.processing" v-if="hiredWork.initiated_at && ! hiredWork.done_at">{{ $t('words.done') }}</Button>
                     </div>
 
                     <div class="flex mt-2" v-if="! hiredWork.initiated_at">
-                        <Button class="w-full py-5" title="Cancel" @click="submitDelete" :disabled="hiredWorkForm.processing">{{$t('words.cancel')}}</Button>
+                        <Button class="w-full py-5" :title="$t('words.cancel')" @click="submitDelete" :disabled="hiredWorkForm.processing">{{ $t('words.cancel') }}</Button>
                     </div>
                 </div>
             </div>
