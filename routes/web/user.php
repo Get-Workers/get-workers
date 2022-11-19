@@ -44,7 +44,8 @@ use App\Http\Controllers\User\Profile\Worker\MyWork\{
 };
 use App\Http\Controllers\User\Profile\Worker\Profile\{
     ShowWorkerProfileController,
-    UpdateWorkerCnpjController
+    UpdateWorkerCnpjController,
+    UpdateWorkerPhoneNumbersController
 };
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Jetstream;
@@ -90,6 +91,7 @@ Route::middleware([
                 Route::prefix('/profile')->name('.profile')->group(function () {
                     Route::get('', ShowWorkerProfileController::class)->name('.show');
                     Route::put('cnpj', UpdateWorkerCnpjController::class)->name('.cnpj');
+                    Route::put('phone-numbers', UpdateWorkerPhoneNumbersController::class)->name('.phone-numbers');
                 });
 
                 Route::prefix('/specialties')->name('.specialties')->group(function () {

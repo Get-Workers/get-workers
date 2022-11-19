@@ -25,7 +25,7 @@ class UpdateWorkerPhoneNumbersRequest extends FormRequest
     {
         return [
             'phoneNumbers' => 'nullable|array|max:3',
-            'phoneNumbers.*.number' => [
+            'phoneNumbers.*.phone_number.number' => [
                 'required',
                 'string',
                 'min:15',

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PhoneNumberWorker extends Pivot
@@ -31,4 +32,11 @@ class PhoneNumberWorker extends Pivot
         'updated_at' => 'timestamp',
     ];
 
+    /**
+     * @return BelongsTo
+     */
+    public function phoneNumber(): BelongsTo
+    {
+        return $this->belongsTo(PhoneNumber::class);
+    }
 }

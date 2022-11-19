@@ -63,4 +63,12 @@ class Worker extends Model
     {
         return $this->belongsToMany(PhoneNumber::class)->using(PhoneNumberWorker::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function phoneNumberWorker(): HasMany
+    {
+        return $this->hasMany(PhoneNumberWorker::class);
+    }
 }
