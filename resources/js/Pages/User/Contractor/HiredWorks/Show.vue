@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onBeforeMount } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-import { Loading } from 'mdue';
+import { Loading, Phone } from 'mdue';
 import Button from '@/Components/Button.vue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
+import CopyField from '@/Components/CopyField.vue';
 
 const props = defineProps({hiredWork: {type: Object}});
 
@@ -54,21 +55,46 @@ function submitDelete() {
                     <div class="mt-5 p-5 space-y-3 border rounded w-full overflow-x-auto">
                         <div class="flex sm:flex-row flex-col">
                             <div class="w-full sm:mr-5">
-                                <div>
-                                    <span class="font-bold text-sm">{{$t('words.worker')}}</span>
-                                    <div class="mt-1">
-                                        <span>{{ hiredWork.work.worker.user.name }}</span>
+                                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-1">
+                                    <div>
+                                        <span class="font-bold text-sm">{{$t('words.worker')}}</span>
+                                        <div class="mt-1">
+                                            <span>{{ hiredWork.work.worker.user.name }}</span>
+                                        </div>
                                     </div>
+
+                                    <template v-if="hiredWork.work.worker.cnpj">
+                                        <div>
+                                            <span class="font-bold text-sm">{{$t('words.cnpj')}}</span>
+                                            <div class="mt-1">
+                                                <span>{{ hiredWork.work.worker.cnpj }}</span>
+                                            </div>
+                                        </div>
+                                    </template>
                                 </div>
 
-                                <div v-if="hiredWork.work.description">
+                                <template v-if="hiredWork.work.worker.phone_numbers.length">
+                                        <div class="mt-5">
+                                            <span class="font-bold text-sm">{{$t('words.phoneNumbers')}}</span>
+                                            <div class="mt-1">
+                                                <div class="mt-1" v-for="phoneNumber in hiredWork.work.worker.phone_numbers" :key="phoneNumber.id">
+                                                    <div class="flex items-center">
+                                                        <Phone class="text-sm" />
+                                                        <CopyField class="ml-2" width="width: 130px;" :modelValue="phoneNumber.number" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                <div class="mt-5" v-if="hiredWork.work.description">
                                     <span class="font-bold text-sm">{{$t('words.description')}}</span>
                                     <div class="mt-1 border rounded p-3 max-w-full">
                                         <span>{{ hiredWork.work.description }}</span>
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3" v-if="(hiredWork.work.unity) || (hiredWork.work.time) || (hiredWork.work.price)">
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-5" v-if="(hiredWork.work.unity) || (hiredWork.work.time) || (hiredWork.work.price)">
                                     <div v-if="hiredWork.work.unity">
                                         <div class="flex items-center" title="Work unity reference">
                                             <span class="font-bold text-sm">{{$t('words.unity')}}</span>
