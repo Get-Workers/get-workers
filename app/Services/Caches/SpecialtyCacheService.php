@@ -22,6 +22,6 @@ class SpecialtyCacheService
             return null;
         }
 
-        return Cache::rememberForever($key, fn () => Specialty::all());
+        return Cache::remember($key, now()->addHour(), fn () => Specialty::all());
     }
 }
