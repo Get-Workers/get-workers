@@ -59,7 +59,7 @@ function removeNumber(index) {
                 <div class="mt-2 space-y-4 max-h-80 overflow-y-auto p-2">
                     <template v-for="(number, index) in formPhones.phoneNumbers" :key="`phone-number-${index}`">
                         <div class="flex items-center">
-                            <Input class="w-full" type="tel" placeholder="(48) 99999-9999" required maxlength="15"
+                            <Input class="w-full" type="tel" placeholder="(99) 99999-9999" required maxlength="15"
                                 mask="(##) #####-####" v-model="formPhones.phoneNumbers[index].phone_number.number" />
                             <Button class="ml-2 px-2 h-fit" type="button" @click="removeNumber(index)">{{ $t('words.remove') }}</Button>
                         </div>

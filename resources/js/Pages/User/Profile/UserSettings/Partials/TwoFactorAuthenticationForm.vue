@@ -205,7 +205,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': enabling }"
                             :disabled="enabling"
                         >
-                            {{$t('words.confirm')}}
+                            {{ $t('words.confirm') }}
                         </JetButton>
                     </JetConfirmsPassword>
 
@@ -214,7 +214,7 @@ const disableTwoFactorAuthentication = () => {
                             v-if="recoveryCodes.length > 0 && ! confirming"
                             class="mr-3"
                         >
-                            {{$t('phrases.regenerateRecoveryCodes')}}
+                            {{ $t('phrases.regenerateRecoveryCodes') }}
                         </JetSecondaryButton>
                     </JetConfirmsPassword>
 
@@ -223,7 +223,7 @@ const disableTwoFactorAuthentication = () => {
                             v-if="recoveryCodes.length === 0 && ! confirming"
                             class="mr-3"
                         >
-                            {{$t('phrases.showRecoveryCodes')}}
+                            {{ $t('phrases.showRecoveryCodes') }}
                         </JetSecondaryButton>
                     </JetConfirmsPassword>
 
@@ -233,7 +233,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
-                            {{$t(words.cancel)}}
+                            {{ $t('words.cancel') }}
                         </JetSecondaryButton>
                     </JetConfirmsPassword>
 
@@ -243,7 +243,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
-                            {{$t('words.disable')}}
+                            {{ $t('words.disable') }}
                         </JetDangerButton>
                     </JetConfirmsPassword>
                 </div>

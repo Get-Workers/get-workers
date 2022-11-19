@@ -64,6 +64,7 @@ const en = {
         cnpj: 'CNPJ',
         cpf: 'ID',
         phoneNumbers: 'Phone numbers',
+        phoneNumber: 'Phone number',
 
         // Unities
         unity: 'Unity',
@@ -90,6 +91,7 @@ const en = {
         certificationIdentificator: 'Certification name',
         userSettings: 'User settings',
         update: 'Update',
+        twoFactorConfirmation: 'Two-factor Confirmation',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -103,6 +105,9 @@ const en = {
         twoFactorAuthentication: 'Two Factor Authentication',
         setupKey: 'Setup Key',
         code: 'Code',
+        recoveryCode: 'Recovery code',
+
+        disable: 'Disable',
 
         //Browser Sessions
         browserSessions: 'Browser Sessions',
@@ -154,6 +159,11 @@ const en = {
         regenerateRecoveryCodes: 'Regenerate Recovery Codes',
         showRecoveryCodes: 'Show Recovery Codes',
         confirmYourpassword: 'For your security, please confirm your password to continue.',
+        pleaseConfirmAccessByAuthCodeOnAuthenticator: 'Please confirm access to your account by entering the authentication code provided by your authenticator application.',
+        pleaseConfirmAccessByOneOfEmergencyCodes: 'Please confirm access to your account by entering one of your emergency recovery codes.',
+        useRecoveryCode: 'Use a recovery code',
+        useAuthenticationCode: 'Use an authentication code',
+
 
         //Browser Sessions
         manageSessions: 'Manage and log out your active sessions on other browsers and devices.',
