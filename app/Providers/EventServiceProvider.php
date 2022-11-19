@@ -5,14 +5,20 @@ namespace App\Providers;
 use App\Models\{
     Certification,
     Contractor,
+    HiredWork,
+    PhoneNumberWorker,
     SpecialtyWorker,
+    User,
     Worker,
     Work
 };
 use App\Observers\{
     CertificationObserver,
     ContractorObserver,
+    HiredWorkObserver,
+    PhoneNumberWorkerObserver,
     SpecialtyWorkerObserver,
+    UserObserver,
     WorkerObserver,
     WorkObserver
 };
@@ -41,8 +47,11 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $observers = [
         Certification::class => [CertificationObserver::class],
-        SpecialtyWorker::class => [SpecialtyWorkerObserver::class],
         Contractor::class => [ContractorObserver::class],
+        HiredWork::class => [HiredWorkObserver::class],
+        PhoneNumberWorker::class => [PhoneNumberWorkerObserver::class],
+        SpecialtyWorker::class => [SpecialtyWorkerObserver::class],
+        User::class => [UserObserver::class],
         Worker::class => [WorkerObserver::class],
         Work::class => [WorkObserver::class],
     ];

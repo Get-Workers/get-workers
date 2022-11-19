@@ -39,4 +39,12 @@ class PhoneNumberWorker extends Pivot
     {
         return $this->belongsTo(PhoneNumber::class);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function worker(): BelongsTo
+    {
+        return $this->belongsTo(Worker::class);
+    }
 }
