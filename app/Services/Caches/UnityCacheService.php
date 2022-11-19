@@ -22,6 +22,6 @@ class UnityCacheService
             return null;
         }
 
-        return Cache::rememberForever($key, fn () => Unity::all());
+        return Cache::remember($key, now()->addHour(), fn () => Unity::all());
     }
 }

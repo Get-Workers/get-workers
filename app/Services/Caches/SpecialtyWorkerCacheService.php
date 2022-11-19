@@ -23,7 +23,7 @@ class SpecialtyWorkerCacheService
             return null;
         }
 
-        return Cache::rememberForever($key, function () use (&$worker) {
+        return Cache::remember($key, now()->addHour(), function () use (&$worker) {
             return $worker->specialties;
         });
     }

@@ -13,7 +13,6 @@ class UpdateCnpjAction
      */
     public function update(Worker $worker, string $cnpj): bool
     {
-        $worker->cnpj = $cnpj;
-        return $worker->save();
+        return $worker->update(compact('cnpj'));
     }
 }

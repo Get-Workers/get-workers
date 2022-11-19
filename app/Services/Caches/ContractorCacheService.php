@@ -23,7 +23,7 @@ class ContractorCacheService
             return null;
         }
 
-        return Cache::rememberForever($key, function () use (&$user) {
+        return Cache::remember($key, now()->addHour(), function () use (&$user) {
             return $user->contractor;
         });
     }
