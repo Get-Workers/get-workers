@@ -65,6 +65,7 @@
         cnpj: 'CNPJ',
         cpf: 'CPF',
         phoneNumbers: 'Números de telefone',
+        phoneNumber: 'Número de telefone',
 
         // Unities
         unity: 'Unidade',
@@ -119,6 +120,7 @@
 
         contractorProfile: 'Perfil do contratante',
         updateCpfForm: 'Formulário para alteração de CPF',
+        updatePhoneNumberForm: 'Formulário para alteração de número de telefone',
     },
     phrases: {
         mostHiredWorks: 'Serviços mais contratados',
@@ -176,6 +178,7 @@
 
         // Contractor Profile
         cpfUpdated: 'O CPF foi alterado com sucesso',
+        phoneNumberUpdated: 'O número de telefone foi alterado com sucesso',
     },
     messages: {
         priceMeasurement: 'para referência de preço',

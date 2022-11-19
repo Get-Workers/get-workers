@@ -64,6 +64,7 @@ const en = {
         cnpj: 'CNPJ',
         cpf: 'ID',
         phoneNumbers: 'Phone numbers',
+        phoneNumber: 'Phone number',
 
         // Unities
         unity: 'Unity',
