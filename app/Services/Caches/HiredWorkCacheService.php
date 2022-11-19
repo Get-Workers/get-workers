@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Cache;
 class HiredWorkCacheService
 {
     /**
+     * @return void
+     */
+    public static function clearAll(): void
+    {
+        self::fromWorker(clearTag: true);
+        self::fromContractor(clearTag: true);
+        self::findUuid(clearTag: true);
+    }
+
+    /**
      * @param  Worker  $worker
      * @param  array|string  $with
      * @param  bool  $clear
@@ -112,7 +122,8 @@ class HiredWorkCacheService
             return null;
         }
 
-        $key = "hired_work:uuid({$uuid})";
+        $withJson = json_encode($with);
+        $key = "hired_work:uuid({$uuid}):with({$withJson})";
 
         if ($clear) {
             Cache::tags(['hired_work', 'hired_work:uuid'])->forget($key);
