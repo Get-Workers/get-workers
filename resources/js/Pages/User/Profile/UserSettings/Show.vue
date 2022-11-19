@@ -16,7 +16,7 @@ defineProps({
 </script>
 
 <template>
-    <AuthLayout title="Profile">
+    <AuthLayout :title="$t('words.profile')">
 
         <template #main>
             <div class="flex flex-col sm:flex-row">

@@ -6,7 +6,7 @@ defineProps({ works: Object });
 </script>
 
 <template>
-    <AuthLayout title="Welcome">
+    <AuthLayout :title="$t('phrases.mostHiredWorks')">
         <template #main>
             <div class="min-h-full">
                 <div class="mx-auto w-fit">

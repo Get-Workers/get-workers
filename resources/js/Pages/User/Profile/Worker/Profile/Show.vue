@@ -2,6 +2,9 @@
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 import UpdateCnpjForm from './Partials/UpdateCnpjForm.vue';
+import UpdatePhoneNumbersForm from './Partials/UpdatePhoneNumbersForm.vue';
+
+defineProps({phoneNumbers: Array});
 </script>
 
 <template>
@@ -17,6 +20,10 @@ import UpdateCnpjForm from './Partials/UpdateCnpjForm.vue';
 
                     <div class="mt-5">
                         <UpdateCnpjForm />
+                    </div>
+
+                    <div class="mt-5">
+                        <UpdatePhoneNumbersForm :phoneNumbers="phoneNumbers" />
                     </div>
                 </div>
             </div>

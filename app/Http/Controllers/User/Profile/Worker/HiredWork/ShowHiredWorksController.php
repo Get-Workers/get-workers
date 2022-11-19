@@ -19,7 +19,6 @@ class ShowHiredWorksController extends Controller
         $hiredWork = HiredWorkCacheService::findUuid($hiredWorkUuid, [
             'work' => fn ($query) => $query->withTrashed(),
             'work.unity',
-            'contractor',
             'contractor.user',
         ]);
         if (is_null($hiredWork)) {

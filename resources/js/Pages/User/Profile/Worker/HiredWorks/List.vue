@@ -34,7 +34,7 @@ function submitDelete(uuid) {
 </script>
 
 <template>
-    <AuthLayout title="Works">
+    <AuthLayout :title="$t('words.hiredWorks')">
         <template #main>
             <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->
@@ -86,7 +86,7 @@ function submitDelete(uuid) {
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${hiredWork.price}`.replace('.', ',')">{{ `R$ ${hiredWork.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button :title="$t('words.cancel')" @click="submitDelete(hiredWork.uuid)" :disabled="hiredWork.initiated_at || deleteForm.processing">
+                                    <Button :title="$t('words.cancel')" @click="submitDelete(hiredWork.uuid)" :disabled="((hiredWork.initiated_at) || (deleteForm.processing))">
                                         {{ $t('words.cancel') }}
                                     </Button>
                                 </div>

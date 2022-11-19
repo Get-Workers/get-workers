@@ -124,16 +124,16 @@ class HiredWorkFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             $timestamp = now();
-
-            $hasDone = (((bool) random_int(0, 1)) && (! is_null($attributes['initiated_at'])));
-            if ($hasDone) {
-                $timestamp->addHours(random_int(0, 12));
-                $timestamp->addMinutes(random_int(0, 60));
-                $timestamp->addSeconds(random_int(0, 60));
+            if (key_exists('initiated_at', $attributes)) {
+                $timestamp = clone $attributes['initiated_at'];
             }
 
+            $timestamp->addHours(random_int(0, 12));
+            $timestamp->addMinutes(random_int(0, 60));
+            $timestamp->addSeconds(random_int(0, 60));
+
             return [
-                'done_at' => ($hasDone) ? $timestamp : null,
+                'done_at' => $timestamp,
             ];
         });
     }

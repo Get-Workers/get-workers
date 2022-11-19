@@ -14,6 +14,12 @@ class ShowWorkerProfileController extends Controller
      */
     public function __invoke(): Response
     {
-        return inertia('User/Profile/Worker/Profile/Show');
+        $worker = auth()->user()->worker;
+
+        $phoneNumbers = $worker->phoneNumberWorker()
+            ->with('phoneNumber')
+            ->get();
+
+        return inertia('User/Profile/Worker/Profile/Show', compact('phoneNumbers'));
     }
 }

@@ -13,7 +13,7 @@ class StoreMyWorksTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const ROUTE = 'user.worker.my-works.store';
+    private const ROUTE = 'user.profile.worker.my-works.store';
 
     /**
      * @return void
@@ -69,8 +69,7 @@ class StoreMyWorksTest extends TestCase
 
         $response = $this->post(route(self::ROUTE), $work);
 
-        $response->assertRedirect(route('user.worker.my-works.show'))
-            ->assertSessionDoesntHaveErrors()
-            ->assertSessionHas('store', true);
+        $response->assertRedirect(route('user.profile.worker.my-works.show'))
+            ->assertSessionDoesntHaveErrors();
     }
 }

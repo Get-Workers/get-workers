@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Work;
+use App\Services\Caches\HiredWorkCacheService;
 use App\Services\Caches\WorkCacheService;
 
 class WorkObserver
@@ -70,5 +71,7 @@ class WorkObserver
     {
         WorkCacheService::fromWorker($work->worker, true);
         WorkCacheService::listPaginate(clear: true);
+
+        HiredWorkCacheService::clearAll();
     }
 }

@@ -12,7 +12,7 @@ class InitiateHiredWorkTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const ROUTE = 'user.worker.hired-works.initiate';
+    private const ROUTE = 'user.profile.worker.hired-works.initiate';
 
     /**
      * @return void
@@ -71,7 +71,7 @@ class InitiateHiredWorkTest extends TestCase
             ->post(route(self::ROUTE), ['hiredWork' => $hiredWork->uuid]);
 
         $response->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect(route('user.worker.hired-works.show', ['hiredWorkUuid' => $hiredWork->uuid]));
+            ->assertRedirect(route('user.profile.worker.hired-works.show', ['hiredWorkUuid' => $hiredWork->uuid]));
         $this->assertDatabaseMissing(HiredWork::class, ['id' => $hiredWork, 'initiated_at' => null]);
     }
 }
