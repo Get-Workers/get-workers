@@ -68,6 +68,6 @@ class HiredWorkObserver
      */
     private function clearCache(HiredWork $hiredWork): void
     {
-        HiredWorkCacheService::fromWorker($hiredWork->hiredWorker, clear: true);
+        HiredWorkCacheService::fromWorker($hiredWork->work->worker, clear: true);
     }
 }
