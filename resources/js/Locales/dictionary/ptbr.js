@@ -166,6 +166,7 @@
 
         // Worker Profile
         cnpjUpdated: 'O CNPJ foi alterado com sucesso',
+        phonesUpdated: 'Os números de telefone foram alterados com sucesso',
 
         // Contractor Profile
         cpfUpdated: 'O CPF foi alterado com sucesso',

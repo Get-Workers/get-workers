@@ -164,6 +164,7 @@ const en = {
 
         // Worker Profile
         cnpjUpdated: 'CNPJ was updated successfully',
+        phonesUpdated: 'Phone numbers was updated successfully',
 
         // Contractor Profile
         cpfUpdated: 'CPF was updated successfully',
