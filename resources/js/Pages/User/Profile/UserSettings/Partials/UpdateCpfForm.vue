@@ -7,11 +7,12 @@ import InputError from '@/Components/InputError.vue';
 import Input from '@/Components/Input.vue';
 import Button from '@/Components/Button.vue';
 
-const pageProps = usePage().props;
-const user = pageProps.value.user;
+const props = defineProps({
+    user: Object,
+})
 
 const formCpf = useForm({
-    cpf: user.cpf,
+    cpf: props.user.cpf,
 });
 
 function sendCpfForm() {

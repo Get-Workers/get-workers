@@ -33,6 +33,7 @@ use App\Http\Controllers\User\Profile\{
     OtherBrowserSessionsController,
     ProfilePhotoController,
     UpdateCpfController,
+    UpdatePhoneNumberController,
     UserProfileController
 };
 use App\Http\Controllers\User\Profile\Worker\Appointments\ShowAppointmentsController;
@@ -85,6 +86,7 @@ Route::middleware([
         // Profile
         Route::prefix('/profile')->name('.profile')->group(function () {
             Route::put('/cpf', UpdateCpfController::class)->name('.cpf');
+            Route::put('/phone-number', UpdatePhoneNumberController::class)->name('.phone-number');
 
             // Worker
             Route::prefix('/worker')->name('.worker')->middleware('worker-profile')->group(function () {

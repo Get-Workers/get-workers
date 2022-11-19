@@ -8,6 +8,7 @@ import LogoutOtherBrowserSessionsForm from './Partials/LogoutOtherBrowserSession
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import SidebarMenu from '../Partials/SidebarMenu.vue';
 import UpdateCpfForm from './Partials/UpdateCpfForm.vue';
+import UpdatePhoneNumberForm from './Partials/UpdatePhoneNumberForm.vue';
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -38,7 +39,13 @@ defineProps({
                     </div>
 
                     <div>
-                        <UpdateCpfForm />
+                        <UpdateCpfForm :user="$page.props.user" />
+
+                        <SectionBorder />
+                    </div>
+
+                    <div>
+                        <UpdatePhoneNumberForm :user="$page.props.user" />
 
                         <SectionBorder />
                     </div>

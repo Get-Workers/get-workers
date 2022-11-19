@@ -1,12 +1,12 @@
 <script setup>
 import { nextTick, ref } from 'vue';
 import { Head, useForm } from '@inertiajs/inertia-vue3';
-import JetAuthenticationCard from '@/Components/AuthenticationCard.vue';
-import JetAuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import JetButton from '@/Components/Button.vue';
-import JetInput from '@/Components/Input.vue';
-import JetInputError from '@/Components/InputError.vue';
-import JetLabel from '@/Components/Label.vue';
+import AuthenticationCard from '@/Components/AuthenticationCard.vue';
+import Button from '@/Components/Button.vue';
+import Input from '@/Components/Input.vue';
+import InputError from '@/Components/InputError.vue';
+import Label from '@/Components/Label.vue';
+import Logo from '@/Components/Logos/Logo.vue';
 
 const recovery = ref(false);
 
@@ -38,27 +38,27 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Two-factor Confirmation" />
+    <Head :title="$t('words.twoFactorConfirmation')" />
 
-    <JetAuthenticationCard>
+    <AuthenticationCard>
         <template #logo>
-            <JetAuthenticationCardLogo />
+            <Logo />
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
             <template v-if="! recovery">
-                Please confirm access to your account by entering the authentication code provided by your authenticator application.
+                {{ $t('phrases.pleaseConfirmAccessByAuthCodeOnAuthenticator') }}
             </template>
 
             <template v-else>
-                Please confirm access to your account by entering one of your emergency recovery codes.
+                {{ $t('phrases.pleaseConfirmAccessByOneOfEmergencyCodes') }}
             </template>
         </div>
 
         <form @submit.prevent="submit">
             <div v-if="! recovery">
-                <JetLabel for="code" value="Code" />
-                <JetInput
+                <Label for="code" :value="$t('words.code')" />
+                <Input
                     id="code"
                     ref="codeInput"
                     v-model="form.code"
@@ -67,38 +67,40 @@ const submit = () => {
                     class="mt-1 block w-full"
                     autofocus
                     autocomplete="one-time-code"
+                    :placeholder="$t('words.code')"
                 />
-                <JetInputError class="mt-2" :message="form.errors.code" />
+                <InputError class="mt-2" :message="form.errors.code" />
             </div>
 
             <div v-else>
-                <JetLabel for="recovery_code" value="Recovery Code" />
-                <JetInput
+                <Label for="recovery_code" :value="$t('words.recoveryCode')" />
+                <Input
                     id="recovery_code"
                     ref="recoveryCodeInput"
                     v-model="form.recovery_code"
                     type="text"
                     class="mt-1 block w-full"
                     autocomplete="one-time-code"
+                    :placeholder="$t('words.recoveryCode')"
                 />
-                <JetInputError class="mt-2" :message="form.errors.recovery_code" />
+                <InputError class="mt-2" :message="form.errors.recovery_code" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" @click.prevent="toggleRecovery">
                     <template v-if="! recovery">
-                        Use a recovery code
+                        {{ $t('phrases.useRecoveryCode') }}
                     </template>
 
                     <template v-else>
-                        Use an authentication code
+                        {{ $t('phrases.useAuthenticationCode') }}
                     </template>
                 </button>
 
-                <JetButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </JetButton>
+                <Button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    {{ $t('words.login') }}
+                </Button>
             </div>
         </form>
-    </JetAuthenticationCard>
+    </AuthenticationCard>
 </template>

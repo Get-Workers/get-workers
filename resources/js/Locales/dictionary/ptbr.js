@@ -65,6 +65,7 @@
         cnpj: 'CNPJ',
         cpf: 'CPF',
         phoneNumbers: 'Números de telefone',
+        phoneNumber: 'Número de telefone',
 
         // Unities
         unity: 'Unidade',
@@ -91,6 +92,7 @@
         certificationIdentificator: 'Identificador do certificado',
         userSettings: 'Configurações do usuário',
         update: 'Alterar',
+        twoFactorConfirmation: 'Autenticação de dois fatores',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -104,8 +106,9 @@
         twoFactorAuthentication: 'Autenticação de dois fatores',
         setupKey: 'Chave de configuração',
         code: 'Código',
+        recoveryCode: 'Código de recuperação',
+
         disable: 'Desativar',
-        confirmPassword: 'Confirme a Senha',
 
         //Browser Sessions
         browserSessions: 'Sessões do navegador',
@@ -117,6 +120,7 @@
 
         contractorProfile: 'Perfil do contratante',
         updateCpfForm: 'Formulário para alteração de CPF',
+        updatePhoneNumberForm: 'Formulário para alteração de número de telefone',
     },
     phrases: {
         mostHiredWorks: 'Serviços mais contratados',
@@ -156,6 +160,10 @@
         regenerateRecoveryCodes: 'Regenerar Códigos de Recuperação',
         showRecoveryCodes: 'Mostrar códigos de recuperação',
         confirmYourpassword: 'Para sua segurança, confirme sua senha para continuar.',
+        pleaseConfirmAccessByAuthCodeOnAuthenticator: 'Por favor confirme o acesso a sua conta com o código de autenticação que o seu gerenciador de códigos irá prover.',
+        pleaseConfirmAccessByOneOfEmergencyCodes: 'Por favor confirme o acesso a sua conta com um dos códigos de recuperação de emergência.',
+        useRecoveryCode: 'Use um código de recuperação',
+        useAuthenticationCode: 'Use um código de autenticação',
 
         //Browser Sessions
         manageSessions: 'Gerencie e desconecte suas sessões ativas em outros navegadores e dispositivos.',
@@ -170,6 +178,7 @@
 
         // Contractor Profile
         cpfUpdated: 'O CPF foi alterado com sucesso',
+        phoneNumberUpdated: 'O número de telefone foi alterado com sucesso',
     },
     messages: {
         priceMeasurement: 'para referência de preço',
