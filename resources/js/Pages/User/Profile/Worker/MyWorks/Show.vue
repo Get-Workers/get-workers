@@ -54,7 +54,7 @@ function setWorkToUpdate(work) {
 </script>
 
 <template>
-    <AuthLayout title="My Works">
+    <AuthLayout :title="$t('words.myWorks')">
         <template #main>
             <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->

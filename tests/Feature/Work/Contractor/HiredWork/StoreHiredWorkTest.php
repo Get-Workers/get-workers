@@ -3,6 +3,7 @@
 namespace Tests\Feature\Work\Contractor\HiredWork;
 
 use App\Models\Contractor;
+use App\Models\HiredWork;
 use App\Models\User;
 use App\Models\Work;
 use App\Providers\RouteServiceProvider;
@@ -65,7 +66,11 @@ class StoreHiredWorkTest extends TestCase
 
         $response = $this->post(route(self::ROUTE), ['work' => $work->uuid]);
 
-        $response->assertRedirect(route('works.show', ['workUuid' => $work->uuid]))
+        $this->assertDatabaseHas(HiredWork::class, ['work_id' => $work->id]);
+
+        $hiredWork = $work->hiredWorks()->first();
+
+        $response->assertRedirect(route('user.contractor.hired-works.show', ['hiredWorkUuid' => $hiredWork->uuid]))
             ->assertSessionDoesntHaveErrors()
             ->assertSessionHas('store', true);
     }

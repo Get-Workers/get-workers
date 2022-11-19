@@ -2,10 +2,10 @@
     words: {
 
         save: 'Salvar',
-        saved: 'Salvou.',
+        saved: 'Salvou',
         enable: 'Habilitar',
         confirm: 'Confirmar',
-        done: 'Realizado.',
+        done: 'Realizado',
         optional: 'Opcional',
         status: 'Situação',
 
@@ -61,8 +61,10 @@
         remove: 'Remover',
         cancel: 'Cancelar',
         add: 'Adicionar',
+        addMore: 'Adicionar mais',
         cnpj: 'CNPJ',
         cpf: 'CPF',
+        phoneNumbers: 'Números de telefone',
 
         // Unities
         unity: 'Unidade',
@@ -111,6 +113,7 @@
 
         workerProfile: 'Perfil do prestador der serviço',
         updateCnpjForm: 'Formulário para alteração de CNPJ',
+        updatePhonesForm: 'Formulário para alteração de números de telefone',
 
         contractorProfile: 'Perfil do contratante',
         updateCpfForm: 'Formulário para alteração de CPF',
@@ -163,6 +166,7 @@
 
         // Worker Profile
         cnpjUpdated: 'O CNPJ foi alterado com sucesso',
+        phonesUpdated: 'Os números de telefone foram alterados com sucesso',
 
         // Contractor Profile
         cpfUpdated: 'O CPF foi alterado com sucesso',

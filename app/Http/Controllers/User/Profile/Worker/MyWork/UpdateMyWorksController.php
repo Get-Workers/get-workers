@@ -34,9 +34,7 @@ class UpdateMyWorksController extends Controller
                 'slug' => $data['name']
             ]);
 
-            $unity = $data['has_unity']
-                ? ($data['unity_id'] ?? null)
-                : null;
+            $unity = $data['unity_id'] ?? null;
 
             $this->updateUnity($work, $unity);
             $this->updateSpecialties($work, $data['specialties'] ?? []);

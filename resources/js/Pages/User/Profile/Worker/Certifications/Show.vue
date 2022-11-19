@@ -72,7 +72,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
 </script>
 
 <template>
-    <AuthLayout title="Specialties">
+    <AuthLayout :title="$t('words.myCertifications')">
         <template #main>
             <div class="flex flex-col sm:flex-row">
                 <!-- Sidebard Menu -->

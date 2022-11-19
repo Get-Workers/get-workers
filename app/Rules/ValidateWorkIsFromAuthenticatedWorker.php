@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\Work;
 use Illuminate\Contracts\Validation\InvokableRule;
 
-class ValidateWorkIsNotFromAuthenticatedWorker implements InvokableRule
+class ValidateWorkIsFromAuthenticatedWorker implements InvokableRule
 {
     /**
      * Run the validation rule.
@@ -21,9 +21,9 @@ class ValidateWorkIsNotFromAuthenticatedWorker implements InvokableRule
         if (is_null($worker)) return;
 
         $work = Work::whereUuid($value)
-            ->where('worker_id', '!=', $worker->id)
+            ->where('worker_id', $worker->id)
             ->first();
         if (! is_null($work)) return;
-        $fail('validation.work_is_from_authenticated_worker')->translate();
+        $fail('validation.work_is_not_from_authenticated_worker')->translate();
     }
 }
