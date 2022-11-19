@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignIdFor(Worker::class)->constrained();
             $table->foreignIdFor(PhoneNumber::class)->constrained();
             $table->timestamp('validated_at')->nullable();
-            $table->timestamps();
             $table->unique(['phone_number_id', 'worker_id']);
         });
     }
