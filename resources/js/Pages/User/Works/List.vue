@@ -12,7 +12,7 @@ defineProps({ works: Object });
             <div class="flex">
                 <!-- Page Content -->
                 <div class="w-full px-5">
-                    <div class="font-bold text-lg">{{ $t('words.works') }}</div>
+                    <h1 class="font-bold text-lg">{{ $t('words.works') }}</h1>
 
                     <!-- Works List -->
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 lg:gap-7 w-fit mx-auto mt-5">
