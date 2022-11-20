@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\User;
 use App\Services\Caches\ContractorCacheService;
+use App\Services\Caches\HiredWorkCacheService;
 use App\Services\Caches\WorkerCacheService;
 
 class UserObserver
@@ -71,5 +72,6 @@ class UserObserver
     {
         WorkerCacheService::workerProfile($user, true);
         ContractorCacheService::contractorProfile($user, true);
+        HiredWorkCacheService::clearAll();
     }
 }

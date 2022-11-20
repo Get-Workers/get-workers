@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\PhoneNumber;
 use App\Models\User;
+use App\Models\Worker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +22,18 @@ class WorkerFactory extends Factory
         return [
             'cnpj' => $this->generateCnpj(),
         ];
+    }
+
+    /**
+     * Configure the model factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterCreating(function (Worker $worker) {
+            $this->createPhoneNumbers($worker);
+        });
     }
 
 
@@ -48,5 +62,20 @@ class WorkerFactory extends Factory
             $cnpj .= random_int(0, 9);
         }
         return $cnpj;
+    }
+
+    /**
+     * @param  Worker  $worker
+     * @return void
+     */
+    private function createPhoneNumbers(Worker $worker): void
+    {
+        $phoneNumberQuantity = random_int(0, 3);
+        if ($phoneNumberQuantity === 0) return;
+
+        $phoneNumbers = PhoneNumber::factory($phoneNumberQuantity)->create();
+        $phoneArray = $phoneNumbers->map(fn (PhoneNumber $phoneNumber) => $phoneNumber->id);
+
+        $worker->phoneNUmbers()->sync($phoneArray);
     }
 }

@@ -74,21 +74,21 @@ function submitDelete() {
                                 </div>
 
                                 <template v-if="hiredWork.work.worker.phone_numbers.length">
-                                        <div class="mt-5">
-                                            <span class="font-bold text-sm">{{$t('words.phoneNumbers')}}</span>
-                                            <div class="mt-1">
-                                                <div class="mt-1" v-for="phoneNumber in hiredWork.work.worker.phone_numbers" :key="phoneNumber.id">
-                                                    <div class="flex items-center">
-                                                        <Phone class="text-sm" />
-                                                        <CopyField class="ml-2" width="width: 130px;" :modelValue="phoneNumber.number" />
-                                                    </div>
+                                    <div class="mt-5">
+                                        <span class="font-bold text-sm">{{$t('words.phoneNumbers')}}</span>
+                                        <div class="mt-1">
+                                            <div class="mt-1" v-for="phoneNumber in hiredWork.work.worker.phone_numbers" :key="phoneNumber.id">
+                                                <div class="flex items-center">
+                                                    <Phone class="text-sm" />
+                                                    <CopyField class="ml-2" width="width: 130px;" :modelValue="phoneNumber.number" />
                                                 </div>
                                             </div>
                                         </div>
-                                    </template>
+                                    </div>
+                                </template>
 
                                 <div class="mt-5" v-if="hiredWork.work.description">
-                                    <span class="font-bold text-sm">{{$t('words.description')}}</span>
+                                    <span class="font-bold text-sm">{{ $t('words.description') }}</span>
                                     <div class="mt-1 border rounded p-3 max-w-full">
                                         <span>{{ hiredWork.work.description }}</span>
                                     </div>
@@ -96,10 +96,10 @@ function submitDelete() {
 
                                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-5" v-if="(hiredWork.work.unity) || (hiredWork.work.time) || (hiredWork.work.price)">
                                     <div v-if="hiredWork.work.unity">
-                                        <div class="flex items-center" title="Work unity reference">
-                                            <span class="font-bold text-sm">{{$t('words.unity')}}</span>
+                                        <div class="flex items-center" :title="$t('words.unity')">
+                                            <span class="font-bold text-sm">{{ $t('words.unity') }}</span>
                                             <div>
-                                                <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
+                                                <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
                                             </div>
                                         </div>
                                         <div class="mt-1">
@@ -109,9 +109,9 @@ function submitDelete() {
 
                                     <div v-if="hiredWork.work.time">
                                         <div class="flex items-center" title="Estimated time">
-                                            <span class="font-bold text-sm">{{$t('words.estimatedTime')}}</span>
+                                            <span class="font-bold text-sm">{{ $t('words.estimatedTime') }}</span>
                                             <div>
-                                                <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
+                                                <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
                                             </div>
                                         </div>
                                         <div class="mt-1">
@@ -120,10 +120,10 @@ function submitDelete() {
                                     </div>
 
                                     <div v-if="hiredWork.work.price">
-                                        <div class="flex items-center" title="Work price reference">
-                                            <span class="font-bold text-sm">{{$t('words.price')}}</span>
+                                        <div class="flex items-center" :title="$t('words.price')">
+                                            <span class="font-bold text-sm">{{ $t('words.price') }}</span>
                                             <div>
-                                                <em class="ml-1 text-xs">({{$t('words.reference')}})</em>
+                                                <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
                                             </div>
                                         </div>
                                         <div class="mt-1">
@@ -133,7 +133,7 @@ function submitDelete() {
                                 </div>
                             </div>
 
-                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2">
+                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2 h-40">
                                 <span class="font-bold text-sm">{{$t('words.status')}}</span>
                                 <div class="mt-1">
                                     <div v-if="hiredWork.initiated_at">
