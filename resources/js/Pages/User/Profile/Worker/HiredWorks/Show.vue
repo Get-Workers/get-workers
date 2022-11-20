@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onBeforeMount, onUpdated } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-import { Loading } from 'mdue';
+import { Loading, Phone } from 'mdue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import Button from '@/Components/Button.vue';
+import CopyField from '@/Components/CopyField.vue';
 import InputError from '@/Components/InputError.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 
@@ -77,23 +78,39 @@ function submitDone() {
                     <div class="mt-5 p-5 space-y-3 border rounded w-full overflow-x-auto">
                         <div class="flex sm:flex-row flex-col">
                             <div class="w-full sm:mr-5">
-                                <div>
-                                    <span class="font-bold text-sm">{{ $t('words.contractor') }}</span>
-                                    <div class="mt-1">
-                                        <span>{{ hiredWork.contractor.user.name }}</span>
+                                <div class="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-3 mt-1">
+                                    <div>
+                                        <span class="font-bold text-sm">{{ $t('words.contractor') }}</span>
+                                        <div class="mt-1">
+                                            <span>{{ hiredWork.contractor.user.name }}</span>
+                                        </div>
                                     </div>
+
+                                    <template v-if="hiredWork.contractor.user.phone_number.length">
+                                        <div class="mt-5">
+                                            <span class="font-bold text-sm">{{$t('words.phoneNumber')}}</span>
+                                            <div class="mt-1">
+                                                <div class="mt-1">
+                                                    <div class="flex items-center">
+                                                        <Phone class="text-sm" />
+                                                        <CopyField class="ml-2" width="width: 130px;" :modelValue="hiredWork.contractor.user.phone_number" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
                                 </div>
 
-                                <div v-if="hiredWork.work.description">
+                                <div class="mt-5" v-if="hiredWork.work.description">
                                     <span class="font-bold text-sm">{{ $t('words.description') }}</span>
                                     <div class="mt-1 border rounded p-3">
                                         <span>{{ hiredWork.work.description }}</span>
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3" v-if="(hiredWork.work.unity) || (hiredWork.work.time) || (hiredWork.work.price)">
+                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 mt-5" v-if="(hiredWork.work.unity) || (hiredWork.work.time) || (hiredWork.work.price)">
                                     <div v-if="hiredWork.work.unity">
-                                        <div class="flex items-center" title="Work unity reference">
+                                        <div class="flex items-center" :title="$t('words.unity')">
                                             <span class="font-bold text-sm">{{ $t('words.unity') }}</span>
                                             <div>
                                                 <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
@@ -105,7 +122,7 @@ function submitDone() {
                                     </div>
 
                                     <div v-if="hiredWork.work.time">
-                                        <div class="flex items-center" title="Estimated time">
+                                        <div class="flex items-center" :title="$t('words.estimatedTime')">
                                             <span class="font-bold text-sm">{{ $t('words.estimatedTime') }}</span>
                                             <div>
                                                 <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
@@ -117,7 +134,7 @@ function submitDone() {
                                     </div>
 
                                     <div v-if="hiredWork.work.price">
-                                        <div class="flex items-center" title="Work price reference">
+                                        <div class="flex items-center" :title="$t('words.price')">
                                             <span class="font-bold text-sm">{{ $t('words.price') }}</span>
                                             <div>
                                                 <em class="ml-1 text-xs">({{ $t('words.reference') }})</em>
@@ -130,7 +147,7 @@ function submitDone() {
                                 </div>
                             </div>
 
-                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2">
+                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2 h-40">
                                 <span class="font-bold text-sm">{{ $t('words.status') }}</span>
                                 <div class="mt-1">
                                     <div v-if="hiredWork.initiated_at">
