@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class HiredWork extends Model
 {
@@ -56,6 +57,14 @@ class HiredWork extends Model
     public function work(): BelongsTo
     {
         return $this->belongsTo(Work::class);
+    }
+
+    /**
+     * @return HasOneThrough
+     */
+    public function contractorReview(): HasOneThrough
+    {
+        return $this->hasOneThrough(Review::class, ReviewHiredWorkContractor::class);
     }
 
     /**
