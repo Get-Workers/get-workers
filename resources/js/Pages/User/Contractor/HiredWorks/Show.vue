@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, onUpdated } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { Loading, Phone } from 'mdue';
 import Button from '@/Components/Button.vue';
@@ -13,6 +13,10 @@ const props = defineProps({hiredWork: {type: Object}});
 const hiredWork = ref({});
 
 onBeforeMount(() => {
+    setHiredWork();
+});
+
+onUpdated(() => {
     setHiredWork();
 });
 

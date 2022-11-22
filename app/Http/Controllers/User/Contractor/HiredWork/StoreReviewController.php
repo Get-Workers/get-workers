@@ -5,23 +5,23 @@ namespace App\Http\Controllers\User\Contractor\HiredWork;
 use App\Actions\User\Contractor\HiredWork\StoreReviewAction;
 use App\Exceptions\HiredWorkAlreadyHasContractorReview;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\Contractor\HiredWork\StoreReviewActionRequest;
+use App\Http\Requests\User\Contractor\HiredWork\StoreReviewRequest;
 use App\Services\Caches\HiredWorkCacheService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 
-class StoreReviewActionController extends Controller
+class StoreReviewController extends Controller
 {
     /**
      * Handle the incoming request.
      *
      * @param  string  $hiredWorkUuid
-     * @param  \App\Http\Requests\Work\HiredWork\StoreReviewActionRequest  $request
+     * @param  \App\Http\Requests\Work\HiredWork\StoreReviewRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(
         string $hiredWorkUuid,
-        StoreReviewActionRequest $request,
+        StoreReviewRequest $request,
         StoreReviewAction $action
     ): RedirectResponse {
         $user = auth()->user();

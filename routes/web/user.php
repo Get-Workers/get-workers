@@ -26,7 +26,7 @@ use App\Http\Controllers\User\Contractor\HiredWork\{
     ListHiredWorksController,
     ShowHiredWorksController,
     StoreHiredWorksController,
-    StoreReviewActionController
+    StoreReviewController
 };
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\Profile\{
@@ -137,7 +137,7 @@ Route::middleware([
                 Route::post('', StoreHiredWorksController::class)->name('.store');
                 Route::delete('', DestroyHiredWorksController::class)->name('.destroy');
 
-                Route::post('/{hiredWorkUuid}/review', StoreReviewActionController::class)->name('.review.store');
+                Route::post('/{hiredWorkUuid}/review', StoreReviewController::class)->name('.review.store');
             });
         });
     });

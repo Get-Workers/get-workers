@@ -5,7 +5,7 @@ namespace App\Http\Requests\User\Contractor\HiredWork;
 use App\Rules\ValidateWorkIsNotFromAuthenticatedWorker;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreReviewActionRequest extends FormRequest
+class StoreReviewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
