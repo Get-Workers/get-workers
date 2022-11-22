@@ -1,5 +1,5 @@
 <script setup>
-import { useForm, usePage } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/inertia-vue3';
 import FormSection from '@/Components/FormSection.vue';
 import Label from '@/Components/Label.vue';
 import InputSuccess from '@/Components/InputSuccess.vue';

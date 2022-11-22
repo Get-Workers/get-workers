@@ -23,6 +23,7 @@ class ShowHiredWorksController extends Controller
             'work.worker.user',
             'work.worker.phoneNumbers',
             'contractor',
+            'reviews',
         ]);
         if (is_null($hiredWork)) {
             abort(HttpResponse::HTTP_NOT_FOUND);
