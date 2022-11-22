@@ -133,24 +133,44 @@ function submitDelete() {
                                 </div>
                             </div>
 
-                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2 h-40">
-                                <span class="font-bold text-sm">{{$t('words.status')}}</span>
+                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2 h-fit text-sm">
+                                <span class="font-bold text-base">{{$t('words.status')}}</span>
                                 <div class="mt-1">
-                                    <div v-if="hiredWork.initiated_at">
+                                    <template v-if="hiredWork.initiated_at">
                                         <div>
-                                            <span>{{$t('phrases.initiated')}} {{ `${hiredWork.initiated_at.toLocaleDateString()} ${hiredWork.initiated_at.toLocaleTimeString()}` }}</span>
-                                        </div>
-                                        <div class="mt-1">
-                                            <span v-if="hiredWork.done_at">{{$t('phrases.done')}}{{ `${hiredWork.done_at.toLocaleDateString()} ${hiredWork.done_at.toLocaleTimeString()}` }}</span>
-                                            <div class="flex" v-else>
-                                                <Loading class="animate-spin"/>
-                                                <span class="ml-1">{{$t('phrases.progress')}}</span>
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold">{{ $t('phrases.initiated') }}</span>
+
+                                                <div class="flex items-center">
+                                                    <span class="text-sm">{{ hiredWork.initiated_at.toLocaleDateString() }}</span>
+                                                    <em class="text-xs ml-2">({{ hiredWork.initiated_at.toLocaleTimeString() }})</em>
+                                                </div>
+                                            </div>
+                                            <div class="mt-1">
+                                                <template v-if="hiredWork.done_at">
+                                                    <div class="flex flex-col">
+                                                        <span class="font-semibold">{{ $t('phrases.done') }}</span>
+
+                                                        <div class="flex items-center">
+                                                            <span class="text-sm">{{ hiredWork.done_at.toLocaleDateString() }}</span>
+                                                            <em class="text-xs ml-2">({{ hiredWork.done_at.toLocaleTimeString() }})</em>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                <template v-else>
+                                                    <div class="flex items-center">
+                                                        <Loading class="animate-spin"/>
+                                                        <span class="ml-2">{{ $t('phrases.progress') }}</span>
+                                                    </div>
+                                                </template>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div v-else>
-                                        <span>{{$t('phrases.notInitiated')}}</span>
-                                    </div>
+                                    </template>
+                                    <template v-else>
+                                        <div>
+                                            <span>{{$t('phrases.notInitiated')}}</span>
+                                        </div>
+                                    </template>
                                 </div>
                             </div>
                         </div>
