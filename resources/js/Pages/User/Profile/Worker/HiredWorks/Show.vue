@@ -86,7 +86,7 @@ function submitDone() {
                                         </div>
                                     </div>
 
-                                    <template v-if="hiredWork.contractor.user.phone_number.length">
+                                    <template v-if="hiredWork.contractor.user.phone_number">
                                         <div class="mt-5">
                                             <span class="font-bold text-sm">{{$t('words.phoneNumber')}}</span>
                                             <div class="mt-1">
