@@ -32,6 +32,10 @@ function submitDelete(uuid) {
         }
     })
 }
+
+function disableButton(initiatedAt) {
+    return ((initiatedAt === null) || deleteForm.processing);
+}
 </script>
 
 <template>
@@ -84,7 +88,7 @@ function submitDelete(uuid) {
                                     <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${hiredWork.price}`.replace('.', ',')">{{ `R$ ${hiredWork.price}`.replace('.', ',') }}</span>
                                 </div>
                                 <div class="col-span-1 flex items-center overflow-y-auto">
-                                    <Button :title="$t('words.cancel')" @click="submitDelete(hiredWork.uuid)" :disabled="hiredWork.initiated_at || deleteForm.processing">
+                                    <Button type="button" :title="$t('words.cancel')" :disabled="disableButton(hiredWork.initiated_at)" @click="submitDelete(hiredWork.uuid)">
                                         {{ $t('words.cancel') }}
                                     </Button>
                                 </div>

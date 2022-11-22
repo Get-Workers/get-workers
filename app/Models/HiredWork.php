@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class HiredWork extends Model
 {
@@ -29,6 +30,11 @@ class HiredWork extends Model
         'scheduled_to' => 'datetime',
         'initiated_at' => 'timestamp',
         'done_at' => 'timestamp',
+    ];
+
+    protected $appends = [
+        'contractor_review',
+        'worker_review',
     ];
 
     /**
@@ -60,11 +66,41 @@ class HiredWork extends Model
     }
 
     /**
-     * @return HasOneThrough
+     * @return HasMany
      */
-    public function contractorReview(): HasOneThrough
+    public function reviews(): HasMany
     {
-        return $this->hasOneThrough(Review::class, ReviewHiredWorkContractor::class);
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * @return Attribute
+     */
+    protected function contractorReview(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                if (! $this->relationLoaded('reviews')) return null;
+                return $this->reviews
+                    ->whereNotNull('contractor_id')
+                    ->first();
+            },
+        );
+    }
+
+    /**
+     * @return Attribute
+     */
+    protected function workerReview(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                if (! $this->relationLoaded('reviews')) return null;
+                return $this->reviews
+                    ->whereNotNull('worker_id')
+                    ->first();
+            },
+        );
     }
 
     /**
@@ -88,6 +124,28 @@ class HiredWork extends Model
             set: fn (?float $value) => (! is_null($value)) ? ((int) ($value * 100)) : $value,
         );
     }
+
+    // /**
+    //  * @return Attribute
+    //  */
+    // protected function valuePaid(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (?int $value) => (! is_null($value)) ? ((float) ($value / 100)) : $value,
+    //         set: fn (?float $value) => (! is_null($value)) ? ((int) ($value * 100)) : $value,
+    //     );
+    // }
+
+    // /**
+    //  * @return Attribute
+    //  */
+    // protected function valuePaid(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (?int $value) => (! is_null($value)) ? ((float) ($value / 100)) : $value,
+    //         set: fn (?float $value) => (! is_null($value)) ? ((int) ($value * 100)) : $value,
+    //     );
+    // }
 
     /**
      * @param  Builder  $query
