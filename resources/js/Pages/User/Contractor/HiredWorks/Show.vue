@@ -1,16 +1,22 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, onUpdated } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { Loading, Phone } from 'mdue';
 import Button from '@/Components/Button.vue';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import CopyField from '@/Components/CopyField.vue';
+import ReviewCard from '@/Components/Reviews/ReviewCard.vue';
+import CreateReviewForm from './Partials/CreateReviewForm.vue';
 
 const props = defineProps({hiredWork: {type: Object}});
 
 const hiredWork = ref({});
 
 onBeforeMount(() => {
+    setHiredWork();
+});
+
+onUpdated(() => {
     setHiredWork();
 });
 
@@ -39,7 +45,7 @@ function submitDelete() {
 </script>
 
 <template>
-    <AuthLayout title="Works">
+    <AuthLayout :title="$t('words.works')">
         <template #main>
             <div class="flex">
                 <!-- Page Content -->
@@ -57,7 +63,7 @@ function submitDelete() {
                             <div class="w-full sm:mr-5">
                                 <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-1">
                                     <div>
-                                        <span class="font-bold text-sm">{{$t('words.worker')}}</span>
+                                        <span class="font-bold text-sm">{{ $t('words.worker') }}</span>
                                         <div class="mt-1">
                                             <span>{{ hiredWork.work.worker.user.name }}</span>
                                         </div>
@@ -65,7 +71,7 @@ function submitDelete() {
 
                                     <template v-if="hiredWork.work.worker.cnpj">
                                         <div>
-                                            <span class="font-bold text-sm">{{$t('words.cnpj')}}</span>
+                                            <span class="font-bold text-sm">{{ $t('words.cnpj') }}</span>
                                             <div class="mt-1">
                                                 <span>{{ hiredWork.work.worker.cnpj }}</span>
                                             </div>
@@ -75,7 +81,7 @@ function submitDelete() {
 
                                 <template v-if="hiredWork.work.worker.phone_numbers.length">
                                     <div class="mt-5">
-                                        <span class="font-bold text-sm">{{$t('words.phoneNumbers')}}</span>
+                                        <span class="font-bold text-sm">{{ $t('words.phoneNumbers') }}</span>
                                         <div class="mt-1">
                                             <div class="mt-1" v-for="phoneNumber in hiredWork.work.worker.phone_numbers" :key="phoneNumber.id">
                                                 <div class="flex items-center">
@@ -133,32 +139,69 @@ function submitDelete() {
                                 </div>
                             </div>
 
-                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2 h-40">
-                                <span class="font-bold text-sm">{{$t('words.status')}}</span>
+                            <div class="sm:w-64 w-full rounded border p-2 bg-blue-300 sm:mt-0 mt-2 h-fit text-sm">
+                                <span class="font-bold text-base">{{ $t('words.status') }}</span>
                                 <div class="mt-1">
-                                    <div v-if="hiredWork.initiated_at">
+                                    <template v-if="hiredWork.initiated_at">
                                         <div>
-                                            <span>{{$t('phrases.initiated')}} {{ `${hiredWork.initiated_at.toLocaleDateString()} ${hiredWork.initiated_at.toLocaleTimeString()}` }}</span>
-                                        </div>
-                                        <div class="mt-1">
-                                            <span v-if="hiredWork.done_at">{{$t('phrases.done')}}{{ `${hiredWork.done_at.toLocaleDateString()} ${hiredWork.done_at.toLocaleTimeString()}` }}</span>
-                                            <div class="flex" v-else>
-                                                <Loading class="animate-spin"/>
-                                                <span class="ml-1">{{$t('phrases.progress')}}</span>
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold">{{ $t('phrases.initiated') }}</span>
+
+                                                <div class="flex items-center">
+                                                    <span class="text-sm">{{ hiredWork.initiated_at.toLocaleDateString() }}</span>
+                                                    <em class="text-xs ml-2">({{ hiredWork.initiated_at.toLocaleTimeString() }})</em>
+                                                </div>
+                                            </div>
+                                            <div class="mt-1">
+                                                <template v-if="hiredWork.done_at">
+                                                    <div class="flex flex-col">
+                                                        <span class="font-semibold">{{ $t('phrases.done') }}</span>
+
+                                                        <div class="flex items-center">
+                                                            <span class="text-sm">{{ hiredWork.done_at.toLocaleDateString() }}</span>
+                                                            <em class="text-xs ml-2">({{ hiredWork.done_at.toLocaleTimeString() }})</em>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                <template v-else>
+                                                    <div class="flex items-center">
+                                                        <Loading class="animate-spin"/>
+                                                        <span class="ml-2">{{ $t('phrases.progress') }}</span>
+                                                    </div>
+                                                </template>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div v-else>
-                                        <span>{{$t('phrases.notInitiated')}}</span>
-                                    </div>
+                                    </template>
+                                    <template v-else>
+                                        <div>
+                                            <span>{{ $t('phrases.notInitiated') }}</span>
+                                        </div>
+                                    </template>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex mt-2" v-if="! hiredWork.initiated_at">
-                        <Button class="w-full py-5" title="Cancel" @click="submitDelete" :disabled="deleteForm.processing">{{$t('words.cancel')}}</Button>
-                    </div>
+                    <template v-if="! hiredWork.initiated_at">
+                        <div class="flex mt-2">
+                            <Button class="w-full py-5" title="Cancel" @click="submitDelete" :disabled="deleteForm.processing">{{$t('words.cancel')}}</Button>
+                        </div>
+                    </template>
+
+                    <template v-if="hiredWork.done_at">
+                        <div class="mt-2 mx-auto w-full md:w-fit border rounded p-5">
+                            <h2 class="font-semibold">{{ $t('words.review') }}</h2>
+
+                            <div class="mt-2">
+                                <template v-if="hiredWork.contractor_review">
+                                    <ReviewCard :review="hiredWork.contractor_review" />
+                                </template>
+                                <template v-else>
+                                    <CreateReviewForm :hiredWork="hiredWork" />
+                                </template>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </template>

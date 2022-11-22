@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SpecialtyWorkerSeeder::class,
             SpecialtyWorkSeeder::class,
             PhoneNumberSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }

@@ -1,6 +1,5 @@
  const en = {
     words: {
-
         save: 'Salvar',
         saved: 'Salvou',
         enable: 'Habilitar',
@@ -8,6 +7,7 @@
         done: 'Realizado',
         optional: 'Opcional',
         status: 'Situação',
+        review: 'Avaliação',
 
         // Contractor
         contractor: 'Contratante',
@@ -66,6 +66,8 @@
         cpf: 'CPF',
         phoneNumbers: 'Números de telefone',
         phoneNumber: 'Número de telefone',
+        title: 'Título',
+        rating: 'Pontuação',
 
         // Unities
         unity: 'Unidade',
