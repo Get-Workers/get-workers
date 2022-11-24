@@ -153,7 +153,7 @@ function submitDone() {
                                     <template v-if="hiredWork.initiated_at">
                                         <div>
                                             <div class="flex flex-col">
-                                                <span class="font-semibold">{{ $t('phrases.initiated') }}</span>
+                                                <span class="font-semibold">{{ $t('phrases.initiatedAt') }}</span>
 
                                                 <div class="flex items-center">
                                                     <span class="text-sm">{{ hiredWork.initiated_at.toLocaleDateString() }}</span>
@@ -163,7 +163,7 @@ function submitDone() {
                                             <div class="mt-1">
                                                 <template v-if="hiredWork.done_at">
                                                     <div class="flex flex-col">
-                                                        <span class="font-semibold">{{ $t('phrases.done') }}</span>
+                                                        <span class="font-semibold">{{ $t('phrases.doneAt') }}</span>
 
                                                         <div class="flex items-center">
                                                             <span class="text-sm">{{ hiredWork.done_at.toLocaleDateString() }}</span>
