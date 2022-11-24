@@ -43,7 +43,7 @@ class HiredWorkCacheService
 
         $withJson = json_encode($with);
         $filtersJson = json_encode($filters);
-        $key = "worker({$worker->uuid}):hired_works:with({$withJson}):filters({$filtersJson})";
+        $key = "worker({$worker->id}):hired_works:with({$withJson}):filters({$filtersJson})";
 
         if ($clear) {
             Cache::tags(['worker:hired_works'])->forget($key);
@@ -87,7 +87,7 @@ class HiredWorkCacheService
 
         $withJson = json_encode($with);
         $filtersJson = json_encode($filters);
-        $key = "contractor({$contractor->uuid}):hired_works:with({$withJson}):filters({$filtersJson})";
+        $key = "contractor({$contractor->id}):hired_works:with({$withJson}):filters({$filtersJson})";
 
         if ($clear) {
             Cache::tags(['contractor:hired_works'])->forget($key);

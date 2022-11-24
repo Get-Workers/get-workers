@@ -4,7 +4,6 @@
         saved: 'Salvou',
         enable: 'Habilitar',
         confirm: 'Confirmar',
-        done: 'Realizado',
         optional: 'Opcional',
         status: 'Situação',
         review: 'Avaliação',
@@ -25,6 +24,7 @@
         reference: 'Referência',
         scheduleWork: 'Agendar o serviço',
         select: 'Selecione...',
+        scheduled: 'Agendado',
 
         // Certifications
         certification: 'Certificado',
@@ -44,7 +44,8 @@
         hire: 'Contratar',
         estimatedTime: 'Tempo estimado',
         initiate: 'Iniciar',
-
+        initiated: 'Iniciado',
+        done: 'Realizado',
 
         // Appintments
         appointment: 'Compromisso',
@@ -138,8 +139,8 @@
 
          // HiredWorks
          notInitiated: 'Não iniciado',
-         initiated: 'Iniciado em:',
-         done: 'Realizado em:',
+         initiatedAt: 'Iniciado em',
+         doneAt: 'Realizado em',
          progress: 'Em andamento',
 
         //Profile Information

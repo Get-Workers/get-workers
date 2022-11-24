@@ -25,6 +25,7 @@ const en = {
         reference: 'Reference',
         scheduleWork: 'Schedule the work',
         select: 'Select...',
+        scheduled: 'Scheduled',
 
         // Certifications
         certification: 'Certification',
@@ -44,6 +45,8 @@ const en = {
         hire : 'Hire',
         estimatedTime: 'Estimated time',
         initiate: 'Initiate',
+        initiated: 'Initiated',
+        done: 'Done',
 
         // Appintments
         appointment: 'Appointment',
@@ -137,8 +140,8 @@ const en = {
 
          // HiredWorks
          notInitiated: 'Not initiated',
-         initiated: 'Initiated at:',
-         done: 'Done at:',
+         initiatedAt: 'Initiated at',
+         doneAt: 'Done at',
          progress: 'In progress',
 
         //Profile Information
