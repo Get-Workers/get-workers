@@ -89,7 +89,7 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
                             <div class="flex mt-2">
                                 <select id="specialtiesSelect" class="w-full h-10 rounded" v-model="addForm.specialty">
                                     <option value="" class="text-gray-400" selected disabled default>{{$t('words.select')}}</option>
-                                    <option v-for="specialty in specialties" :value="specialty.id" >{{ specialty.name }}</option>
+                                    <option v-for="specialty in specialties" :value="specialty.id" >{{ $t(`specialties.${specialty.name}`) }}</option>
                                 </select>
 
                                 <Button class="ml-5" :disabled="isProcessingForms">{{ $t('words.add') }}</Button>
@@ -111,9 +111,9 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
 
                     <!-- Specialties List && Remove Form -->
                     <div class="mt-5 border rounded" v-if="userSpecialties.length">
-                        <div v-for="(specialty, index) in userSpecialties" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
+                        <div v-for="(specialty) in userSpecialties" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
                             <div class="flex justify-between items-center">
-                                <span>{{ specialty.name }}</span>
+                                <span>{{ $t(`specialties.${specialty.name}`) }}</span>
                                 <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">{{ $t('words.remove') }}</Button>
                             </div>
                         </div>

@@ -239,6 +239,35 @@
             delete: 'Você realmente quer remover esse serviço?',
         },
     },
+    unities: {
+        'square meter': 'metro quadrado',
+        'square centimeter': 'centímetro quadrado',
+        'minute': 'minuto',
+        'hour': 'hora',
+        'item': 'item',
+    },
+    specialties: {
+        'woodwork': 'marcenaria',
+        'carpentry': 'carpintaria',
+        'gardening': 'jardinagem',
+        'fruitgrowing': 'fruticultura',
+        'horticulture': 'horticultura',
+        'janitor': 'zelador(a)',
+        'painter': 'pintor(a)',
+        'plumber': 'encanador(a)',
+        'mason': 'pedreiro(a)',
+        'electrician': 'eletricista',
+        'developer': 'desenvolvedor(a)',
+        'programmer': 'programador(a)',
+        'leader': 'líder',
+        'choffeaur': 'motorista',
+        'mechanic': 'mecânico(a)',
+        'engineer': 'engenheiro',
+        'software engineer': 'engenheiro de software',
+        'mechanical engineer': 'engenheiro mecânico',
+        'eletric engineer': 'engenheiro elétrico',
+        'civil engineer': 'engenheiro civil',
+    }
 };
 
 export default en;
