@@ -87,10 +87,10 @@ function removeSelectedSpecialty(specialtyId) {
                 <div>
                     <Label :value="$t('words.description')" for="workDescription" :optional="true" />
                     <textarea id="workDescription" class="w-full max-h-60"
-                        :placeholder="`${$t('words.maxChars')}: 512`" max-length="512"
+                        :placeholder="`${$t('words.maxChars')}: 512`" maxlength="512"
                         v-model="newWorkForm.description"
                     ></textarea>
-                    <em class="text-sm text-gray-500">{{ $t('words.maxChars') }}: 512</em>
+                    <em class="text-sm text-gray-500">{{ `${$t('words.remainingChars')}: ${512 - newWorkForm.description.length} (${$t('words.max')}: 512)` }}</em>
                     <InputError class="mt-1" :message="newWorkForm.errors.description" />
                 </div>
                 <div>
@@ -138,14 +138,14 @@ function removeSelectedSpecialty(specialtyId) {
                 </div>
                 <div class="flex align-items-end">
                     <div class="ml-auto">
-                        <ButtonCancel type="reset" :disabled="newWorkForm.processing" v-if="workToUpdate">{{ $t('words.cancel') }}</ButtonCancel>
-                        <Button class="ml-2" :disabled="newWorkForm.processing">{{ workToUpdate ? $t('words.update') : $t('words.register') }}</Button>
+                        <Button :disabled="newWorkForm.processing">{{ workToUpdate ? $t('words.update') : $t('words.register') }}</Button>
+                        <ButtonCancel class="ml-2" type="reset" :disabled="newWorkForm.processing" v-if="workToUpdate">{{ $t('words.cancel') }}</ButtonCancel>
                     </div>
                 </div>
             </div>
 
             <div>
-                <InputSuccess class="my-2" :success="newWorkForm.wasSuccessful" :message="$t('messages.work.store.success')" />
+                <InputSuccess class="my-2" :success="newWorkForm.recentlySuccessful" :message="$t('messages.work.store.success')" />
             </div>
         </form>
     </div>
