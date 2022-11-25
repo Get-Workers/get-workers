@@ -90,6 +90,8 @@ const en = {
         new: 'New',
         close: 'Close',
         maxChars: 'Max characters',
+        remainingChars: 'Remaining characters',
+        max: 'Max',
         certifiedCredential: 'Certified credential',
         certifiedLink: 'Certified link',
         certificationName: 'Certification name',
@@ -97,6 +99,13 @@ const en = {
         userSettings: 'User settings',
         update: 'Update',
         twoFactorConfirmation: 'Two-factor Confirmation',
+
+        // Pagination
+        previous: '&laquo; Previous',
+        next: 'Next &raquo;',
+
+        // Locale Changer
+        localeChanger: 'Locale changer',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -124,7 +133,7 @@ const en = {
 
         contractorProfile: 'Contractor profile',
         updateCpfForm: 'Update CPF form',
-
+        updatePhoneNumberForm: 'Update phone number form',
     },
     phrases: {
         mostHiredWorks: 'Most hired works',
@@ -137,12 +146,13 @@ const en = {
 
         //Works
         scheduleWork: 'Need to schedule this work?',
+        deleteWork: 'Delete a work',
 
-         // HiredWorks
-         notInitiated: 'Not initiated',
-         initiatedAt: 'Initiated at',
-         doneAt: 'Done at',
-         progress: 'In progress',
+        // HiredWorks
+        notInitiated: 'Not initiated',
+        initiatedAt: 'Initiated at',
+        doneAt: 'Done at',
+        progress: 'In progress',
 
         //Profile Information
         updateInformation: 'Update your accounts profile information and email address.',
@@ -183,6 +193,7 @@ const en = {
 
         // Contractor Profile
         cpfUpdated: 'CPF was updated successfully',
+        phoneNumberUpdated: 'The phone number was updated successfully',
     },
     messages: {
         priceMeasurement: 'for price measurement',
@@ -227,6 +238,7 @@ const en = {
         },
         work: {
             hasUnity: 'Work has unity type?',
+            delete: 'Do you really want to delete this work?',
         },
     },
 };

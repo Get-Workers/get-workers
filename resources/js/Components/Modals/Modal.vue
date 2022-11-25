@@ -10,16 +10,24 @@ const props = defineProps({
 
 const modal = ref(null);
 
-onMounted(() => openModal());
-onUpdated(() => openModal());
+onMounted(() => showModal());
+onUpdated(() => showModal());
+
+function showModal() {
+    if (props.isOpened) {
+        openModal();
+    } else {
+        closeModal();
+    }
+}
 
 function openModal() {
-    if (!props.isOpened && !modal.value.open) return;
-
+    if (modal.value.open) return;
     modal.value.showModal();
 }
 
 function closeModal() {
+    if (!modal.value.open) return;
     props.onClose();
     modal.value.close();
 }

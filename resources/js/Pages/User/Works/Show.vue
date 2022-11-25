@@ -12,28 +12,7 @@ import Modal from '@/Components/Modals/Modal.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import Label from '@/Components/Label.vue';
 
-const props = defineProps({
-    work: {
-        type: Object,
-        default: {
-            name: null,
-            slug: null,
-            worker: {
-                user: {
-                    uuid: null,
-                    name: null,
-                },
-            },
-            specialties: [],
-            unity: {
-                name: null,
-                type: null,
-            },
-            time: null,
-            price: null,
-        }
-    },
-});
+const props = defineProps({ work: Object });
 
 const pageProps = computed(() => usePage().props.value);
 const isContractor = computed(() => (pageProps.value.contractor !== null));

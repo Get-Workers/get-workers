@@ -10,6 +10,7 @@ import MenuHeaderX from '../Menus/MenuHeaderX.vue';
 import MenuHeaderY from '../Menus/MenuHeaderY.vue';
 import ItemX from '../Menus/Items/ItemX.vue';
 import ItemY from '../Menus/Items/ItemY.vue';
+import LocaleChanger from '../Dictionaries/LocaleChanger.vue';
 
 const pageProps = computed(() => usePage().props.value);
 const currentRoute = computed(() => route().current());
