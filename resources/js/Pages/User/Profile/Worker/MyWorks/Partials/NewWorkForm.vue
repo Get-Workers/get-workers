@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 import Button from '@/Components/Button.vue';
@@ -108,7 +108,7 @@ function removeSelectedSpecialty(specialtyId) {
                         v-model="newWorkForm.unity_id">
                         <option class="text-gray-400" :value="null" selected default>{{$t('words.select')}}
                         </option>
-                        <option v-for="unity in unities" :value="unity.id">{{ unity.name }}</option>
+                        <option v-for="unity in unities" :value="unity.id">{{ $t(`unities.${unity.name}`) }}</option>
                     </select>
                     <InputError class="mt-1" :message="newWorkForm.errors.unity_id" />
                 </div>
@@ -120,11 +120,14 @@ function removeSelectedSpecialty(specialtyId) {
                             {{$t('words.select')}}
                         </option>
                         <option v-for="specialty in nonSelectedSpecialties" :value="specialty">
-                            {{ specialty.name }}
+                            {{ $t(`specialties.${specialty.name}`) }}
                         </option>
                     </select>
                     <InputError class="mt-1" :message="newWorkForm.errors.specialties" />
-                    <BadgeGroup class="mt-2 max-h-32 overflow-y-auto" :removable="true" :badges="newWorkForm.specialtiesList" @remove="removeSelectedSpecialty($event.badgeId)"/>
+                    <BadgeGroup class="mt-2 max-h-32 overflow-y-auto" :removable="true"
+                        :badges="newWorkForm.specialtiesList.map((specialty) => { return {...specialty, name: $t(`specialties.${specialty.name}`)}; })"
+                        @remove="removeSelectedSpecialty($event.badgeId)"
+                    />
                 </div>
                 <div>
                     <Label :value="$t('words.time')" for="workTime" :optional="true" />

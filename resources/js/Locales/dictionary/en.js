@@ -241,6 +241,35 @@ const en = {
             delete: 'Do you really want to delete this work?',
         },
     },
+    unities: {
+        'square meter': 'square meter',
+        'square centimeter': 'square centimeter',
+        'minute': 'minute',
+        'hour': 'hour',
+        'item': 'item',
+    },
+    specialties: {
+        'woodwork': 'woodwork',
+        'carpentry': 'carpentry',
+        'gardening': 'gardening',
+        'fruitgrowing': 'fruitgrowing',
+        'horticulture': 'horticulture',
+        'janitor': 'janitor',
+        'painter': 'painter',
+        'plumber': 'plumber',
+        'mason': 'mason',
+        'electrician': 'electrician',
+        'developer': 'developer',
+        'programmer': 'programmer',
+        'leader': 'leader',
+        'choffeaur': 'choffeaur',
+        'mechanic': 'mechanic',
+        'engineer': 'engineer',
+        'software engineer': 'software engineer',
+        'mechanical engineer': 'mechanical engineer',
+        'eletric engineer': 'eletric engineer',
+        'civil engineer': 'civil engineer',
+    }
 };
 
 export default en;

@@ -92,7 +92,7 @@ function hireWork(scheduled = false) {
                         <div v-if="work.specialties.length">
                             <span class="font-bold text-sm">{{$t('words.workSpecialties')}}</span>
                             <div class="rounded border p-3 mt-1 h-32 max-w-lg overflow-y-auto">
-                                <BadgeGroup :badges="work.specialties"/>
+                                <BadgeGroup :badges="work.specialties.map((specialty) => { return {...specialty, name: $t(`specialties.${specialty.name}`)}; })"/>
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@ function hireWork(scheduled = false) {
                                     </div>
                                 </div>
                                 <div class="mt-1">
-                                    <span>{{ work.unity.type }} ({{ work.unity.name }})</span>
+                                    <span>{{ work.unity.type }} ({{ $t(`unities.${work.unity.name}`) }})</span>
                                 </div>
                             </div>
 
