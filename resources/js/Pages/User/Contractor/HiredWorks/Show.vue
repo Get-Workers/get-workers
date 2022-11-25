@@ -8,7 +8,7 @@ import CopyField from '@/Components/CopyField.vue';
 import ReviewCard from '@/Components/Reviews/ReviewCard.vue';
 import CreateReviewForm from './Partials/CreateReviewForm.vue';
 
-const props = defineProps({hiredWork: {type: Object}});
+const props = defineProps({hiredWork: Object});
 
 const hiredWork = ref({});
 

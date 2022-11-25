@@ -3,9 +3,12 @@ import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import Button from '@/Components/Button.vue';
+import ButtonCancel from '@/Components/ButtonCancel.vue';
 import InputError from '@/Components/InputError.vue';
 import InputSuccess from '@/Components/InputSuccess.vue';
 import BadgeGroup from '@/Components/Badges/BadgeGroup.vue';
+import MyWorkCardVue from '@/Components/Cards/MyWorkCard.vue';
+import Modal from '@/Components/Modals/Modal.vue';
 import SidebarMenu from '../../Partials/SidebarMenu.vue';
 import NewWorkForm from './Partials/NewWorkForm.vue';
 
@@ -27,16 +30,40 @@ const props = defineProps({
     },
 });
 
+const modalIsOpened = ref(false);
+const workToDelete = ref(null);
 const deleteForm = useForm({
     work: '',
 });
 
-function submitDelete(work) {
-    deleteForm.work = work;
+function submitDelete() {
+    deleteForm.work = workToDelete.value.uuid;
     deleteForm.delete(route('user.profile.worker.my-works.destroy'), {
         preserveScroll: true,
-        onFinish: () => deleteForm.reset(),
+        onFinish() {
+            deleteForm.reset();
+            closeModal();
+        },
     });
+}
+
+function cancelDelete() {
+    deleteForm.reset();
+    closeModal();
+}
+
+function deleteWorkAction(work) {
+    workToDelete.value = work;
+    openModal();
+}
+
+function openModal() {
+    if (modalIsOpened.value) return;
+    modalIsOpened.value = true;
+}
+
+function closeModal() {
+    modalIsOpened.value = false;
 }
 
 const newWorkFormShow = ref(false);
@@ -47,6 +74,7 @@ function toggleNewWorkForm(el, status = false) {
 
 const workToUpdate = ref(null);
 function setWorkToUpdate(work) {
+    deleteForm.clearErrors();
     if (work?.id === workToUpdate?.value) return;
     toggleNewWorkForm(null, true);
     workToUpdate.value = work;
@@ -86,55 +114,56 @@ function setWorkToUpdate(work) {
 
                     <!-- Works Remove Form Messages -->
                     <InputError class="my-2" :message="deleteForm.errors.certification" />
-                    <InputSuccess class="my-2" :success="deleteForm.wasSuccessful" :message="$t('messages.work.delete.success')" />
+                    <InputSuccess class="my-2" :success="deleteForm.recentlySuccessful" :message="$t('messages.work.delete.success')" />
 
                     <!-- Works List && Remove Form -->
-                    <div class="mt-5 border rounded w-full overflow-x-auto" v-if="works.length">
-                        <div class="min-w-xl">
-                            <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 border-b">
-                                <span class="col-span-2 font-bold" :title="$t('words.name')">{{ $t('words.name') }}</span>
-                                <span class="col-span-2 font-bold" :title="$t('words.slug')">{{ $t('words.slug') }}</span>
-                                <span class="col-span-2 font-bold" :title="$t('words.specialties')">{{ $t('words.specialties') }}</span>
-                                <span class="col-span-1 font-bold" :title="$t('words.unity')">{{ $t('words.unity') }}</span>
-                                <span class="col-span-1 font-bold" :title="$t('words.time')">{{ $t('words.time') }}</span>
-                                <span class="col-span-2 font-bold" :title="$t('words.price')">{{ $t('words.price') }}</span>
-                                <span class="col-span-2 font-bold" :title="$t('words.action')">{{ $t('words.action') }}</span>
-                            </div>
-                            <div class="grid grid-flow-col grid-cols-12 gap-2 px-5 py-3 h-20 hover:bg-gray-300 border-b last:border-none"
-                                v-for="(work) in works" :key="`work-${work.uuid}`"
-                            >
-                                <div class="col-span-2 flex items-center overflow-y-auto">
-                                    <span class="min-w-fit break-words text-ellipsis" :title="work.name">{{ work.name }}</span>
-                                </div>
-                                <div class="col-span-2 flex items-center overflow-y-auto">
-                                    <span class="min-w-fit break-words text-ellipsis" :title="work.slug">{{ work.slug }}</span>
-                                </div>
-                                <div class="col-span-2 overflow-y-auto">
-                                    <BadgeGroup :badges="work.specialties" />
-                                </div>
-                                <div class="col-span-1 flex items-center">
-                                    <span :title="work.unity ? work.unity.name : ''">{{ work.unity ? work.unity.type : '' }}</span>
-                                </div>
-                                <div class="col-span-1 flex items-center">
-                                    <span :title="work.time">{{ work.time }}</span>
-                                </div>
-                                <div class="col-span-2 flex items-center">
-                                    <span class="px-3 py-1 border border-blue-200 rounded-full bg-blue-200" :title="`R$ ${work.price}`.replace('.', ',')">{{ `R$ ${work.price}`.replace('.', ',') }}</span>
-                                </div>
-                                <div class="col-span-2 flex flex-col items-center overflow-y-auto">
-                                    <Button :title="$t('words.delete')" @click="submitDelete(work.uuid)" :disabled="deleteForm.processing">
-                                        {{ $t('words.delete') }}
-                                    </Button>
+                    <div class="mt-5 p-5 border rounded w-full space-y-5" v-if="works.length">
+                        <template v-for="work in works">
+                            <MyWorkCardVue class="border rounded max-h-80 hover:bg-gray-300" :work="work">
+                                <template #action>
+                                    <div class="col-span-2 flex justify-end items-center space-x-2 w-full">
+                                        <Button type="button" :title="$t('words.update')"
+                                            @click="setWorkToUpdate(work)" :disabled="deleteForm.processing"
+                                        >{{ $t('words.update') }}</Button>
 
-                                    <Button class="mt-2" :title="$t('words.update')" @click="setWorkToUpdate(work)" :disabled="deleteForm.processing">
-                                        {{ $t('words.update') }}
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
+                                        <ButtonCancel type="button" :title="$t('words.delete')"
+                                            @click="deleteWorkAction(work)" :disabled="deleteForm.processing"
+                                        >{{ $t('words.delete') }}</ButtonCancel>
+                                    </div>
+                                </template>
+                            </MyWorkCardVue>
+                        </template>
                     </div>
                 </div>
             </div>
+
+            <Modal :title="$t('phrases.deleteWork')" :isOpened="modalIsOpened" :onClose="closeModal" :key="`modal`">
+                <div class="flex flex-col" v-if="workToDelete">
+                    <div>
+                        <span class="text-xl">{{ $t('questions.work.delete') }}</span>
+                    </div>
+
+                    <div class="mt-5">
+                        <span class="font-semibold text-base">{{ $t('words.work') }}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>{{ workToDelete?.name }}</span>
+                        <span>{{ workToDelete?.slug }}</span>
+                    </div>
+
+                    <div class="mt-5 pt-5 flex justify-end space-x-2 border-t">
+                        <Button type="button" :title="$t('words.delete')"
+                            @click="submitDelete" :disabled="deleteForm.processing"
+                            key="delete-confirm"
+                        >{{ $t('words.delete') }}</Button>
+
+                        <ButtonCancel type="button" :title="$t('words.cancel')"
+                            @click="cancelDelete" :disabled="deleteForm.processing"
+                            key="delete-cancel"
+                        >{{ $t('words.cancel') }}</ButtonCancel>
+                    </div>
+                </div>
+            </Modal>
         </template>
     </AuthLayout>
 </template>

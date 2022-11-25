@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from '@vue/reactivity';
-import Link from '@/Components/Links/Link.vue';
 import { Loading } from 'mdue';
+import Link from '@/Components/Links/Link.vue';
 
 const props = defineProps({ hiredWork: Object });
 
@@ -15,7 +15,7 @@ const isDone = computed(() => doneAt.value !== null);
 </script>
 
 <template>
-    <div :key="`hired-work-card-${hiredWork.uuid}`">
+    <div style="min-height: 100px;" :key="`hired-work-card-${hiredWork.uuid}`">
         <Link
             class="text-black"
             :href="route('user.profile.worker.hired-works.show', { hiredWorkUuid: hiredWork.uuid })"

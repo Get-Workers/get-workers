@@ -89,6 +89,8 @@
         new: 'Novo',
         close: 'Fechar',
         maxChars: 'Máximo de caracteres',
+        remainingChars: 'Caracteres restantes',
+        max: 'Máximo',
         certifiedCredential: 'Certificado de credencial',
         certifiedLink: 'Link de certificado',
         certificationName: 'Nome do certificado',
@@ -96,6 +98,13 @@
         userSettings: 'Configurações do usuário',
         update: 'Alterar',
         twoFactorConfirmation: 'Autenticação de dois fatores',
+
+        // Pagination
+        previous: '&laquo; Anterior',
+        next: 'Próximo &raquo;',
+
+        // Locale Changer
+        localeChanger: 'Alterador de idioma',
 
         //Profile Information
         profileInformation: 'Informação do Perfil',
@@ -136,12 +145,13 @@
 
         //Works
         scheduleWork: 'Precisa agendar este trabalho?',
+        deleteWork: 'Remover um serviço',
 
-         // HiredWorks
-         notInitiated: 'Não iniciado',
-         initiatedAt: 'Iniciado em',
-         doneAt: 'Realizado em',
-         progress: 'Em andamento',
+        // HiredWorks
+        notInitiated: 'Não iniciado',
+        initiatedAt: 'Iniciado em',
+        doneAt: 'Realizado em',
+        progress: 'Em andamento',
 
         //Profile Information
         updateInformation: 'Atualize as informações de perfil e o endereço de e-mail da sua conta.',
@@ -226,6 +236,7 @@
         },
         work: {
             hasUnity: 'O trabalho tem tipo de unidade?',
+            delete: 'Você realmente quer remover esse serviço?',
         },
     },
 };
