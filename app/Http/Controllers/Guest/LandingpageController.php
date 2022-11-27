@@ -18,7 +18,7 @@ class LandingpageController extends Controller
         $works = WorkCacheService::listPaginate(
             perPage: 21,
             actualPage: $request->input('page', 1),
-            filters: ['moreHires'],
+            filters: ['moreHires' => true],
             with: ['unity', 'worker.user']
         );
 

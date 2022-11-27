@@ -122,6 +122,7 @@ const en = {
         recoveryCode: 'Recovery code',
 
         disable: 'Disable',
+        reset: 'Reset',
 
         //Browser Sessions
         browserSessions: 'Browser Sessions',
@@ -141,8 +142,8 @@ const en = {
         moreDetails: 'More details',
         noDescription: 'No description',
 
-        moreDetails: 'More details',
-        noDescription: 'No description',
+        applyFilter: 'Apply filter | Apply filters',
+        minRating: 'Min rating',
 
         //Works
         scheduleWork: 'Need to schedule this work?',

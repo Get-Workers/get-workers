@@ -5,7 +5,7 @@ import Link from '@/Components/Links/Link.vue';
 
 const props = defineProps({ hiredWork: Object });
 
-const scheduledTo = computed(() => props.hiredWork.scheduled_to ? new Date(props.hiredWork.scheduled_to * 1000) : null);
+const scheduledTo = computed(() => props.hiredWork.scheduled_to ? new Date(props.hiredWork.scheduled_to) : null);
 
 const initiatedAt = computed(() => props.hiredWork.initiated_at ? new Date(props.hiredWork.initiated_at * 1000) : null);
 const isInitiated = computed(() => initiatedAt.value !== null);

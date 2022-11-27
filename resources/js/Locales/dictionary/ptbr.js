@@ -121,6 +121,7 @@
         recoveryCode: 'Código de recuperação',
 
         disable: 'Desativar',
+        reset: 'Limpar',
 
         //Browser Sessions
         browserSessions: 'Sessões do navegador',
@@ -140,8 +141,8 @@
         moreDetails: 'Mais detalhes',
         noDescription: 'Sem descrição',
 
-        moreDetails: 'Mais detalhes',
-        noDescription: 'Sem descrição',
+        applyFilter: 'Aplicar filtro | Aplicar filtros',
+        minRating: 'Avaliação mínima',
 
         //Works
         scheduleWork: 'Precisa agendar este trabalho?',
