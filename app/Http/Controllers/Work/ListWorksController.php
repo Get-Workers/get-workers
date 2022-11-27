@@ -41,15 +41,12 @@ class ListWorksController extends Controller
             ->whereIn('id', $filters['specialties'])
             ->values();
 
-        return inertia(
-            'User/Works/List',
-            compact(
-                'works',
-                'specialties',
-                'search',
-                'stars',
-                'selectedSpecialties'
-            )
-        );
+        return inertia('User/Works/List', compact(
+            'works',
+            'specialties',
+            'search',
+            'stars',
+            'selectedSpecialties'
+        ));
     }
 }
