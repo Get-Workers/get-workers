@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Work extends Model
 {
@@ -114,15 +115,22 @@ class Work extends Model
      */
     public function scopeFilter(Builder $query, array $filters = []): Builder
     {
-
-        if (in_array('search', $filters)) {
+        if (! empty($filters['search'])) {
             $query->where(function (Builder $query) use (&$filters) {
                 $query->search($filters['search']);
             });
         }
 
-        if (in_array('moreHires', $filters)) {
+        if (! empty($filters['moreHires']) && $filters['moreHires']) {
             $query->moreHires();
+        }
+
+        if (! empty($filters['stars']) && $filters['stars'] > 0) {
+            $query->minStars($filters['stars']);
+        }
+
+        if (! empty($filters['specialties'])) {
+            $query->withSpecialties($filters['specialties']);
         }
 
         return $query;
@@ -135,14 +143,45 @@ class Work extends Model
      */
     public function scopeSearch(Builder $query, string $search): Builder
     {
-        return $query->where('name', 'like', "%{$search}%")
-            ->orWhere('slug', 'like', "%{$search}%")
-            ->orWhere('uuid', $search);
+        return $query->where('works.name', 'like', "%{$search}%")
+            ->orWhere('works.slug', 'like', "%{$search}%")
+            ->orWhere('works.uuid', $search);
     }
 
+    /**
+     * @param  Builder  $query
+     * @return Builder
+     */
     public function scopeMoreHires(Builder $query): Builder
     {
         return $query->withCount('hiredWorks')
             ->orderByDesc('hired_works_count');
+    }
+
+    /**
+     * @param  Builder  $query
+     * @param  int  $minStars
+     * @return Builder
+     */
+    public function scopeMinStars(Builder $query, int $minStars): Builder
+    {
+        if ($minStars === 0) {
+            return $query;
+        }
+
+        return $query->whereHas(
+            'hiredWorks',
+            fn (Builder $query) => $query->withRatingMoreThan($minStars)
+        );
+    }
+
+    /**
+     * @param  Builder  $query
+     * @param  array  $specialties
+     * @return Builder
+     */
+    public function scopeWithSpecialties(Builder $query, array $specialties): Builder
+    {
+        return $query->whereHas('specialties', fn (Builder $query) => $query->whereIn('id', $specialties));
     }
 }

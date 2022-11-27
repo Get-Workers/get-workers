@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class HiredWork extends Model
 {
@@ -125,28 +125,6 @@ class HiredWork extends Model
         );
     }
 
-    // /**
-    //  * @return Attribute
-    //  */
-    // protected function valuePaid(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn (?int $value) => (! is_null($value)) ? ((float) ($value / 100)) : $value,
-    //         set: fn (?float $value) => (! is_null($value)) ? ((int) ($value * 100)) : $value,
-    //     );
-    // }
-
-    // /**
-    //  * @return Attribute
-    //  */
-    // protected function valuePaid(): Attribute
-    // {
-    //     return Attribute::make(
-    //         get: fn (?int $value) => (! is_null($value)) ? ((float) ($value / 100)) : $value,
-    //         set: fn (?float $value) => (! is_null($value)) ? ((int) ($value * 100)) : $value,
-    //     );
-    // }
-
     /**
      * @param  Builder  $query
      * @param  array  $filters
@@ -158,5 +136,20 @@ class HiredWork extends Model
             $query->whereNotNull('scheduled_to');
         }
         return $query;
+    }
+
+    /**
+     * @param  Builder  $query
+     * @param  int  $rating
+     * @return Builder
+     */
+    public function scopeWithRatingMoreThan(Builder $query, int $rating): Builder
+    {
+        return $query->whereHas(
+            'reviews',
+            fn (Builder $query) =>
+                $query->select(DB::raw('AVG(reviews.rating) as average_rating'))
+                    ->having('average_rating', '>=', $rating)
+        );
     }
 }
