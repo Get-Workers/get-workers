@@ -117,21 +117,30 @@ function setWorkToUpdate(work) {
                     <InputSuccess class="my-2" :success="deleteForm.recentlySuccessful" :message="$t('messages.work.delete.success')" />
 
                     <!-- Works List && Remove Form -->
-                    <div class="mt-5 p-5 border rounded w-full space-y-5" v-if="works.length">
-                        <template v-for="work in works">
-                            <MyWorkCardVue class="border rounded max-h-80 hover:bg-gray-300" :work="work">
-                                <template #action>
-                                    <div class="col-span-2 flex justify-end items-center space-x-2 w-full">
-                                        <Button type="button" :title="$t('words.update')"
-                                            @click="setWorkToUpdate(work)" :disabled="deleteForm.processing"
-                                        >{{ $t('words.update') }}</Button>
+                    <div class="mt-5 border rounded p-5">
+                        <template v-if="works.length">
+                            <div class="space-y-5">
+                                <template v-for="work in works">
+                                    <MyWorkCardVue class="border rounded max-h-80 hover:bg-gray-300" :work="work">
+                                        <template #action>
+                                            <div class="col-span-2 flex justify-end items-center space-x-2 w-full">
+                                                <Button type="button" :title="$t('words.update')"
+                                                    @click="setWorkToUpdate(work)" :disabled="deleteForm.processing"
+                                                >{{ $t('words.update') }}</Button>
 
-                                        <ButtonCancel type="button" :title="$t('words.delete')"
-                                            @click="deleteWorkAction(work)" :disabled="deleteForm.processing"
-                                        >{{ $t('words.delete') }}</ButtonCancel>
-                                    </div>
+                                                <ButtonCancel type="button" :title="$t('words.delete')"
+                                                    @click="deleteWorkAction(work)" :disabled="deleteForm.processing"
+                                                >{{ $t('words.delete') }}</ButtonCancel>
+                                            </div>
+                                        </template>
+                                    </MyWorkCardVue>
                                 </template>
-                            </MyWorkCardVue>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div>
+                                <span>{{ $t('words.noData') }}</span>
+                            </div>
                         </template>
                     </div>
                 </div>

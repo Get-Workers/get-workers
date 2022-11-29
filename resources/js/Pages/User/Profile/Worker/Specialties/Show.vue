@@ -110,14 +110,23 @@ const isProcessingForms = computed(() => (deleteForm.processing || addForm.proce
                     </div>
 
                     <!-- Specialties List && Remove Form -->
-                    <div class="mt-5 border rounded" v-if="userSpecialties.length">
-                        <div v-for="(specialty) in userSpecialties" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
-                            <div class="flex justify-between items-center">
-                                <span>{{ $t(`specialties.${specialty.name}`) }}</span>
-                                <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">{{ $t('words.remove') }}</Button>
+                    <template v-if="userSpecialties.length">
+                        <div class="mt-5 border rounded" v-if="userSpecialties.length">
+                            <div v-for="(specialty) in userSpecialties" class="p-5 hover:bg-gray-300 border-b last:border-none">
+                                <div class="flex justify-between items-center">
+                                    <span>{{ $t(`specialties.${specialty.name}`) }}</span>
+                                    <Button @click="submitDelete(specialty.id)" :disabled="isProcessingForms">{{ $t('words.remove') }}</Button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </template>
+                    <template v-else>
+                        <div class="mt-5 border rounded p-5">
+                            <div>
+                                <span>{{ $t('words.noData') }}</span>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </template>

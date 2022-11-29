@@ -56,24 +56,32 @@ function removeNumber(index) {
                     <Button type="button" @click="addNumber">{{ $t('words.addMore') }}</Button>
                 </div>
 
-                <div class="mt-2 space-y-4 max-h-80 overflow-y-auto p-2">
-                    <template v-for="(number, index) in formPhones.phoneNumbers" :key="`phone-number-${index}`">
-                        <div class="flex items-center">
-                            <Input class="w-full" type="tel" placeholder="(99) 99999-9999" required maxlength="15"
-                                mask="(##) #####-####" v-model="formPhones.phoneNumbers[index].phone_number.number" />
-                            <Button class="ml-2 px-2 h-fit" type="button" @click="removeNumber(index)">{{ $t('words.remove') }}</Button>
-                        </div>
-                        <InputError class="mt-1" :message="formPhones.errors[`phoneNumbers.${index}.phone_number.number`]"/>
+                <template v-if="formPhones.phoneNumbers.length">
+                    <div class="mt-2 space-y-4 max-h-80 overflow-y-auto p-2">
+                        <template v-for="(number, index) in formPhones.phoneNumbers" :key="`phone-number-${index}`">
+                            <div class="flex items-center">
+                                <Input class="w-full" type="tel" placeholder="(99) 99999-9999" required maxlength="15"
+                                    mask="(##) #####-####" v-model="formPhones.phoneNumbers[index].phone_number.number" />
+                                <Button class="ml-2 px-2 h-fit" type="button" @click="removeNumber(index)">{{ $t('words.remove') }}</Button>
+                            </div>
+                            <InputError class="mt-1" :message="formPhones.errors[`phoneNumbers.${index}.phone_number.number`]"/>
 
-                        <!-- <div class="mt-1" v-if="formPhones.phoneNumbers[index].created_at && formPhones.phoneNumbers[index].validated"> -->
-                            <!-- <Input class="w-20 text-sm" type="tel" placeholder="X-X-X-X" maxlength="7" required -->
-                                <!-- mask="#-#-#-#" /> -->
-                        <!-- </div> -->
-                    </template>
-                </div>
+                            <!-- <div class="mt-1" v-if="formPhones.phoneNumbers[index].created_at && formPhones.phoneNumbers[index].validated"> -->
+                                <!-- <Input class="w-20 text-sm" type="tel" placeholder="X-X-X-X" maxlength="7" required -->
+                                    <!-- mask="#-#-#-#" /> -->
+                            <!-- </div> -->
+                        </template>
+                    </div>
 
-                <InputError class="mt-1" :message="formPhones.errors.phoneNumbers"/>
-                <InputSuccess class="mt-1" :success="formPhones.wasSuccessful" :message="$t('phrases.phonesUpdated')"/>
+                    <InputError class="mt-1" :message="formPhones.errors.phoneNumbers"/>
+                    <InputSuccess class="mt-1" :success="formPhones.wasSuccessful" :message="$t('phrases.phonesUpdated')"/>
+                </template>
+                <template v-else>
+                    <div>
+                        <span>{{ $t('words.noData') }}</span>
+                    </div>
+                </template>
+
             </div>
         </template>
 

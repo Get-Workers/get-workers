@@ -1,4 +1,4 @@
- const en = {
+const ptbr = {
     words: {
         save: 'Salvar',
         saved: 'Salvou',
@@ -134,6 +134,8 @@
         contractorProfile: 'Perfil do contratante',
         updateCpfForm: 'Formulário para alteração de CPF',
         updatePhoneNumberForm: 'Formulário para alteração de número de telefone',
+
+        noData: 'Sem informações',
     },
     phrases: {
         mostHiredWorks: 'Serviços mais contratados',
@@ -271,4 +273,4 @@
     }
 };
 
-export default en;
+export default ptbr;
