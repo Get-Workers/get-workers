@@ -38,13 +38,22 @@ defineProps({
                     />
 
                     <!-- Works List -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 lg:gap-7 w-fit mx-auto mt-5">
-                        <template v-for="work in works.data" :key="`card-list-${work.uuid}`">
-                            <WorkCard :work="work"/>
+                    <div class="mt-5 border rounded p-5">
+                        <template v-if="works.data.length">
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 lg:gap-7 w-fit mx-auto">
+                                <template v-for="work in works.data" :key="`card-list-${work.uuid}`">
+                                    <WorkCard :work="work"/>
+                                </template>
+                            </div>
+
+                            <Pagination class="mt-5" :links="works.links" />
+                        </template>
+                        <template v-else>
+                            <div>
+                                <span>{{ $t('words.noData') }}</span>
+                            </div>
                         </template>
                     </div>
-
-                    <Pagination class="mt-2" :links="works.links" />
                 </div>
             </div>
         </template>

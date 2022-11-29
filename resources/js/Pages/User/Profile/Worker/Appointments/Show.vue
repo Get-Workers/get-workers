@@ -57,21 +57,21 @@ onMounted(() => {
                                     </div>
                                 </div>
                             </template>
-                                <template v-slot:day-content="{ day, attributes }">
-                                    <div class="flex flex-col p-1 overflow-hidden border w-full h-24">
-                                        <span class="day-label text-sm text-gray-900 font-semibold">{{ day.day }}</span>
+                            <template v-slot:day-content="{ day, attributes }">
+                                <div class="flex flex-col p-1 overflow-hidden border w-full h-24">
+                                    <span class="day-label text-sm text-gray-900 font-semibold">{{ day.day }}</span>
 
-                                        <div class="flex justify-center overflow-y-auto h-12 w-full" >
-                                            <p v-for="attr in attributes"
-                                                :key="attr.key"
-                                                class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1 break-words w-32"
-                                                :class="attr.customData.class"
-                                            >
-                                            {{ attr.customData.title }}
-                                            </p>
-                                        </div>
+                                    <div class="flex justify-center overflow-y-auto h-12 w-full" >
+                                        <p v-for="attr in attributes"
+                                            :key="attr.key"
+                                            class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1 break-words w-32"
+                                            :class="attr.customData.class"
+                                        >
+                                        {{ attr.customData.title }}
+                                        </p>
                                     </div>
-                                </template>
+                                </div>
+                            </template>
                             </Calendar>
                         </div>
                     </div>
