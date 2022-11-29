@@ -135,6 +135,8 @@ const en = {
         contractorProfile: 'Contractor profile',
         updateCpfForm: 'Update CPF form',
         updatePhoneNumberForm: 'Update phone number form',
+
+        noData: 'No data',
     },
     phrases: {
         mostHiredWorks: 'Most hired works',

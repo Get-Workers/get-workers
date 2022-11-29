@@ -26,13 +26,20 @@ defineProps({
                     <InputSuccess class="mt-1" :success="deleteStatus" :message="$t('messages.hiredWork.delete.success')"/>
 
                     <!-- Hired Works List -->
-                    <template v-if="hiredWorks.length">
-                        <div class="mt-5 p-5 border rounded w-full space-y-5">
-                            <template v-for="hiredWork in hiredWorks">
-                                <ContractorHiredWorkCard class="hover:bg-gray-300 border rounded-md" :hiredWork="hiredWork" />
-                            </template>
-                        </div>
-                    </template>
+                    <div class="mt-5 border rounded p-5">
+                        <template v-if="hiredWorks.length">
+                            <div class="space-y-5">
+                                <template v-for="hiredWork in hiredWorks">
+                                    <ContractorHiredWorkCard class="hover:bg-gray-300 border rounded-md" :hiredWork="hiredWork" />
+                                </template>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div>
+                                <span>{{ $t('words.noData') }}</span>
+                            </div>
+                        </template>
+                    </div>
                 </div>
             </div>
         </template>

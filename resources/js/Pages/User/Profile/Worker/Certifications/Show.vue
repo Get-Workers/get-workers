@@ -129,29 +129,38 @@ const isProcessingForms = computed(() => (deleteForm.processing || newCertificat
                     </div>
 
                     <!-- Specialties List && Remove Form -->
-                    <div class="mt-5 border rounded" v-if="certifications.length">
-                        <div class="px-5 py-3 border-b">
-                            <div class="flex justify-between items-center">
-                                <div class="flex">
-                                    <span class="w-40" :title="$t('words.certificationName')">{{ $t('words.certificationName') }}</span>
-                                    <span class="ml-5" :title="`${$t('words.certificationIdentificator')}/URL`">{{ `${$t('words.certificationIdentificator')}/URL` }}</span>
+                    <template v-if="certifications.length">
+                        <div class="mt-5 border rounded">
+                            <div class="px-5 py-3 border-b">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex">
+                                        <span class="w-40" :title="$t('words.certificationName')">{{ $t('words.certificationName') }}</span>
+                                        <span class="ml-5" :title="`${$t('words.certificationIdentificator')}/URL`">{{ `${$t('words.certificationIdentificator')}/URL` }}</span>
+                                    </div>
+                                    <span class="w-24">{{ $t('words.action') }}</span>
                                 </div>
-                                <span class="w-24">{{ $t('words.action') }}</span>
+                            </div>
+                            <div v-for="certification in certifications" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex">
+                                        <span class="w-40 truncate" :title="certification.name">{{ certification.name }}</span>
+                                        <ExternalLink :href="certification.certified_link" :title="certification.certified_uuid" class="ml-5 max-w-40" target="_blank" v-if="certification.certified_link">
+                                            {{ certification.certified_uuid ? certification.certified_uuid : certification.certified_link }}
+                                        </ExternalLink>
+                                        <span class="ml-5 max-w-40" v-else>{{ certification.certified_uuid }}</span>
+                                    </div>
+                                    <Button class="w-24" @click="submitDelete(certification.uuid)" :disabled="isProcessingForms">{{ $t('words.delete') }}</Button>
+                                </div>
                             </div>
                         </div>
-                        <div v-for="certification in certifications" class="px-5 py-3 hover:bg-gray-300 border-b last:border-none">
-                            <div class="flex justify-between items-center">
-                                <div class="flex">
-                                    <span class="w-40 truncate" :title="certification.name">{{ certification.name }}</span>
-                                    <ExternalLink :href="certification.certified_link" :title="certification.certified_uuid" class="ml-5 max-w-40" target="_blank" v-if="certification.certified_link">
-                                        {{ certification.certified_uuid ? certification.certified_uuid : certification.certified_link }}
-                                    </ExternalLink>
-                                    <span class="ml-5 max-w-40" v-else>{{ certification.certified_uuid }}</span>
-                                </div>
-                                <Button class="w-24" @click="submitDelete(certification.uuid)" :disabled="isProcessingForms">{{ $t('words.delete') }}</Button>
+                    </template>
+                    <template v-else>
+                        <div class="mt-5 border rounded p-5">
+                            <div>
+                                <span>{{ $t('words.noData') }}</span>
                             </div>
                         </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </template>
