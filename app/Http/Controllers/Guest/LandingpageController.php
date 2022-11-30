@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Services\Caches\SpecialtyCacheService;
 use App\Services\Caches\WorkCacheService;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class LandingpageController extends Controller
     public function __invoke(Request $request): Response
     {
         $page = $request->get('page', 1);
-        $filters = $request->all(['search', 'stars', 'specialties']);
+        $filters = $request->all(['search', 'stars', 'specialties', 'city']);
         $filters['moreHires'] = true;
         if (! empty($filters['specialties'])) {
             $filters['specialties'] = explode(',', $filters['specialties']);
@@ -36,13 +37,17 @@ class LandingpageController extends Controller
         $selectedSpecialties = $specialties
             ->whereIn('id', $filters['specialties'])
             ->values();
+        $cityId = (int) $request->get('city');
+        $city = City::with('state.country')->find($cityId);
 
         return inertia('Landingpage', compact(
             'works',
             'specialties',
             'search',
             'stars',
-            'selectedSpecialties'
+            'selectedSpecialties',
+            'cityId',
+            'city'
         ));
     }
 }

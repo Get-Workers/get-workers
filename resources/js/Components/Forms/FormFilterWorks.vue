@@ -8,6 +8,7 @@ import Button from '@/Components/Button.vue';
 import ButtonCancel from '@/Components/ButtonCancel.vue';
 import StarRating from '@/Components/Ratings/StarRating.vue';
 import BadgeGroup from '@/Components/Badges/BadgeGroup.vue';
+import LocationCountryStateCity from '../Selects/LocationCountryStateCity.vue';
 
 const props = defineProps({
     search: String,
@@ -20,6 +21,8 @@ const props = defineProps({
         type: Array,
         default: []
     },
+    city: Object,
+    cityId: Number,
 });
 
 const nonSelectedSpecialties = computed(() => (props.specialties.filter((specialty) => !formFilter.specialties.includes(specialty.id))));
@@ -45,6 +48,7 @@ const formFilter = useForm({
     stars: 0,
     specialties: [],
     specialtiesList: [],
+    city: null,
 });
 
 function prepareFilters() {
@@ -52,6 +56,7 @@ function prepareFilters() {
     formFilter.stars = props.stars;
     formFilter.specialties = props.selectedSpecialties.map((specialty) => specialty.id);
     formFilter.specialtiesList = props.selectedSpecialties;
+    formFilter.city = props.cityId;
 }
 
 onMounted(() => {
@@ -110,6 +115,11 @@ onMounted(() => {
 
                     </div>
                 </template>
+
+                <div class="col-span-1 md:col-span-2 xl:col-span-3">
+                    <input type="hidden" name="city" v-model="formFilter.city"/>
+                    <LocationCountryStateCity v-model="formFilter.city" :city="city"/>
+                </div>
             </div>
 
             <div class="mt-2 flex justify-end space-x-2">
