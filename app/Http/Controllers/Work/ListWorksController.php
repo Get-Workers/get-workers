@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Work;
 
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Services\Caches\SpecialtyCacheService;
 use App\Services\Caches\WorkCacheService;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class ListWorksController extends Controller
     public function __invoke(Request $request): Response
     {
         $page = $request->get('page', 1);
-        $filters = $request->all(['search', 'stars', 'specialties']);
+        $filters = $request->all(['search', 'stars', 'specialties', 'city']);
         if (! empty($filters['specialties'])) {
             $filters['specialties'] = explode(',', $filters['specialties']);
         }
@@ -40,13 +41,17 @@ class ListWorksController extends Controller
         $selectedSpecialties = $specialties
             ->whereIn('id', $filters['specialties'])
             ->values();
+        $cityId = (int) $request->get('city');
+        $city = City::with('state.country')->find($cityId);
 
         return inertia('User/Works/List', compact(
             'works',
             'specialties',
             'search',
             'stars',
-            'selectedSpecialties'
+            'selectedSpecialties',
+            'cityId',
+            'city'
         ));
     }
 }

@@ -204,6 +204,8 @@ const en = {
         phoneNumberUpdated: 'The phone number was updated successfully',
 
         cityUpdated: 'City update successfully',
+
+        onlySupportsCityField: 'This field only supports the city field',
     },
     messages: {
         priceMeasurement: 'for price measurement',

@@ -133,6 +133,10 @@ class Work extends Model
             $query->withSpecialties($filters['specialties']);
         }
 
+        if (! empty($filters['city'])) {
+            $query->withCity($filters['city']);
+        }
+
         return $query;
     }
 
@@ -183,5 +187,10 @@ class Work extends Model
     public function scopeWithSpecialties(Builder $query, array $specialties): Builder
     {
         return $query->whereHas('specialties', fn (Builder $query) => $query->whereIn('id', $specialties));
+    }
+
+    public function scopeWithCity(Builder $query, int $cityId): Builder
+    {
+        return $query->whereHas('worker.user', fn (Builder $query) => $query->whereCityId($cityId));
     }
 }

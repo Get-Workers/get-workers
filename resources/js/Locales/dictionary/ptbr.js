@@ -202,6 +202,8 @@ const ptbr = {
         phoneNumberUpdated: 'O número de telefone foi alterado com sucesso',
 
         cityUpdated: 'Cidade alterada com sucesso',
+
+        onlySupportsCityField: 'Este campo apenas suporta o campo cidade',
     },
     messages: {
         priceMeasurement: 'para referência de preço',

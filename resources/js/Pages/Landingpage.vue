@@ -17,6 +17,8 @@ defineProps({
         required: true,
         default: []
     },
+    city: Object,
+    cityId: Number,
 });
 </script>
 
@@ -34,6 +36,8 @@ defineProps({
                         :stars="stars"
                         :selectedSpecialties="selectedSpecialties"
                         :specialties="specialties"
+                        :city="city"
+                        :cityId="cityId"
                     />
 
                     <div class="mt-5 border rounded p-5">

@@ -1,10 +1,8 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
 import FormSection from '@/Components/FormSection.vue';
-import Label from '@/Components/Label.vue';
 import InputSuccess from '@/Components/InputSuccess.vue';
 import InputError from '@/Components/InputError.vue';
-import Input from '@/Components/Input.vue';
 import Button from '@/Components/Button.vue';
 import LocationCountryStateCity from '@/Components/Selects/LocationCountryStateCity.vue';
 

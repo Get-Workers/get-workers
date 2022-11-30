@@ -96,7 +96,7 @@ function updateCities() {
     <div>
         <div class="grid gap-2">
             <div>
-                <Label for="country" :value="$t('words.country')" :info="$t('words.country')" />
+                <Label for="country" :value="$t('words.country')" :info="$t('phrases.onlySupportsCityField')" />
                 <select class="w-full" id="country" :disabled="disabled" v-model="selectedCountry" @change="updateStates">
                     <option :value="null" disabled>{{ $t('words.state') }}</option>
 
@@ -106,7 +106,7 @@ function updateCities() {
                 </select>
             </div>
             <div>
-                <Label for="state" :value="$t('words.state')" :info="$t('words.state')" />
+                <Label for="state" :value="$t('words.state')" :info="$t('phrases.onlySupportsCityField')" />
                 <select class="w-full" id="state" :disabled="(disabled || (!states.length))" v-model="selectedState" @change="updateCities">
                     <option :value="null" disabled>{{ $t('words.state') }}</option>
 
@@ -116,7 +116,7 @@ function updateCities() {
                 </select>
             </div>
             <div>
-                <Label for="city" :value="$t('words.city')" :info="$t('words.city')" />
+                <Label for="city" :value="$t('words.city')" />
                 <select class="w-full" id="city" :disabled="(disabled || (!cities.length))" @change="$emit('update:modelValue', Number($event.target.value))" :value="(modelValue ?? city?.id)">
                     <option :value="null" disabled>{{ $t('words.city') }}</option>
 
