@@ -9,6 +9,10 @@ const en = {
         status: 'Status',
         review: 'Review',
 
+        country: 'Country',
+        state: 'State/Province',
+        city: 'City/Town/Village',
+
         // Contractor
         contractor: 'Contractor',
 
@@ -128,6 +132,7 @@ const en = {
         browserSessions: 'Browser Sessions',
         thisDevice: 'This device',
 
+        updateCityForm: 'Update city form',
         workerProfile: 'Worker profile',
         updateCnpjForm: 'Update CNPJ form',
         updatePhonesForm: 'Update Phones form',
@@ -197,6 +202,8 @@ const en = {
         // Contractor Profile
         cpfUpdated: 'CPF was updated successfully',
         phoneNumberUpdated: 'The phone number was updated successfully',
+
+        cityUpdated: 'City update successfully',
     },
     messages: {
         priceMeasurement: 'for price measurement',
