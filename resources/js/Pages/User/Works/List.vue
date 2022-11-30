@@ -17,6 +17,8 @@ defineProps({
         required: true,
         default: []
     },
+    city: Object,
+    cityId: Number,
 });
 </script>
 
@@ -35,6 +37,8 @@ defineProps({
                         :stars="stars"
                         :selectedSpecialties="selectedSpecialties"
                         :specialties="specialties"
+                        :city="city"
+                        :cityId="cityId"
                     />
 
                     <!-- Works List -->
