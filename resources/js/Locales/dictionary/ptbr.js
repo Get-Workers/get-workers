@@ -8,6 +8,10 @@ const ptbr = {
         status: 'Situação',
         review: 'Avaliação',
 
+        country: 'País',
+        state: 'Estado',
+        city: 'Cidade',
+
         // Contractor
         contractor: 'Contratante',
 
@@ -127,6 +131,7 @@ const ptbr = {
         browserSessions: 'Sessões do navegador',
         thisDevice: 'Este aparelho',
 
+        updateCityForm: 'Formulário para alteraração da cidade',
         workerProfile: 'Perfil do prestador der serviço',
         updateCnpjForm: 'Formulário para alteração de CNPJ',
         updatePhonesForm: 'Formulário para alteração de números de telefone',
@@ -195,6 +200,8 @@ const ptbr = {
         // Contractor Profile
         cpfUpdated: 'O CPF foi alterado com sucesso',
         phoneNumberUpdated: 'O número de telefone foi alterado com sucesso',
+
+        cityUpdated: 'Cidade alterada com sucesso',
     },
     messages: {
         priceMeasurement: 'para referência de preço',

@@ -10,6 +10,7 @@ import SidebarMenu from '../Partials/SidebarMenu.vue';
 import UpdateCpfForm from './Partials/UpdateCpfForm.vue';
 import UpdatePhoneNumberForm from './Partials/UpdatePhoneNumberForm.vue';
 import LocaleChanger from '@/Components/Dictionaries/LocaleChanger.vue';
+import UpdateCityForm from './Partials/UpdateCityForm.vue';
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -44,6 +45,12 @@ defineProps({
 
                         <div v-if="$page.props.jetstream.canUpdatePassword">
                             <UpdatePasswordForm class="mt-10 sm:mt-0" />
+
+                            <SectionBorder />
+                        </div>
+
+                        <div>
+                            <UpdateCityForm :user="$page.props.user" />
 
                             <SectionBorder />
                         </div>

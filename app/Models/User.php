@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\Uuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -89,5 +90,13 @@ class User extends Authenticatable
     public function contractor(): HasOne
     {
         return $this->hasOne(Contractor::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
     }
 }
