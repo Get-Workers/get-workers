@@ -117,7 +117,7 @@ function updateCities() {
             </div>
             <div>
                 <Label for="city" :value="$t('words.city')" :info="$t('words.city')" />
-                <select class="w-full" id="city" :disabled="(disabled || (!cities.length))" @change="$emit('update:modelValue', Number($event.target.value))" :value="(modelValue ?? city.id)">
+                <select class="w-full" id="city" :disabled="(disabled || (!cities.length))" @change="$emit('update:modelValue', Number($event.target.value))" :value="(modelValue ?? city?.id)">
                     <option :value="null" disabled>{{ $t('words.city') }}</option>
 
                     <template v-if="cities.length">
