@@ -117,7 +117,7 @@ function setWorkToUpdate(work) {
                     <InputSuccess class="my-2" :success="deleteForm.recentlySuccessful" :message="$t('messages.work.delete.success')" />
 
                     <!-- Works List && Remove Form -->
-                    <div class="mt-5 border rounded p-5">
+                    <div class="mt-5 sm:border rounded md:p-5">
                         <template v-if="works.length">
                             <div class="space-y-5">
                                 <template v-for="work in works">
