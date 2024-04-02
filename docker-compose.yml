@@ -1,13 +1,13 @@
-version: '3'
 services:
-    get-workers.test:
+    app:
         build:
-            context: ./.docker/local/php/8.1
+            context: ./.docker/local/php/8.3
             dockerfile: Dockerfile
             args:
+                WWWUSER: '${WWWUSER}'
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.1/app
-        container_name: get-workers
+        image: get-workers/app
+        container_name: app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -25,11 +25,11 @@ services:
         depends_on:
             - mysql
             - redis
-            - meilisearch
-            - mailhog
-            - selenium
+#            - meilisearch
+#            - mailhog
+#            - selenium
     mysql:
-        image: 'mysql/mysql-server:8.0'
+        image: 'mysql:8.0'
         container_name: mysql
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
@@ -61,34 +61,34 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
-    meilisearch:
-        image: 'getmeili/meilisearch:latest'
-        container_name: meilisearch
-        ports:
-            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
-        volumes:
-            - 'get-workers-meilisearch:/meili_data'
-        networks:
-            - get-workers
-        healthcheck:
-            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
-            retries: 3
-            timeout: 5s
-    mailhog:
-        image: 'mailhog/mailhog:latest'
-        container_name: mailhog
-        ports:
-            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
-            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
-        networks:
-            - get-workers
-    selenium:
-        image: 'selenium/standalone-chrome'
-        container_name: selenium
-        volumes:
-            - '/dev/shm:/dev/shm'
-        networks:
-            - get-workers
+#    meilisearch:
+#        image: 'getmeili/meilisearch:latest'
+#        container_name: meilisearch
+#        ports:
+#            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+#        volumes:
+#            - 'get-workers-meilisearch:/meili_data'
+#        networks:
+#            - get-workers
+#        healthcheck:
+#            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health"]
+#            retries: 3
+#            timeout: 5s
+#    mailhog:
+#        image: 'mailhog/mailhog:latest'
+#        container_name: mailhog
+#        ports:
+#            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+#            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+#        networks:
+#            - get-workers
+#    selenium:
+#        image: 'selenium/standalone-chrome'
+#        container_name: selenium
+#        volumes:
+#            - '/dev/shm:/dev/shm'
+#        networks:
+#            - get-workers
 networks:
     get-workers:
         driver: bridge
@@ -97,5 +97,5 @@ volumes:
         driver: local
     get-workers-redis:
         driver: local
-    get-workers-meilisearch:
-        driver: local
+#    get-workers-meilisearch:
+#        driver: local
