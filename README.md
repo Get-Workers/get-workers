@@ -38,7 +38,12 @@ docker compose exec app npm run dev
 
 ## Only up
 
-#### 1. test
+#### 1. UP
 ```bash
 docker compose up -d
+```
+
+#### 1. Compile Front-end
+```bash
+docker compose exec app npm run dev
 ```
