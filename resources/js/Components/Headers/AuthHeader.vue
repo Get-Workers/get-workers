@@ -62,7 +62,7 @@ const logout = () => {
 </script>
 
 <template>
-    <Header class="">
+    <Header>
         <template #links>
             <div class="flex items-center h-full md:hidden">
                 <Dropdown position="static" align="left" dropdownPosition="static" width="screen">
@@ -76,7 +76,7 @@ const logout = () => {
                         <!-- MenuHeaderY -->
                         <MenuHeaderY>
                             <!-- Item Y -->
-                            <ItemY class="hover:bg-white h-14 items-center border-b" :class="{ 'bg-white': isRoute.dashboard }">
+                            <ItemY class="hover:bg-gray-200 h-14 items-center border-b border-gray-200" :class="{ 'bg-gray-200': isRoute.dashboard }">
                                 <template v-if="! isRoute.dashboard">
                                     <Link :href="route(routes.dashboard)" class="flex px-10 w-full h-full items-center">
                                             Dashboard
@@ -86,7 +86,7 @@ const logout = () => {
                                     <span class="flex px-10 w-full h-full items-center">Dashboard</span>
                                 </template>
                             </ItemY>
-                            <ItemY class="hover:bg-white border-b h-14 items-center" :class="{ 'bg-white': isRoute.works.list }">
+                            <ItemY class="hover:bg-gray-200 h-14 items-center border-b border-gray-200" :class="{ 'bg-gray-200': isRoute.works.list }">
                                 <template v-if="! isRoute.works.list">
                                     <Link :href="route(routes.works.list)" class="flex px-10 w-full h-full items-center">{{ $t('words.works') }}</Link>
                                 </template>
@@ -94,7 +94,7 @@ const logout = () => {
                                     <span class="flex px-10 w-full h-full items-center">{{ $t('words.works') }}</span>
                                 </template>
                             </ItemY>
-                            <ItemY class="hover:bg-white h-14 items-center" :class="{ 'bg-white': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
+                            <ItemY class="hover:bg-gray-200 h-14 items-center" :class="{ 'bg-gray-200': isRoute.contractor.hiredWorks.list }" v-if="canSee.contractor">
                                 <template v-if="! isRoute.contractor.hiredWorks.list">
                                     <Link :href="route(routes.contractor.hiredWorks.list)" class="flex px-10 w-full h-full items-center">
                                         <div class="flex flex-col w-full h-full justify-center">
