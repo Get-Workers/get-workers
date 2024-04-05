@@ -87,9 +87,6 @@ const logout = () => {
                                 </template>
                             </ItemY>
                             <ItemY class="hover:bg-white border-b h-14 items-center" :class="{ 'bg-white': isRoute.works.list }">
-                                <template v-if="! isRoute.works.list">
-                                    <Link :href="route(routes.works.list)" class="flex px-10 w-full h-full items-center">{{ $t('words.works') }}</Link>
-                                </template>
                                 <template v-else>
                                     <span class="flex px-10 w-full h-full items-center">{{ $t('words.works') }}</span>
                                 </template>
