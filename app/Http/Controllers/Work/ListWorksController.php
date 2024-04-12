@@ -21,6 +21,7 @@ class ListWorksController extends Controller
     {
         $page = $request->get('page', 1);
         $filters = $request->all(['search', 'stars', 'specialties', 'city']);
+        $filters['moreHires'] = true;
         if (! empty($filters['specialties'])) {
             $filters['specialties'] = explode(',', $filters['specialties']);
         }
